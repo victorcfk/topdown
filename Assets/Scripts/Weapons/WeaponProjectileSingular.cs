@@ -19,28 +19,25 @@ public class WeaponProjectileSingular : WeaponBasic
     public int numOfProjectilesInBurst = 3;
     //============================
 
-    /// <summary>
-    /// Create and Fire off the projectile, assuming it is created at the 
-    /// Weapon's position and shares the same forward as the weapon
-    /// </summary>
-    
+    public GameObject target;
+
     //override
     public override void FireWeapon()
     {
 
         if (coolDownTimer <= 0)
         {
-            //if (isBurstFire)
+            if (isBurstFire)
                 LaunchBurstOfProjectiles();
-            //else
-              //  LaunchProjectile();
+            else
+               LaunchProjectile();
 
             coolDownTimer = coolDownBetweenShots;
         }
         else
             return;
     }
-
+    
 
     /// <summary>
     /// Create and Fire off the projectile, assuming it is created at the 
@@ -48,13 +45,15 @@ public class WeaponProjectileSingular : WeaponBasic
     /// </summary>
     protected override void LaunchProjectile()
     {
-        fireAngle = transform.rotation;
-        fireDirection = transform.forward;
 
         if (projectilePrefab != null)
         {
+            fireAngle = transform.rotation;
+            fireDirection = transform.forward;//target.transform.position - gameObject.transform.position;//transform.forward;
+
             GameObject instance = CreateProjectile(gameObject.transform.position, fireAngle);
             instance.rigidbody.velocity = (fireDirection).normalized * projectileSpeed;
+            instance.GetComponent<ProjectileSingular>().HomingTarget = target;
         }
     }
     /// <summary>

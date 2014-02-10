@@ -11,21 +11,23 @@ public class ProjectileSingular: ProjectileBasic
 
     public int classtype = 1;
 
-    public int[] bulletIsDestroyedOnContactWithLayer;
+    public int[] IsDestroyedOnContactWithLayer;
+    public bool[] PenetratesLayer;
 
     //public bool IsXPosRelativeToPlayer = false;
     
     //Homing functionality
     //=====================================
     public bool IsHoming = false; 
-    public GameObject Target;
-    public float maxTurnSpeed = 2.0f;
+    public GameObject HomingTarget;
+    public float maxRadiansDelta = 2.0f;
+    public float maxMagnitudeDelta = 2.0f;
     //=====================================
 
     //Accelerating Functionality
     //=====================================
     public bool IsAccelerating = false;
-    public float acceleration = 1.1f;
+    public float Acceleration = 1.1f;
     public float MaxSpeed = 100;
     //=====================================
 
@@ -33,21 +35,22 @@ public class ProjectileSingular: ProjectileBasic
 
     //internal CollisionTag TargetTagType;
     //private Transform Target;
-
-    
-
     //protected ParticleEmitter[] Emitters;
-
-
 
     // Update is called once per frame
     virtual protected void Update()
     {
-
         if (IsAccelerating) AccelerateProjectile();
-        if (IsHoming) HomeTowardsTarget(Target);
+        if (IsHoming) HomeTowardsTarget(HomingTarget);
 
-        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, MaxSpeed);
+        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, MinSpeed > MaxSpeed? MinSpeed : MaxSpeed);
+
+        /*
+        if(MaxSpeed > MinSpeed)
+            rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity,MaxSpeed);
+        else
+            rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, MinSpeed);
+        */
 
         //rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, MaxSpeed);
 
@@ -83,24 +86,37 @@ public class ProjectileSingular: ProjectileBasic
 
     void OnCollisionEnter(Collision collision)
     {
-
-        print(collision.gameObject.name);
-        foreach (int colLayer in bulletIsDestroyedOnContactWithLayer)
+        print(name +" has collided with "+collision.gameObject.name);
+        //foreach (int colLayer in IsDestroyedOnContactWithLayer)
+        for (int i =0; i<IsDestroyedOnContactWithLayer.Length; i++)
         {
-            if (collision.gameObject.layer == colLayer)
-            {
+            if (collision.gameObject.layer == IsDestroyedOnContactWithLayer[i])
+            {   
+                collision.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
+                //collision.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.RequireReceiver);
+                //collision.gameObject.GetComponent<BasicEnemy>().ApplyDamage(Damage);
                 
-                collision.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.RequireReceiver);
-                    //.DontRequireReceiver);
-
-                DestroySelf();
-
+                //if(!PenetratesLayer[i]) DestroySelf();
             }
         }
-
-        // COLLIDED against enemy
     }
 
+
+    void OnTriggerEnter(Collider other)
+    {
+        print(name + " has triggered " + other.gameObject.name);
+        //foreach (int colLayer in IsDestroyedOnContactWithLayer)
+        for (int i = 0; i < IsDestroyedOnContactWithLayer.Length; i++)
+        {
+            if (other.gameObject.layer == IsDestroyedOnContactWithLayer[i])
+            {
+                other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
+
+                if (PenetratesLayer == null ||  !PenetratesLayer[i])
+                    DestroySelf();
+            }
+        }
+    }
 
     //// On Invisible we delete and remove from memory.
     //void OnBecameInvisible()
@@ -116,13 +132,33 @@ public class ProjectileSingular: ProjectileBasic
 
     protected void AccelerateProjectile()
     {
-        rigidbody.velocity += acceleration * transform.forward.normalized;
+        rigidbody.AddForce(transform.forward * Acceleration,ForceMode.Acceleration);// *rigidbody.velocity;
+
     }
 
     protected void HomeTowardsTarget(GameObject target)
     {
-        rigidbody.velocity += acceleration*(target.transform.position - this.gameObject.transform.position).normalized;       
+        //rigidbody.velocity += Acceleration * (target.transform.position - gameObject.transform.position).normalized;
+
+        //rigidbody.AddForce((target.transform.position - gameObject.transform.position).normalized * Acceleration , ForceMode.Acceleration);
+
+
+        /*
+        Vector3 currDir = controlledObj.transform.forward;
+        currDir.z = 0;
+
+        Vector3 tarDir = -controlledObj.transform.position + rel;
+        tarDir.z = 0;*/
+
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, target.transform.position- transform.position, maxRadiansDelta, maxMagnitudeDelta);
+        newDir.z = 0;
+        //transform.forward.z = 0;
+
+        transform.rotation = Quaternion.LookRotation(newDir, new Vector3(0, 0, -1));    //Force up to be -z to prevent flipping due to quaternion representation
+
+        rigidbody.velocity = transform.forward*rigidbody.velocity.magnitude;
+        //controlledObj.transform.localEulerAngles.Set(0, 0, controlledObj.transform.localEulerAngles.z);
+
     }
-
-
+    
 }

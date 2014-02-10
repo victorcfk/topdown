@@ -37,6 +37,7 @@ public abstract class WeaponBasic : MonoBehaviour
 
         if (isOverrideProjectileSpeed)
         {
+            //print("OVEROVEFR" +projectileSpeedOverrideValue);
             projectileSpeed = projectileSpeedOverrideValue;
         }
         else
@@ -67,9 +68,14 @@ public abstract class WeaponBasic : MonoBehaviour
             initialFacing);
     }
 
-
+    /// <summary>
+    /// Create and Fire off the projectile, assuming it is created at the 
+    /// Weapon's position and shares the same forward as the weapon
+    /// </summary>
     virtual public void FireWeapon()
     {
+        print("imma firing");
+
         if (coolDownTimer <= 0)
         {
             LaunchProjectile();

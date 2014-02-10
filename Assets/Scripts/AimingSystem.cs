@@ -52,7 +52,7 @@ public class AimingSystem : MonoBehaviour {
         newDir.z = 0;
 
         controlledObj.transform.rotation = Quaternion.LookRotation(newDir, new Vector3(0,0,-1));    //Force up to be -z to prevent flipping due to quaternion representation
-        controlledObj.transform.localEulerAngles.Set(0, 0, controlledObj.transform.localEulerAngles.z);
+        //controlledObj.transform.localEulerAngles.Set(0, 0, controlledObj.transform.localEulerAngles.z);
         //print(controlledObj.transform.localEulerAngles);
         
 

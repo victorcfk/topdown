@@ -1,32 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof(WeaponBasic))]
+//[RequireComponent (typeof(WeaponBasic))]
 
-public class BasicEnemy : MonoBehaviour {
+public class EnemyBasic : MonoBehaviour {
 
     public float Health =2 ;
-    public float acceleration = 1.1f;
 
-    public GameObject target;
-    public float maxSpeed = 10;
-
-    [HideInInspector]
-    public WeaponBasic ShootScript;
-
-	// Use this for initialization
-	void Start () {
-        ShootScript = this.GetComponent<WeaponBasic>();
-	}
-	
+    	
 	// Update is called once per frame
-	void Update () {
-
+	public void Update () {
         if (Health <= 0) DestroySelf();
-
-        HomeTowardsTarget(target);
 	}
-
 
     virtual protected void OnCollisionEnter(Collision collision)
     {
@@ -41,32 +26,28 @@ public class BasicEnemy : MonoBehaviour {
         }*/
     }
 
-    protected virtual void ApplyDamage(float Damage)
+    public void ApplyDamage(float Damage)
     {
-        print(name+"got hit");
+        print(name+" applied "+Damage+" to itself");
         Health -= Damage;
 
         if (Health <= 0)    DestroySelf();
     }
 
+    /*
     protected void CleanUpProjectiles(){
         foreach (GameObject proj in ShootScript.ExistingProjectiles)
             Destroy(proj);
-    }
+    }*/
 
     protected virtual void DestroySelf()
     {
         //ResetGame();
-        CleanUpProjectiles();
+        //CleanUpProjectiles();
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+
+        Destroy(gameObject);
     }
-
-
-    protected void HomeTowardsTarget(GameObject target)
-    {
-        rigidbody.velocity += acceleration * (target.transform.position - this.gameObject.transform.position).normalized;
-    }
-
 
 }
