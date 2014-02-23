@@ -6,10 +6,11 @@ using System.Collections;
 public class EnemyBasic : MonoBehaviour {
 
     public float Health =2 ;
-
+    public EnemyMoveModuleBasic mm;
     	
 	// Update is called once per frame
 	public void Update () {
+
         if (Health <= 0) DestroySelf();
 	}
 
