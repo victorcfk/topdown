@@ -5,13 +5,13 @@ using System.Collections;
 
 public class EnemyBasic : MonoBehaviour {
 
-    public float Health =2 ;
-    public EnemyMoveModuleBasic mm;
+    public float health =2 ;
+    public EnemyMoveModuleBasic moveModule;
     	
 	// Update is called once per frame
 	public void Update () {
 
-        if (Health <= 0) DestroySelf();
+        if (health <= 0) DestroySelf();
 	}
 
     virtual protected void OnCollisionEnter(Collision collision)
@@ -30,9 +30,9 @@ public class EnemyBasic : MonoBehaviour {
     public void ApplyDamage(float Damage)
     {
         print(name+" applied "+Damage+" to itself");
-        Health -= Damage;
+        health -= Damage;
 
-        if (Health <= 0)    DestroySelf();
+        if (health <= 0)    DestroySelf();
     }
 
     /*

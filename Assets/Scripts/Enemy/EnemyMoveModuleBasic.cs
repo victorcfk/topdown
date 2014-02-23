@@ -12,7 +12,8 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     public bool hasReachedDestination { get { return Vector3.Distance(lastKnownDest, transform.position) <= minDistFromDestination; } }
     public Vector3 lastKnownDest;
 
-    public bool isRealisticMotion = true;
+    public bool isRealisticMotion = false;
+    public bool isMonitoringDestination = false;
 
     private Vector3 temp;
     private float OrigDrag;
@@ -34,26 +35,44 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
 
     public void MoveToPoint(Vector3 destinationPoint)
     {
-        print("movePt");
-        StartCoroutine(MoveToPointRoutine(destinationPoint));
+        //print("movePt");
+
+        if (isMonitoringDestination)
+        {
+            StopAllCoroutines();
+            StartCoroutine(MoveToPointRoutine(destinationPoint));
+        }
+        else
+        {   
+            MoveInDirection(destinationPoint - transform.position);
+        }
+
     }
 
+    /// <summary>
+    /// Move in direction until you stop, coroutine used to monitor whether the destination has been reached.
+    /// </summary>
+    /// <param name="destinationPoint"></param>
+    /// <returns>The point to stop at</returns>
     private IEnumerator MoveToPointRoutine(Vector3 destinationPoint)
     {
         lastKnownDest = destinationPoint;
         
-
         while (!hasReachedDestination)
         {
             MoveInDirection(lastKnownDest - transform.position);
-            yield return null;            
+            yield return null;
         }
         StopMovement();
     }
 
+    /// <summary>
+    /// Just simply move in a direction
+    /// </summary>
+    /// <param name="direction">the direction of movement</param>
     public void MoveInDirection(Vector3 direction)
     {
-        print("moveDir");
+        //print("moveDir");
 
         //StopMovement();
 
@@ -63,12 +82,10 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
             rigidbody.drag = 0.1f;
         }
         else
-            rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.VelocityChange);
-            //rigidbody.velocity = direction.normalized * BaseSpeed;
-
-        //rigidbody.AddForce(direction, ForceMode.VelocityChange);
-            //.velocity = StartPursuitSpeed * (target.transform.position - this.gameObject.transform.position).normalized;
-
+        {
+           // rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.VelocityChange);       //this does not work right when called externally
+            rigidbody.velocity = direction.normalized * BaseSpeed;
+        }
     }
 
     /// <summary>
@@ -82,7 +99,7 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
 
     public void StopMovement()
     {
-        print("stopmove");
+        //print("stopmove");
 
         if (isRealisticMotion)
             rigidbody.drag = BaseSpeed;

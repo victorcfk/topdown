@@ -11,8 +11,8 @@ public class ProjectileSingular: ProjectileBasic
 
     public int classtype = 1;
 
-    public int[] IsDestroyedOnContactWithLayer;
-    public bool[] PenetratesLayer;
+    public LayerMask LayersThatArePenetrated;
+    public LayerMask LayersThatDestroyProjectile;
 
     //public bool IsXPosRelativeToPlayer = false;
     
@@ -87,35 +87,28 @@ public class ProjectileSingular: ProjectileBasic
     void OnCollisionEnter(Collision collision)
     {
         print(name +" has collided with "+collision.gameObject.name);
-        //foreach (int colLayer in IsDestroyedOnContactWithLayer)
-        for (int i =0; i<IsDestroyedOnContactWithLayer.Length; i++)
+
+        collision.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
+
+        if ((LayersThatDestroyProjectile.value & 1 << LayersThatDestroyProjectile) == 0)
         {
-            if (collision.gameObject.layer == IsDestroyedOnContactWithLayer[i])
-            {   
-                collision.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
-                //collision.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.RequireReceiver);
-                //collision.gameObject.GetComponent<BasicEnemy>().ApplyDamage(Damage);
-                
-                //if(!PenetratesLayer[i]) DestroySelf();
-            }
+            DestroySelf();
         }
+
     }
 
 
     void OnTriggerEnter(Collider other)
     {
         print(name + " has triggered " + other.gameObject.name);
-        //foreach (int colLayer in IsDestroyedOnContactWithLayer)
-        for (int i = 0; i < IsDestroyedOnContactWithLayer.Length; i++)
-        {
-            if (other.gameObject.layer == IsDestroyedOnContactWithLayer[i])
-            {
-                other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
 
-                if (PenetratesLayer == null ||  !PenetratesLayer[i])
-                    DestroySelf();
-            }
+        other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
+
+        if ((LayersThatDestroyProjectile.value & 1 << LayersThatDestroyProjectile) == 0)
+        {
+            DestroySelf();
         }
+
     }
 
     //// On Invisible we delete and remove from memory.

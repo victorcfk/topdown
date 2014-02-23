@@ -20,7 +20,11 @@ public class EnemyPursuitWithShoot : EnemyPursuit{
         base.Update();
 
         //isAttacking;
-        if (IsAttacking) WeaponScript.FireWeapon();
+        if (IsAttacking)
+        {
+            moveModule.LookToPoint(target.transform.position);
+            WeaponScript.FireWeapon();
+        }
 	}
 
     protected void CleanUpProjectiles(){
