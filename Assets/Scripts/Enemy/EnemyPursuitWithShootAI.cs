@@ -3,20 +3,20 @@ using System.Collections;
 
 [RequireComponent (typeof(WeaponBasic))]
 
-public class EnemyPursuitWithShoot : EnemyPursuit{
-    
-    public WeaponBasic WeaponScript;
+public class EnemyPursuitWithShootAI : EnemyPursuitAI{
+
+
     public bool IsAttacking = true;
 	
     // Use this for initialization
-	void Start () {
-
+    protected virtual new void Start()
+    {
         if(WeaponScript == null)    WeaponScript = this.GetComponent<WeaponBasic>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
+    protected virtual new void Update()
+    {
         base.Update();
 
         //isAttacking;
@@ -28,11 +28,11 @@ public class EnemyPursuitWithShoot : EnemyPursuit{
 	}
 
     protected void CleanUpProjectiles(){
-        foreach (GameObject proj in WeaponScript.ExistingProjectiles)
+        foreach (ProjectileBasic proj in WeaponScript.ExistingProjectiles)
         Destroy(proj);
     }
 
-    protected virtual void DestroySelf()
+    protected virtual new void DestroySelf()
     {
         //ResetGame();
         CleanUpProjectiles();

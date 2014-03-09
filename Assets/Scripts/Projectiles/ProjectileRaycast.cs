@@ -27,7 +27,8 @@ public class ProjectileRaycast : ProjectileBasic {
     Vector3 offset;
 
     // Use this for initialization
-    void Start () {
+    protected virtual new void Start()
+    {
 
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetWidth(laserWidth, laserWidth);
@@ -40,7 +41,7 @@ public class ProjectileRaycast : ProjectileBasic {
 
         // Auto Firing
         FireLaser();
-        Invoke("DestroySelf", MaxLifeTime);
+        Invoke("DestroySelf", lifeTime);
     }
 
     // The title says it.. It fires laser
@@ -56,7 +57,8 @@ public class ProjectileRaycast : ProjectileBasic {
         firing = false;
 	}
 
-    void DestroySelf(){
+    protected virtual new void DestroySelf()
+    {
         //Debug.Log("[LaserBeams DestroySelf] Destroy gameObject");
         StopLaser();
         Destroy(gameObject);
@@ -68,7 +70,8 @@ public class ProjectileRaycast : ProjectileBasic {
     }
 
     // Update is called once per frame
-    void Update () {
+    protected virtual new void Update()
+    {
 		if(firing){         
             RenderLaser(); 
         }

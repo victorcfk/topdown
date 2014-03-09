@@ -104,7 +104,7 @@ public class BasicPlayer : MonoBehaviour {
 
     }
 
-    protected virtual void ApplyDamage(float Damage){
+    public virtual void ApplyDamage(float Damage){
         print(name + "got hit"); 
         Health -= Damage;
 

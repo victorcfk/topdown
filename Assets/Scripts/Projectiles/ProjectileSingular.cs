@@ -12,7 +12,7 @@ public class ProjectileSingular: ProjectileBasic
     public int classtype = 1;
 
     public LayerMask LayersThatArePenetrated;
-    public LayerMask LayersThatDestroyProjectile;
+    //public LayerMask LayersThatDestroyProjectile;
 
     //public bool IsXPosRelativeToPlayer = false;
     
@@ -38,12 +38,14 @@ public class ProjectileSingular: ProjectileBasic
     //protected ParticleEmitter[] Emitters;
 
     // Update is called once per frame
-    virtual protected void Update()
+    protected virtual new void Update()
     {
+        base.Update();
+
         if (IsAccelerating) AccelerateProjectile();
         if (IsHoming) HomeTowardsTarget(HomingTarget);
 
-        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, MinSpeed > MaxSpeed? MinSpeed : MaxSpeed);
+        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, minSpeed > MaxSpeed? minSpeed : MaxSpeed);
 
         /*
         if(MaxSpeed > MinSpeed)
@@ -90,8 +92,10 @@ public class ProjectileSingular: ProjectileBasic
 
         collision.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
 
-        if ((LayersThatDestroyProjectile.value & 1 << LayersThatDestroyProjectile) == 0)
+        //Is it able to penetrate the layer?
+        if ((LayersThatArePenetrated.value & 1 << collision.gameObject.layer) == 0)
         {
+            //No.
             DestroySelf();
         }
 
@@ -104,8 +108,10 @@ public class ProjectileSingular: ProjectileBasic
 
         other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
 
-        if ((LayersThatDestroyProjectile.value & 1 << LayersThatDestroyProjectile) == 0)
+        //Is it able to penetrate the layer?
+        if ((LayersThatArePenetrated.value & 1 << other.gameObject.layer) == 0)
         {
+            //No.
             DestroySelf();
         }
 

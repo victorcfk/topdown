@@ -9,7 +9,7 @@ public class WeaponRaycast : WeaponBasic
     /// Creates a projectile with properties to be initialised later. Raycast and particle weapons.
     /// </summary>
     /// <returns>The instance of the Projectile.</returns>
-    protected GameObject CreateProjectile(Vector3 spawnLocation, Quaternion initialFacing)
+    protected virtual new GameObject CreateProjectile(Vector3 spawnLocation, Quaternion initialFacing)
     {
         return (GameObject)Instantiate(
             projectilePrefab,

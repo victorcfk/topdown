@@ -5,26 +5,52 @@ using System.Collections;
 
 public class EnemyBasic : MonoBehaviour {
 
-    public float health =2 ;
+    public float health = 2 ;
+    public float shipCollisionDamage = 1;
+
+    public LayerMask LayersThatDestroyThis;
+
     public EnemyMoveModuleBasic moveModule;
-    	
+    public WeaponBasic WeaponScript;
+
+    public Vector3 movePos;
+    public GameObject target;
+	
 	// Update is called once per frame
-	public void Update () {
+	public virtual void Update () {
 
         if (health <= 0) DestroySelf();
 	}
 
-    virtual protected void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        //print("colled");
-
-        /*
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        //Is it able to penetrate the layer?
+        if ((LayersThatDestroyThis.value & 1 << collision.gameObject.layer) != 0)
         {
-          //  print("colledisbull");
-            Health -= collision.gameObject.GetComponent<ProjectileBasic>().damage;
+            print(name + " has collided with " + collision.gameObject.name);
 
-        }*/
+            collision.gameObject.BroadcastMessage("ApplyDamage", shipCollisionDamage, SendMessageOptions.DontRequireReceiver);
+
+            //No.
+            DestroySelf();
+        }
+
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        //Is it able to penetrate the layer?
+        if ((LayersThatDestroyThis.value & 1 << other.gameObject.layer) != 0)
+        {
+            print(name + " has triggered " + other.gameObject.name);
+
+            other.gameObject.BroadcastMessage("ApplyDamage", shipCollisionDamage, SendMessageOptions.DontRequireReceiver);
+
+            //No.
+            DestroySelf();
+        }
+
     }
 
     public void ApplyDamage(float Damage)

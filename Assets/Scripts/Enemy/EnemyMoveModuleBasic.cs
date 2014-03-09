@@ -19,7 +19,8 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     private float OrigDrag;
 
 	// Use this for initialization
-	void Start () {
+    protected virtual void Start()
+    {
         OrigDrag = rigidbody.drag;
 	}
 	

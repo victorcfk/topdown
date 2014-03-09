@@ -14,4 +14,9 @@ public class BasicShipPart : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void ApplyDamage(float Damage)
+    {
+        shipCore.ApplyDamage(Damage);
+    }
 }

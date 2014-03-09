@@ -51,7 +51,7 @@ public class WeaponProjectileSingular : WeaponBasic
             fireAngle = transform.rotation;
             fireDirection = transform.forward;//target.transform.position - gameObject.transform.position;//transform.forward;
 
-            GameObject instance = CreateProjectile(gameObject.transform.position, fireAngle);
+            ProjectileBasic instance = CreateProjectile(gameObject.transform.position, fireAngle);
             instance.rigidbody.velocity = (fireDirection).normalized * projectileSpeed;
             instance.GetComponent<ProjectileSingular>().HomingTarget = target;
         }

@@ -5,22 +5,41 @@ public abstract class ProjectileBasic : MonoBehaviour {
 
     public WeaponBasic weapon;
 
+    //[HideInInspector]
     public float damage = 1;
+    
+    //[HideInInspector]
+    public float range = 10;
 
-    public float MinSpeed = 40;
-    public float MaxLifeTime = 1;		// In seconds
-    public float MaxDistanceTravelled = 500;
+    //[HideInInspector]
+    public float minSpeed = 10;
+
+    //[HideInInspector]
+    public float lifeTime = 1;		// In seconds
+
+    protected Vector3 prevPos;
+    public float distTravelled = 0;
 
     // Use this for initialization
     protected void Start()
     {
+        prevPos = transform.position;
 
-        Invoke("DestroySelf", MaxLifeTime);
+        Invoke("DestroySelf", lifeTime);
         //if ( IsHoming == true && HomingLifeTime > 0 ) {
         //    Invoke ( "StopHoming" , HomingLifeTime );
         //}
 
         //Emitters = GetComponentsInChildren<ParticleEmitter>();
+    }
+
+    protected void Update()
+    {
+        distTravelled += Vector3.Distance(prevPos, transform.position);
+        prevPos = transform.position;
+
+        if (distTravelled >= range)
+            DestroySelf();
     }
 
 
@@ -29,7 +48,7 @@ public abstract class ProjectileBasic : MonoBehaviour {
         CancelInvoke();
 
         if (weapon != null)
-            weapon.clearUpProjectile(gameObject);
+            weapon.clearUpProjectile(this);
          
         if (gameObject != null)
             Destroy(gameObject);
