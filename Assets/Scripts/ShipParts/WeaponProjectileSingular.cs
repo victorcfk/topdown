@@ -12,7 +12,7 @@ public class WeaponProjectileSingular : WeaponBasic
     /// <returns>A Boolean value indicating a successful check.</returns>
     */
 
-    public virtual Vector3 fireLocation { get { return transform.position;  } }
+    public override Vector3 fireLocation { get { return transform.position;  } }
     public float angleDeviation = 0;
 
 

@@ -10,13 +10,22 @@ public class EngineSystem : MonoBehaviour {
     public Vector3 upDir;
     public Vector3 rightDir;
 
-    public float acceleration = 0.5f;
-    public float maxSpeed = 10.0f;
+    public float basicAcceleration = 0.5f;
+    public float basicMaxSpeed = 10.0f;
+    public float basicMaxRadiansDelta = 0.05f;
+    public float basicMaxMagnitudeDelta = 0.05f;
     
+    protected float resultantAcceleration = 0.5f;
+    protected float resultantMaxSpeed = 10.0f;
+    protected float resultantMaxRadiansDelta = 0.05f;
+    protected float resultantMaxMagnitudeDelta = 0.05f;
+
+
     public GameObject controlObj;
 
     public float horizontalMoveVal;
     public float verticalMoveVal;
+    public Vector3 LookAtVector;
 
 	// Use this for initialization
 	void Start () {
@@ -30,13 +39,14 @@ public class EngineSystem : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
+        getAllEngineModifiers();
         //horiVal = Input.GetAxis("Horizontal");
         //vertVal = Input.GetAxis("Vertical");
-
-
         moveHorizontally(horizontalMoveVal);
         moveVertically(verticalMoveVal);
         clampMovement();
+
+        turnToVector(LookAtVector);
         /*
         else
         if (Input.GetKey("right"))
@@ -60,7 +70,7 @@ public class EngineSystem : MonoBehaviour {
     /// </summary>
     void moveHorizontally(float input)
     {
-        controlObj.rigidbody.velocity += rightDir * horizontalMoveVal * acceleration;
+        controlObj.rigidbody.velocity += rightDir * horizontalMoveVal * resultantAcceleration;
     }
 
     /// <summary>
@@ -68,7 +78,20 @@ public class EngineSystem : MonoBehaviour {
     /// </summary>
     void moveVertically(float input)
     {
-        controlObj.rigidbody.velocity += upDir * verticalMoveVal * acceleration;
+        controlObj.rigidbody.velocity += upDir * verticalMoveVal * resultantAcceleration;
+    }
+
+    void turnToVector(Vector3 LookAtVector)
+    {
+        Vector3 newDir = Vector3.RotateTowards(
+            controlObj.transform.forward, 
+            LookAtVector,
+            resultantMaxRadiansDelta,
+            resultantMaxMagnitudeDelta);
+
+        newDir.z = 0;
+
+        controlObj.transform.rotation = Quaternion.LookRotation(newDir, new Vector3(0, 0, -1));    //Force up to be -z to prevent flipping due to quaternion representation
     }
 
     /// <summary>
@@ -76,17 +99,21 @@ public class EngineSystem : MonoBehaviour {
     /// </summary>
     void clampMovement()
     {
-        controlObj.rigidbody.velocity = Vector3.ClampMagnitude(controlObj.rigidbody.velocity, maxSpeed);
+        controlObj.rigidbody.velocity = Vector3.ClampMagnitude(controlObj.rigidbody.velocity, basicMaxSpeed);
     }
 
     void getAllEngineModifiers()
     {
         foreach (EngineBasic engine in engines)
         {
-            acceleration = (acceleration + engine.moveSpeedAdd) * engine.moveSpeedMultiplier;
-            maxSpeed = (maxSpeed + engine.moveSpeedAdd) * engine.moveSpeedMultiplier;
+            resultantAcceleration   = (basicAcceleration + engine.moveSpeedAdd) * engine.moveSpeedMultiplier;
+            resultantMaxSpeed       = (basicMaxSpeed + engine.moveSpeedAdd) * engine.moveSpeedMultiplier;
+
+            resultantMaxRadiansDelta    = (basicMaxRadiansDelta + engine.turnSpeedAdd) * engine.turnSpeedMultiplier;
+            resultantMaxMagnitudeDelta  = (basicMaxMagnitudeDelta + engine.turnSpeedAdd) * engine.turnSpeedMultiplier;
         }
     }
+
 
 }
 

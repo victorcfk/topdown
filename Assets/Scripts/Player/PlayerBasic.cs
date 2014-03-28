@@ -12,8 +12,10 @@ public class PlayerBasic : MonoBehaviour {
     public float health = 2;
 
     public List<BasicShipPart> attachedParts;// = new List<BasicShipPart>();       //The list of attached, parts, may contain weapons. Temp will be initialised by hand
-    private EngineSystem engineSystem;
-    private WeaponsSystem weaponsSystem;
+    [HideInInspector]
+    public EngineSystem engineSystem;
+    [HideInInspector]
+    public WeaponsSystem weaponsSystem;
 
     public float acceleration = 0.5f;
     public float maxSpeed = 10.0f;
@@ -24,6 +26,9 @@ public class PlayerBasic : MonoBehaviour {
     public float verticalMoveInput;
     [HideInInspector]
     public bool isFiringInputActive;
+    [HideInInspector]
+    public Vector3 LookAtVector;
+
 
     // Use this for initialization
 	void Start () {
@@ -52,6 +57,7 @@ public class PlayerBasic : MonoBehaviour {
 
         engineSystem.horizontalMoveVal = horizontalMoveInput;
         engineSystem.verticalMoveVal = verticalMoveInput;
+        engineSystem.LookAtVector = LookAtVector;
 
         if(isFiringInputActive)
             weaponsSystem.fireAllWeapons();
@@ -98,7 +104,6 @@ public class PlayerBasic : MonoBehaviour {
         {
             return false;
         }
-
     }
 
     public virtual void ApplyDamage(float Damage){

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyPursuitAI : EnemyBasic
 {
-    public void Start()
+    protected override void Start()
     {
         //InvokeRepeating("thing", 1, 0.5f);
     }

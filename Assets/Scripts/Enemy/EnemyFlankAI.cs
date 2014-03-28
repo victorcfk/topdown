@@ -13,7 +13,7 @@ public class EnemyFlankAI : EnemyBasic {
     public float destinationChangeInterval = 1.5f;
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
         InvokeRepeating("getToRandomSurroundingPoint", 1, destinationChangeInterval);
     }
