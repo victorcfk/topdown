@@ -10,7 +10,12 @@ public class WeaponsSystem : MonoBehaviour {
     private bool isFiring;
 	// Use this for initialization
 	void Start () {
-	
+        
+        if(weapons == null) weapons = new List<BasicShipPart>();
+        if( weapons.Count <= 0)
+        {
+            weapons.AddRange(this.GetComponentsInChildren<BasicShipPart>());
+        }
 	}
 	
 	// Update is called once per frame

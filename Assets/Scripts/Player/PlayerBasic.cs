@@ -7,17 +7,16 @@ using System.Collections.Generic;
 [RequireComponent(typeof(WeaponsSystem))]
 
 
-public class BasicPlayer : MonoBehaviour {
+public class PlayerBasic : MonoBehaviour {
 
-    public float Health = 2;
+    public float health = 2;
 
+    public List<BasicShipPart> attachedParts;// = new List<BasicShipPart>();       //The list of attached, parts, may contain weapons. Temp will be initialised by hand
     private EngineSystem engineSystem;
     private WeaponsSystem weaponsSystem;
 
     public float acceleration = 0.5f;
     public float maxSpeed = 10.0f;
-
-    public List<BasicShipPart> attachedParts;// = new List<BasicShipPart>();       //The list of attached, parts, may contain weapons. Temp will be initialised by hand
 
     [HideInInspector]
     public float horizontalMoveInput;
@@ -28,19 +27,28 @@ public class BasicPlayer : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-        engineSystem = GetComponent<EngineSystem>();
-        weaponsSystem = GetComponent<WeaponsSystem>();
+        if (engineSystem == null) engineSystem = GetComponent<EngineSystem>();
+        if (weaponsSystem == null) weaponsSystem = GetComponent<WeaponsSystem>();
+        if (attachedParts == null) attachedParts = new List<BasicShipPart>();
+
+        if (attachedParts.Count <= 0)
+        {
+            attachedParts.AddRange(this.GetComponentsInChildren<BasicShipPart>());
+
+            foreach (BasicShipPart part in attachedParts)
+                part.shipCore = this;
+        }
 
         initWeaponsSystem();
+        initEngineSystem();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Health <= 0) DestroySelf();
+        if (health <= 0) DestroySelf();
 
         //print(horizontalMoveInput);
         //print(verticalMoveInput);
-
 
         engineSystem.horizontalMoveVal = horizontalMoveInput;
         engineSystem.verticalMoveVal = verticalMoveInput;
@@ -48,16 +56,6 @@ public class BasicPlayer : MonoBehaviour {
         if(isFiringInputActive)
             weaponsSystem.fireAllWeapons();
 	}
-
-    protected void OnCollisionEnter(Collision collision)
-    {
-        /*
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
-        {
-            Health -= collision.gameObject.GetComponent<ProjectileBasic>().damage;
-
-        }*/
-    }
 
     protected void ResetGame()
     {
@@ -72,7 +70,6 @@ public class BasicPlayer : MonoBehaviour {
     protected void initEngineSystem()
     {
         engineSystem.engines = attachedParts.FindAll(isEngine);
-            //.weapons = attachedParts.FindAll(isWeapon);
     }
 
     //utility predicate to find all weapons in a list of ship parts
@@ -93,7 +90,7 @@ public class BasicPlayer : MonoBehaviour {
     private bool isEngine(BasicShipPart part)
     {
 
-        if (part is ShipModifierPart)
+        if (part is EngineBasic)
         {
             return true;
         }
@@ -106,16 +103,16 @@ public class BasicPlayer : MonoBehaviour {
 
     public virtual void ApplyDamage(float Damage){
         print(name + "got hit"); 
-        Health -= Damage;
+        health -= Damage;
 
-        if (Health <= 0) DestroySelf();
+        if (health <= 0) DestroySelf();
     }
 
     protected virtual void DestroySelf(){
-                    //ResetGame();
-            Invoke("ResetGame", 2);
+        //ResetGame();
+        Invoke("ResetGame", 2);
 
-            gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
 }

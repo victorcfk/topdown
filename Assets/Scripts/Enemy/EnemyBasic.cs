@@ -6,7 +6,7 @@ using System.Collections;
 public class EnemyBasic : MonoBehaviour {
 
     public float health = 2 ;
-    public float shipCollisionDamage = 1;
+    public float collisionDamage = 1;
 
     public LayerMask LayersThatDestroyThis;
 
@@ -15,45 +15,56 @@ public class EnemyBasic : MonoBehaviour {
 
     public Vector3 movePos;
     public GameObject target;
-	
+
+    protected virtual void Start()
+    {
+        if (target == null)     GameObject.FindGameObjectWithTag("Player");
+    }
+
 	// Update is called once per frame
 	public virtual void Update () {
 
         if (health <= 0) DestroySelf();
 	}
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
         //Is it able to penetrate the layer?
-        if ((LayersThatDestroyThis.value & 1 << collision.gameObject.layer) != 0)
+        if ((LayersThatDestroyThis.value & 1 << collision.collider.gameObject.layer) != 0)
         {
-            print(name + " has collided with " + collision.gameObject.name);
+            print("Me "+ name + " has collided with " + collision.collider.gameObject.name);
 
-            collision.gameObject.BroadcastMessage("ApplyDamage", shipCollisionDamage, SendMessageOptions.DontRequireReceiver);
+            //collision.gameObject.BroadcastMessage("ApplyDamage", collisionDamage, SendMessageOptions.DontRequireReceiver);
+
+            collision.collider.gameObject.GetComponent<BasicShipPart>().ApplyDamage(collisionDamage);
+            ApplyDamage(collision.collider.gameObject.GetComponent<BasicShipPart>().collisionDamage);
 
             //No.
-            DestroySelf();
+           // DestroySelf();
         }
 
     }
 
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         //Is it able to penetrate the layer?
         if ((LayersThatDestroyThis.value & 1 << other.gameObject.layer) != 0)
         {
-            print(name + " has triggered " + other.gameObject.name);
+            print("Me " + name + " has triggered " + other.gameObject.name);
 
-            other.gameObject.BroadcastMessage("ApplyDamage", shipCollisionDamage, SendMessageOptions.DontRequireReceiver);
+            //other.gameObject.BroadcastMessage("ApplyDamage", collisionDamage, SendMessageOptions.DontRequireReceiver);
+
+            other.gameObject.GetComponent<BasicShipPart>().ApplyDamage(collisionDamage);
+            ApplyDamage(other.gameObject.GetComponent<BasicShipPart>().collisionDamage);
 
             //No.
-            DestroySelf();
+           // DestroySelf();
         }
 
     }
 
-    public void ApplyDamage(float Damage)
+    public virtual void ApplyDamage(float Damage)
     {
         print(name+" applied "+Damage+" to itself");
         health -= Damage;

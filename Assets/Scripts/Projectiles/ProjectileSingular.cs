@@ -6,14 +6,15 @@ using System.Collections;
 
 public class ProjectileSingular: ProjectileBasic
 {
-
     //internal const float DEFAULT_MAX_DISTANCE = 10000;
 
     public int classtype = 1;
 
     public LayerMask LayersThatArePenetrated;
-    //public LayerMask LayersThatDestroyProjectile;
 
+    protected BasicShipPart tempPart;
+
+    //public LayerMask LayersThatDestroyProjectile;
     //public bool IsXPosRelativeToPlayer = false;
     
     //Homing functionality
@@ -89,8 +90,9 @@ public class ProjectileSingular: ProjectileBasic
     void OnCollisionEnter(Collision collision)
     {
         print(name +" has collided with "+collision.gameObject.name);
+        tempPart = collision.gameObject.GetComponent<BasicShipPart>();
 
-        collision.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
+        if(tempPart != null)    tempPart.ApplyDamage(Damage);
 
         //Is it able to penetrate the layer?
         if ((LayersThatArePenetrated.value & 1 << collision.gameObject.layer) == 0)
@@ -106,7 +108,10 @@ public class ProjectileSingular: ProjectileBasic
     {
         print(name + " has triggered " + other.gameObject.name);
 
-        other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
+        //other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
+        tempPart = other.gameObject.GetComponent<BasicShipPart>();
+
+        if (tempPart != null) tempPart.ApplyDamage(Damage);
 
         //Is it able to penetrate the layer?
         if ((LayersThatArePenetrated.value & 1 << other.gameObject.layer) == 0)

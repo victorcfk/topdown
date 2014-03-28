@@ -12,6 +12,10 @@ public class WeaponProjectileSingular : WeaponBasic
     /// <returns>A Boolean value indicating a successful check.</returns>
     */
 
+    public virtual Vector3 fireLocation { get { return transform.position;  } }
+    public float angleDeviation = 0;
+
+
     //Burst Fire functionality
     //============================
     public bool isBurstFire = false;
@@ -24,7 +28,6 @@ public class WeaponProjectileSingular : WeaponBasic
     //override
     public override void FireWeapon()
     {
-
         if (coolDownTimer <= 0)
         {
             if (isBurstFire)
@@ -37,7 +40,6 @@ public class WeaponProjectileSingular : WeaponBasic
         else
             return;
     }
-    
 
     /// <summary>
     /// Create and Fire off the projectile, assuming it is created at the 
@@ -45,17 +47,23 @@ public class WeaponProjectileSingular : WeaponBasic
     /// </summary>
     protected override void LaunchProjectile()
     {
-
+        //print("centar"+projectilePrefab.getCenter());
         if (projectilePrefab != null)
         {
             fireAngle = transform.rotation;
+            //print("ang" + fireAngle);
+            //fireAngle.Set(fireAngle.x, fireAngle.y , fireAngle.z, fireAngle.w);
+            //print("ang"+fireAngle);
+            
             fireDirection = transform.forward;//target.transform.position - gameObject.transform.position;//transform.forward;
+            fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation,angleDeviation),transform.right) * fireDirection;
 
-            ProjectileBasic instance = CreateProjectile(gameObject.transform.position, fireAngle);
+            ProjectileBasic instance = CreateProjectile(fireLocation, fireAngle);
             instance.rigidbody.velocity = (fireDirection).normalized * projectileSpeed;
             instance.GetComponent<ProjectileSingular>().HomingTarget = target;
         }
     }
+
     /// <summary>
     /// Create and Fire off a number of projectiles, assuming it is created at the 
     /// Weapon's position and shares the same forward as the weapon

@@ -6,7 +6,7 @@ public class EnemyFlankAIWithShoot : EnemyFlankAI
     public bool IsAttacking = true;
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         base.Update();
         //isAttacking;

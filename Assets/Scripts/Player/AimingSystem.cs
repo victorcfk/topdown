@@ -69,7 +69,7 @@ public class AimingSystem : MonoBehaviour {
 
     void getAllEngineModifiers()
     {
-        foreach (ShipModifierPart engine in engines)
+        foreach (EngineBasic engine in engines)
         {
             maxRadiansDelta = (maxRadiansDelta + engine.turnSpeedAdd) * engine.turnSpeedMultiplier;
             maxMagnitudeDelta = (maxMagnitudeDelta + engine.turnSpeedAdd) * engine.turnSpeedMultiplier;

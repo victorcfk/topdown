@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyFlankAI : EnemyBasic {
 
-    Vector3 g;
+    Vector3 temp;
     Vector3 vec3holder;
     RaycastHit raycasthitholder;
 
@@ -19,7 +19,7 @@ public class EnemyFlankAI : EnemyBasic {
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         base.Update();
 
@@ -70,11 +70,11 @@ public class EnemyFlankAI : EnemyBasic {
 
     public void getToRandomSurroundingPoint()
     {
-        g = GetRandomPointWithRayCast(target.transform.position, flankDistance);
+        temp = GetRandomPointWithRayCast(target.transform.position, flankDistance);
 
-        moveModule.MoveToPoint(g);
+        moveModule.MoveToPoint(temp);
 
-        Debug.DrawLine(transform.position, g, Color.red, 2, false);
+        Debug.DrawLine(transform.position, temp, Color.red, 2, false);
     }
 
     //public Vector3 gopoint()

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public BasicPlayer player;
+    public PlayerBasic player;
 
     private float horizontalMoveInput;
     private float verticalMoveInput;

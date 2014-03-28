@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EngineSystem : MonoBehaviour {
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<BasicShipPart> engines = new List<BasicShipPart>();
 
     public Vector3 upDir;
@@ -18,13 +18,13 @@ public class EngineSystem : MonoBehaviour {
     public float horizontalMoveVal;
     public float verticalMoveVal;
 
-
 	// Use this for initialization
 	void Start () {
 	
         horizontalMoveVal = 0;
         verticalMoveVal = 0;
 
+        getAllEngineModifiers();
 	}
 	
 	// Update is called once per frame
@@ -33,8 +33,6 @@ public class EngineSystem : MonoBehaviour {
         //horiVal = Input.GetAxis("Horizontal");
         //vertVal = Input.GetAxis("Vertical");
 
-
-        getAllEngineModifiers();
 
         moveHorizontally(horizontalMoveVal);
         moveVertically(verticalMoveVal);
@@ -46,9 +44,6 @@ public class EngineSystem : MonoBehaviour {
             controlObj.rigidbody.velocity += rightDir;
         }*/
 
-        
-
-        
         
         //= Mathf.Clamp(controlObj.rigidbody.velocity.magnitude, -topSpeed, topSpeed);
 
@@ -86,7 +81,7 @@ public class EngineSystem : MonoBehaviour {
 
     void getAllEngineModifiers()
     {
-        foreach (ShipModifierPart engine in engines)
+        foreach (EngineBasic engine in engines)
         {
             acceleration = (acceleration + engine.moveSpeedAdd) * engine.moveSpeedMultiplier;
             maxSpeed = (maxSpeed + engine.moveSpeedAdd) * engine.moveSpeedMultiplier;

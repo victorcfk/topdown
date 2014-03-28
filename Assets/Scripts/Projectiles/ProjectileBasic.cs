@@ -5,6 +5,8 @@ public abstract class ProjectileBasic : MonoBehaviour {
 
     public WeaponBasic weapon;
 
+    public Vector3 center;
+
     //[HideInInspector]
     public float damage = 1;
     
@@ -54,5 +56,11 @@ public abstract class ProjectileBasic : MonoBehaviour {
             Destroy(gameObject);
     }
 
+    public float getCenter()
+    {
+        return this.renderer.bounds.extents.z;
+
+
+    }
 
 }
