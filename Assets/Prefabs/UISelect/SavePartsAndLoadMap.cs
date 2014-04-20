@@ -3,14 +3,10 @@ using System.Collections;
 
 public class SavePartsAndLoadMap : MonoBehaviour {
 
-    public ShipCoreInfoStore infoStore;
+    //public ShipCoreInfoStore infoStore;
 
     void Start()
     {
-        if (infoStore == null)
-        {
-            infoStore = GetComponent<ShipCoreInfoStore>();
-        }
     }
 
 
@@ -37,9 +33,22 @@ public class SavePartsAndLoadMap : MonoBehaviour {
             
             Debug.Log("Clicked the button with text");
 
-            infoStore.GetPartsAndNewStage = true;
+            ShipCoreInfoStore.instance.savePartsAndNewStage = true;
 
         }
+
+        //if (GUI.Button(
+        //new Rect(Screen.width - 80,
+        //    50,
+        //    60,
+        //    30), "Test"))
+        //{
+
+        //    Debug.Log("Clicked the button with text");
+
+        //    infoStore.GetPartsAndNewStage = true;
+
+        //}
 
 
     }

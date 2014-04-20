@@ -9,16 +9,18 @@ using System.Collections.Generic;
 
 public class PlayerBasic : MonoBehaviour {
 
-    public float health = 2;
+	public bool luft;
+
+    public float health = 10;
+    public float maxHealth = 10;
 
     public List<BasicShipPart> attachedParts;// = new List<BasicShipPart>();       //The list of attached, parts, may contain weapons. Temp will be initialised by hand
     [HideInInspector]
-    public EngineSystem engineSystem;
+    public LuftEngineSystem luftEngineSystem;
+	[HideInInspector]
+	public EngineSystem engineSystem;
     [HideInInspector]
     public WeaponsSystem weaponsSystem;
-
-    public float acceleration = 0.5f;
-    public float maxSpeed = 10.0f;
 
     [HideInInspector]
     public float horizontalMoveInput;
@@ -33,17 +35,12 @@ public class PlayerBasic : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         if (engineSystem == null) engineSystem = GetComponent<EngineSystem>();
+		if (luftEngineSystem == null) luftEngineSystem = GetComponent<LuftEngineSystem>();
         if (weaponsSystem == null) weaponsSystem = GetComponent<WeaponsSystem>();
         if (attachedParts == null) attachedParts = new List<BasicShipPart>();
 
-        if (attachedParts.Count <= 0)
-        {
-            attachedParts.AddRange(this.GetComponentsInChildren<BasicShipPart>());
 
-            foreach (BasicShipPart part in attachedParts)
-                part.shipCore = this;
-        }
-
+        initAllParts();
         initWeaponsSystem();
         initEngineSystem();
 	}
@@ -55,9 +52,15 @@ public class PlayerBasic : MonoBehaviour {
         //print(horizontalMoveInput);
         //print(verticalMoveInput);
 
-        engineSystem.horizontalMoveVal = horizontalMoveInput;
-        engineSystem.verticalMoveVal = verticalMoveInput;
-        engineSystem.LookAtVector = LookAtVector;
+		if (!luft) {
+						engineSystem.horizontalMoveVal = horizontalMoveInput;
+						engineSystem.verticalMoveVal = verticalMoveInput;
+						engineSystem.LookAtVector = LookAtVector;
+				} else {
+						luftEngineSystem.horizontalMoveVal = horizontalMoveInput;
+						luftEngineSystem.verticalMoveVal = verticalMoveInput;
+						luftEngineSystem.LookAtVector = LookAtVector;
+				}
 
         if(isFiringInputActive)
             weaponsSystem.fireAllWeapons();
@@ -68,12 +71,20 @@ public class PlayerBasic : MonoBehaviour {
         Application.LoadLevel(Application.loadedLevelName);
     }
 
+    public void initAllParts()
+    {
+        attachedParts.Clear();
+        attachedParts.AddRange(this.GetComponentsInChildren<BasicShipPart>());
 
-    protected void initWeaponsSystem(){
+        foreach (BasicShipPart part in attachedParts)
+                part.shipCore = this;
+    }
+
+    public void initWeaponsSystem(){
         weaponsSystem.weapons = attachedParts.FindAll(isWeapon);
     }
 
-    protected void initEngineSystem()
+    public void initEngineSystem()
     {
         engineSystem.engines = attachedParts.FindAll(isEngine);
     }
@@ -92,7 +103,7 @@ public class PlayerBasic : MonoBehaviour {
         }
 
     }
-
+    
     private bool isEngine(BasicShipPart part)
     {
 
@@ -118,6 +129,11 @@ public class PlayerBasic : MonoBehaviour {
         Invoke("ResetGame", 2);
 
         gameObject.SetActive(false);
+    }
+
+    public void OnGUI()
+    {
+        GUI.Box(new Rect(Screen.width - health / maxHealth * 100, 0, health / maxHealth * 100, 20), health.ToString());
     }
 
 }

@@ -2,58 +2,68 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum ShipPartType
-{
-    CORE,
-    ENGINE,
-    GUN,
-    SHIELD,
-    LASER
-}
-
-public struct Parto{
-    ShipPartType type;
-    Transform t;
-}
-
 public class ShipCoreInfoStore : MonoBehaviour {
 
-    public static ShipCoreInfoStore infoStoreSingleton;
+    private static ShipCoreInfoStore _instance;
 
-    public GameObject testship;
+    public static ShipCoreInfoStore instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<ShipCoreInfoStore>();
+
+                //Tell unity not to destroy this object when loading a new scene!
+                DontDestroyOnLoad(_instance.gameObject);
+            }
+
+            return _instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            //If I am the first instance, make me the Singleton
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            //If a Singleton already exists and you find
+            //another reference in scene, destroy it!
+            if (this != _instance)
+                Destroy(this.gameObject);
+        }
+    }
+
+    public PlayerBasic ShipCore;
     public List<BasicShipPart> listOfPartPrefabs;      //Reference to all the part things, needs to be initialized
+    public List<PartInfo> listOfPartInfo;
     
-    public static List<GameObject> parts;
-    public static List<Vector3> listOfPositionsOfParts;
-    public static List<Quaternion> listOfRotationsOfParts;
-    public static List<ShipPartType> listOfPartsToAssignToShipCore;
+    ////public List<GameObject> parts;
+    //public List<ShipPartType> listOfPartsToAssignToShipCore;
+    //public List<Vector3> listOfPartsPositions;
+    //public List<Quaternion> listOfPartsRotations;    
 
-    public bool GetPartsAndNewStage = false;
+    public bool buildShipNow = false;
+    public bool savePartsAndNewStage = false;
 
-    PlayerBasic bp;
+    //PlayerBasic bp;
     BasicShipPart tempPart;
 
 	// Use this for initialization. In dont destroy on load, this is only called once.
 	void Start () {
 
-        ShipCoreInfoStore.infoStoreSingleton = this;
-
-        if (listOfPartsToAssignToShipCore == null)
-        {
-            listOfPartsToAssignToShipCore = new List<ShipPartType>();
-        }
-        if (listOfPositionsOfParts == null)
-        {
-            listOfPositionsOfParts = new List<Vector3>();
-        }
-        if (listOfRotationsOfParts == null)
-        {
-            listOfRotationsOfParts = new List<Quaternion>();
-        }
-        if (parts == null)
-        {
-            parts = new List<GameObject>();
-        }
+        ShipCoreInfoStore._instance = this;
+        if (ShipCore == null) GameObject.FindObjectOfType<PlayerBasic>();
+        if(listOfPartInfo == null)  listOfPartInfo = new List<PartInfo>();
+        //if (listOfPartsToAssignToShipCore == null)      listOfPartsToAssignToShipCore = new List<ShipPartType>();
+        //if (listOfPartsPositions == null)             listOfPartsPositions = new List<Vector3>();
+        //if (listOfPartsRotations == null)             listOfPartsRotations = new List<Quaternion>();
+        //if (parts == null)                              parts = new List<GameObject>();
 
         //if (bp == null)
         //{
@@ -61,26 +71,35 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
         //}
 
-
-
-        if (parts != null)  //This should be assigned at the start of the stage
-        {
-            assignPartsToShipCore();
-        }
         
-        //DontDestroyOnLoad(this.gameObject);
+        
+        DontDestroyOnLoad(this.gameObject);
 	}
 
 	// Update is called once per frame
 	void Update () {
 
-        if (GetPartsAndNewStage)
+        if (buildShipNow)
         {
-            GetPartsAndNewStage = !GetPartsAndNewStage;
+            buildShipNow = !buildShipNow;
 
-            print("childCount: " + testship.transform.childCount);
+            if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
 
-            savePartInfoOnShipCore();
+            if (listOfPartInfo != null)  //This should be assigned at the start of the stage
+                loadPartInfoOnShipCore(ShipCore);
+
+            ShipCore.initAllParts();
+            ShipCore.initEngineSystem();
+            ShipCore.initWeaponsSystem();
+        }
+
+        if (savePartsAndNewStage)
+        {
+            savePartsAndNewStage = !savePartsAndNewStage;
+
+            print("childCount: " + ShipCore.transform.childCount);
+
+            savePartInfoOnShipCore(ShipCore);
 
             Application.LoadLevel(Application.loadedLevel + 1);
 
@@ -98,58 +117,44 @@ public class ShipCoreInfoStore : MonoBehaviour {
         //}
 	}
 
-    void savePartInfoOnShipCore()
+    void savePartInfoOnShipCore(PlayerBasic ShipCore)
     {
-        BasicShipPart temp;
+        BasicShipPart tempPart;
 
-        print(testship.transform.childCount);
-        for (int i = 0; i < testship.transform.childCount; i++)
+        print(ShipCore.transform.childCount);
+
+        for (int i = 0; i < ShipCore.transform.childCount; i++)
         {
-            temp = testship.transform.GetChild(i).GetComponent<BasicShipPart>();
+            tempPart = ShipCore.transform.GetChild(i).GetComponent<BasicShipPart>();
 
-            if (temp != null)
-            {   //Get the list of parts
-                listOfPartsToAssignToShipCore.Add(temp.partType);    //save the type on record
-                listOfPositionsOfParts.Add(temp.transform.position);
-                listOfRotationsOfParts.Add(temp.transform.rotation);  //save the transform for later.
-            }
-            //DontDestroyOnLoad(temp);
+            if(tempPart != null)
+            listOfPartInfo.Add(new PartInfo(tempPart));
         }
 
     }
 
-    void assignPartsToShipCore()
+    //void saveShipPartInfo(BasicShipPart part)
+    //{
+    //    listOfPartsToAssignToShipCore.Add(part.partType);    //save the type on record
+    //    listOfPartsPositions.Add(part.transform.position);
+    //    listOfPartsRotations.Add(part.transform.rotation);  //save the transform for later.
+    //}
+
+
+    void loadPartInfoOnShipCore(PlayerBasic ShipCore)
     {
-        print(listOfPartsToAssignToShipCore.Count + " , " + listOfRotationsOfParts.Count + " , " + listOfPartPrefabs.Count);
+        //print(listOfPartsToAssignToShipCore.Count + " , " + listOfPartsRotations.Count + " , " + listOfPartPrefabs.Count);
 
         //find the player, give him the parts;
         //==========================================================================
-
-        bp = FindObjectOfType<PlayerBasic>();
-
+        
         //foreach(ShipPartType type in typeList)        //Go through the list of recorded parts
-        for (int i = 0; i < listOfPartsToAssignToShipCore.Count; i++)
+        for (int i = 0; i < listOfPartInfo.Count; i++)
         {
-            //foreach (BasicShipPart part in partzPrefab)       //Find the corresponding prefab
-            for (int j = 0; j < listOfPartPrefabs.Count; j++)
-            {
-                if (listOfPartPrefabs[j].partType == listOfPartsToAssignToShipCore[i])
-                {
-                    tempPart = (BasicShipPart)Instantiate(listOfPartPrefabs[j]);
-
-                    //assign the corresponding transform
-                    //=========================================================
-                    tempPart.transform.position = listOfPositionsOfParts[i];
-                    tempPart.transform.rotation = listOfRotationsOfParts[i];
-                    //=========================================================
-
-                    tempPart.transform.parent = bp.transform;
-
-                }
-            }
+            (listOfPartInfo[i].loadPart()).transform.parent = ShipCore.transform;
         }
         //==========================================================================
 
     }
-
+    
 }

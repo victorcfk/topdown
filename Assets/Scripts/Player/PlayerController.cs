@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour {
     private float verticalMoveInput;
     private Vector3 LookAtVector;
 
-
     private bool isFiringInputActive;
 
     [HideInInspector]
