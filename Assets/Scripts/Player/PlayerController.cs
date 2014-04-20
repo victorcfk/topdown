@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour {
             this.horizontalMoveInput = Input.GetAxis("Horizontal");
             this.verticalMoveInput = Input.GetAxis("Vertical");
 
-            this.isFiringInputActive = Input.GetMouseButton(0);
+            this.isFiringInputActive = Input.GetButton("Fire1");
+                //.GetMouseButton(0);
         }
 
         playerUnit.isFiringInputActive = this.isFiringInputActive;

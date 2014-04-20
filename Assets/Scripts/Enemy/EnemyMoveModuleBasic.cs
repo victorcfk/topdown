@@ -18,6 +18,9 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     private Vector3 temp;
     private float OrigDrag;
 
+    public float maxRadiansDelta = 2.0f;
+    public float maxMagnitudeDelta = 2.0f;
+
 	// Use this for initialization
     protected virtual void Start()
     {
@@ -95,7 +98,14 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     /// <param name="point">the point to look at</param>
     public void LookToPoint(Vector3 point)
     {
-        transform.LookAt(point);
+        //transform.LookAt(point);
+
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, point - transform.position, maxRadiansDelta, maxMagnitudeDelta);
+        newDir.z = 0;
+        //transform.forward.z = 0;
+
+        transform.rotation = Quaternion.LookRotation(newDir, new Vector3(0, 1, 0));    //Force up to be -z to prevent flipping due to quaternion representation
+        
     }
 
     public void StopMovement()

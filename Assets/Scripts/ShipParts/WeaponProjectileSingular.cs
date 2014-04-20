@@ -61,6 +61,10 @@ public class WeaponProjectileSingular : WeaponBasic
             ProjectileBasic instance = CreateProjectile(fireLocation, fireAngle);
             instance.rigidbody.velocity = (fireDirection).normalized * projectileSpeed;
             instance.GetComponent<ProjectileSingular>().HomingTarget = target;
+
+
+            if(activationPS != null)
+                activationPS.Play();
         }
     }
 

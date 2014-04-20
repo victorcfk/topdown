@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-[RequireComponent(typeof(EngineSystem))]
+//[RequireComponent(typeof(EngineSystem))]
 [RequireComponent(typeof(WeaponsSystem))]
 
 
@@ -17,8 +17,8 @@ public class PlayerBasic : MonoBehaviour {
     public List<BasicShipPart> attachedParts;// = new List<BasicShipPart>();       //The list of attached, parts, may contain weapons. Temp will be initialised by hand
     [HideInInspector]
     public LuftEngineSystem luftEngineSystem;
-	[HideInInspector]
-	public EngineSystem engineSystem;
+	//[HideInInspector]
+	//public EngineSystem engineSystem;
     [HideInInspector]
     public WeaponsSystem weaponsSystem;
 
@@ -34,7 +34,7 @@ public class PlayerBasic : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-        if (engineSystem == null) engineSystem = GetComponent<EngineSystem>();
+       // if (engineSystem == null) engineSystem = GetComponent<EngineSystem>();
 		if (luftEngineSystem == null) luftEngineSystem = GetComponent<LuftEngineSystem>();
         if (weaponsSystem == null) weaponsSystem = GetComponent<WeaponsSystem>();
         if (attachedParts == null) attachedParts = new List<BasicShipPart>();
@@ -53,9 +53,9 @@ public class PlayerBasic : MonoBehaviour {
         //print(verticalMoveInput);
 
 		if (!luft) {
-						engineSystem.horizontalMoveVal = horizontalMoveInput;
-						engineSystem.verticalMoveVal = verticalMoveInput;
-						engineSystem.LookAtVector = LookAtVector;
+                        //engineSystem.horizontalMoveVal = horizontalMoveInput;
+                        //engineSystem.verticalMoveVal = verticalMoveInput;
+                        //engineSystem.LookAtVector = LookAtVector;
 				} else {
 						luftEngineSystem.horizontalMoveVal = horizontalMoveInput;
 						luftEngineSystem.verticalMoveVal = verticalMoveInput;
@@ -86,7 +86,8 @@ public class PlayerBasic : MonoBehaviour {
 
     public void initEngineSystem()
     {
-        engineSystem.engines = attachedParts.FindAll(isEngine);
+       // engineSystem.engines = attachedParts.FindAll(isEngine);
+        //luftEngineSystem.engines = attachedParts.FindAll(isEngine);
     }
 
     //utility predicate to find all weapons in a list of ship parts

@@ -158,11 +158,10 @@ public class ProjectileSingular: ProjectileBasic
         newDir.z = 0;
         //transform.forward.z = 0;
 
-        transform.rotation = Quaternion.LookRotation(newDir, new Vector3(0, 0, -1));    //Force up to be -z to prevent flipping due to quaternion representation
+        transform.rotation = Quaternion.LookRotation(newDir, new Vector3(0,1, 0));    //Force up to be -z to prevent flipping due to quaternion representation
 
         rigidbody.velocity = transform.forward*rigidbody.velocity.magnitude;
         //controlledObj.transform.localEulerAngles.Set(0, 0, controlledObj.transform.localEulerAngles.z);
-
     }
     
 }

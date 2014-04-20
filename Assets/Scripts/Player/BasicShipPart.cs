@@ -9,6 +9,8 @@ public class BasicShipPart : MonoBehaviour {
     public EnemyBasic shipCoreE;
 
     public float collisionDamage = 1.0f;
+
+    public ParticleSystem activationPS;
     //public LayerMask LayersThatDestroyThis;
 
 	// Use this for initialization
@@ -18,6 +20,9 @@ public class BasicShipPart : MonoBehaviour {
         {
             shipCoreE = this.GetComponent<EnemyBasic>();
         }
+
+        if (activationPS == null)
+            activationPS = this.GetComponent<ParticleSystem>();
 	}
 
 

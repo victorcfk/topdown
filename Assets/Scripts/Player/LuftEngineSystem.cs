@@ -66,6 +66,11 @@ public class LuftEngineSystem : MonoBehaviour {
 	/// </summary>
 	void accelerate(float input)
 	{
+        if(input!=0){
+            foreach (BasicShipPart e in engines)
+                e.activationPS.Play();
+        }
+
         controlObj.rigidbody.velocity += controlObj.transform.forward * input * basicAcceleration;
 	}
 	
