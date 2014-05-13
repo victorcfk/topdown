@@ -4,6 +4,7 @@ using System.Collections;
 public class StageManager : MonoBehaviour {
     //Here is a private reference only this class can access
     private static StageManager _instance;
+    //public Texture2D skyboxMat;
 
     //This is the public reference that other classes will use
     public static StageManager instance
@@ -26,6 +27,6 @@ public class StageManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    //skyboxMat.x
 	}
 }

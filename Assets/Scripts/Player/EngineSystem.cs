@@ -13,13 +13,10 @@ public class EngineSystem : MonoBehaviour {
     public float basicAcceleration = 0.5f;
     public float basicMaxSpeed = 10.0f;
     public float basicMaxRadiansDelta = 0.05f;
-    public float basicMaxMagnitudeDelta = 0.05f;
     
-    protected float resultantAcceleration = 0.5f;
-    protected float resultantMaxSpeed = 10.0f;
-    protected float resultantMaxRadiansDelta = 0.05f;
-    protected float resultantMaxMagnitudeDelta = 0.05f;
-
+    protected float resultantAcceleration;
+    protected float resultantMaxSpeed;
+    protected float resultantMaxRadiansDelta;
 
     public GameObject controlObj;
 
@@ -86,8 +83,8 @@ public class EngineSystem : MonoBehaviour {
         Vector3 newDir = Vector3.RotateTowards(
             controlObj.transform.forward, 
             LookAtVector,
-            resultantMaxRadiansDelta,
-            resultantMaxMagnitudeDelta);
+            resultantMaxRadiansDelta/180* Mathf.PI,
+            0);
 
         newDir.z = 0;
 
@@ -104,14 +101,22 @@ public class EngineSystem : MonoBehaviour {
 
     void getAllEngineModifiers()
     {
+        float tempAcc = 0;
+        float tempMaxSpd = 0;
+        float tempMaxTurn = 0;
+
         foreach (EngineBasic engine in engines)
         {
-            resultantAcceleration   = (basicAcceleration + engine.moveSpeedAdd) * engine.moveSpeedMultiplier;
-            resultantMaxSpeed       = (basicMaxSpeed + engine.moveSpeedAdd) * engine.moveSpeedMultiplier;
+            tempAcc += engine.moveAccAdd;
+            tempMaxSpd += engine.moveSpeedMaxAdd;
 
-            resultantMaxRadiansDelta    = (basicMaxRadiansDelta + engine.turnSpeedAdd) * engine.turnSpeedMultiplier;
-            resultantMaxMagnitudeDelta  = (basicMaxMagnitudeDelta + engine.turnSpeedAdd) * engine.turnSpeedMultiplier;
+            tempMaxTurn += engine.turnSpeedAdd;
         }
+        resultantAcceleration = basicAcceleration + tempAcc;
+        resultantMaxSpeed = basicMaxSpeed + tempMaxSpd;
+
+        resultantMaxRadiansDelta = basicMaxRadiansDelta + tempMaxTurn;
+
     }
 
 

@@ -14,11 +14,22 @@ public class EnemyBasic : MonoBehaviour {
     public WeaponBasic WeaponScript;
 
     public Vector3 movePos;
-    public GameObject target;
+
+    private GameObject _target;
+    public GameObject target { 
+        get { 
+            if(_target == null)
+               _target = GameObject.FindGameObjectWithTag("Player");
+            
+            return _target;
+        }
+
+        set { _target = value; }
+    }
 
     protected virtual void Start()
     {
-        if (target == null)     GameObject.FindGameObjectWithTag("Player");
+        //if (target == null)     GameObject.FindGameObjectWithTag("Player");
     }
 
 	// Update is called once per frame

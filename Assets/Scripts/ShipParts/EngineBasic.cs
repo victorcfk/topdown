@@ -7,13 +7,12 @@ using System.Collections;
 public class EngineBasic : BasicShipPart
 {
 
-    public float turnSpeedAdd =0;
-    public float turnSpeedMultiplier = 1;
+    public float turnSpeedAdd = 0;
+    //public float turnSpeedMultiplier = 1;
 
-    public float moveSpeedAdd =0;
-    public float moveSpeedMultiplier =1;
+    public float moveAccAdd = 0;
+    public float moveSpeedMaxAdd = 0;
     
-
     //// Use this for initialization
     //void Start () {
 	    

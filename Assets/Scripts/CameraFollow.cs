@@ -9,22 +9,27 @@ public class CameraFollow : MonoBehaviour {
     public float smoothTime = 0.1f;
     public float maxSpeed = Mathf.Infinity;
 
+    public Vector3 currentVeloc;
+
     //private Vector3 currentPos;
     private Vector3 velocity = Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
-	
+	   
 	}
 
     void FixedUpdate()
     {
 //        velocity = this.rigidbody.velocity;
 
+        //followTarget.rigidbody.velocity;
+
         Vector3 wantedPos = new Vector3(
-            followTarget.transform.position.x,
-            followTarget.transform.position.y,
+            followTarget.transform.position.x +  followTarget.transform.forward.x*10,
+            followTarget.transform.position.y +  followTarget.transform.forward.y*10,
              transform.position.z);
+        //followTarget.rigidbody.velocity.x 
 
         this.transform.position = Vector3.SmoothDamp( transform.position, wantedPos, ref velocity,smoothTime);
     }
