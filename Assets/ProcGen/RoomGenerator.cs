@@ -2,28 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum WALL_TEMPLATE
+public class RoomGenerator : MonoBehaviour
 {
-    NO_WALL,
-    BLOCKED,
-    ONE_OPENINGS,
-    TWO_OPENINGS,
-    THREE_OPENINGS,    
-}
+    //public Vector3 roomCenter;
 
-public enum FUNITURE_TEMPLATE
-{
-    CORRIDOR,
-    OPEN,
-    CENTRAL,
-    SCATTERED,
-}
-
-public class RoomGenerator : MonoBehaviour {
-
-    public Vector3 roomCenter;
-    public float roomHeight;
-    public float roomWidth;
+    public float defRoomHeight;
+    public float defRoomWidth;
 
     int roomHeightCount;
     int roomWidthCount;
@@ -32,120 +16,309 @@ public class RoomGenerator : MonoBehaviour {
     public GameObject CornerObj;
     public GameObject CenterObj;
 
-    public Room RoomParent;
-    public Wall LeftWallParent;
-    public Wall RightWallParent;
-    public Wall TopWallParent;
-    public Wall BtmWallParent;
-    
+    //public Room RoomParent;
+    //public Wall LeftWallParent;
+    //public Wall RightWallParent;
+    //public Wall TopWallParent;
+    //public Wall BtmWallParent;
+
     Vector3 roomCent;
-    
+
     Vector3 btmLeft;
     Vector3 topLeft;
 
     Vector3 btmRight;
     Vector3 topRight;
 
-    
+    public List<Room> rooms;
 
+    static int rowCount = 5;
+    static int colCount = 2;
+    public Room[][] roomArr = new Room[rowCount][];
     //Template type object.
-    
-	// Use this for initialization
-	void Start () {
 
-        GenerateRoom();
-
-        roomCenter += new Vector3(100, 100, 0);
-
-        GenerateRoom();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        Debug.DrawLine(btmLeft, topLeft, Color.red);
-        Debug.DrawLine(topLeft, topRight, Color.white);
-        Debug.DrawLine(topRight, btmRight, Color.blue);
-        Debug.DrawLine(btmRight, btmLeft, Color.green);
-	}
-
-    void GenerateRoom()
+    // Use this for initialization
+    void Start()
     {
-        if (RoomParent == null)
+        GenerateRoomGrid(rowCount, colCount);
+        
+    }
+
+    void GenerateRoomGrid(int rowCount, int colCount)
+    {
+        //Vector3 roomCent = Vector3.zero;
+        for (int i = 0; i < rowCount; i++)
         {
-            RoomParent = this.gameObject.AddComponent<Room>();
+            roomArr[i] = new Room[colCount];
+
+            for (int j = 0; j < colCount; j++)
+            {
+                Room temp;
+                float usedHeight;
+                float usedWidth;
+
+                usedHeight = defRoomHeight +Random.Range(-25, 25);
+                usedWidth = defRoomWidth +Random.Range(-25, 25);
+
+                WALL_TEMPLATE? leftRestrict = null;
+                WALL_TEMPLATE? topRestrict = null;
+                WALL_TEMPLATE? btmRestrict = null;
+                WALL_TEMPLATE? rightRestrict = null;
+
+
+                if (i <= 0) leftRestrict = WALL_TEMPLATE.BLOCKED;
+                if (i >= (rowCount-1)) rightRestrict = WALL_TEMPLATE.BLOCKED;
+
+                if (j <= 0) btmRestrict = WALL_TEMPLATE.BLOCKED;
+                if (j >= (colCount - 1)) topRestrict = WALL_TEMPLATE.BLOCKED;
+
+                if((i-1)>=0){
+                    leftRestrict = roomArr[i - 1][j].rightWall.template;
+                }
+
+                if ((j - 1) >= 0)
+                {
+                    btmRestrict = roomArr[i][j-1].topWall.template;
+                }
+
+
+                temp = GenerateRoom(
+                    Vector3.zero + new Vector3(i * 100 + Random.Range(0, 10), j * 75 + Random.Range(0, 10), 0),
+                    usedWidth,usedHeight,
+                    topRestrict,leftRestrict,rightRestrict,btmRestrict);
+
+                rooms.Add(temp);
+
+                roomArr[i][j] = temp;// rooms[0];
+            }
         }
 
-        //RoomParent.GetComponent<Room>().walls.Add()
-
-        if (LeftWallParent == null)
+        for (int i = 0; i < rowCount; i++)
         {
-            LeftWallParent = (new GameObject("LeftWallParent")).AddComponent<Wall>();
-            
-            LeftWallParent.transform.position = RoomParent.transform.position;
-            LeftWallParent.transform.parent = RoomParent.transform;
+            for (int j = 0; j < colCount; j++)
+            {
+                if (i + 1 <= rowCount-1) roomArr[i][j].rightRoom = roomArr[i + 1][j];
+
+                if (i - 1 >= 0) roomArr[i][j].leftRoom = roomArr[i - 1][j];
+
+                if (j + 1 <= colCount - 1) roomArr[i][j].topRoom = roomArr[i][j + 1];
+
+                if (j - 1 >= 0) roomArr[i][j].btmRoom = roomArr[i][j - 1];
+            }
         }
 
-        if (RightWallParent == null)
+        foreach (Room rm in rooms)
         {
-            RightWallParent = (new GameObject("RightWallParent")).AddComponent<Wall>();
-            
-            RightWallParent.transform.position = RoomParent.transform.position;
-            RightWallParent.transform.parent = RoomParent.transform;
+            if (rm.topRoom != null)
+            {
+                Corridor corr = (new GameObject("VertCorridor")).AddComponent<Corridor>();
+                corr.transform.position = rm.transform.position;
+
+                ConnectWallsViaCorridor(rm.getTopMostWall(), rm.topRoom.getBtmMostWall(),corr);
+            }
+
+
+            if (rm.rightRoom != null)
+            {
+                Corridor corr = (new GameObject("HoriCorridor")).AddComponent<Corridor>();
+                corr.transform.position = rm.transform.position;
+
+                ConnectWallsViaCorridor(rm.getRightMostWall(), rm.rightRoom.getLeftMostWall(),corr);
+            }
+        }
+    }
+
+
+    Room GetRightRoom(Room referenceRoom, List<Room> rooms)
+    {
+        Room temp = referenceRoom;
+        float closestDist = Mathf.Infinity;
+
+        foreach (Room rm in rooms)
+        {
+            if (Vector3.Distance(rm.transform.position, referenceRoom.transform.position) < closestDist &&
+                rm.transform.position != referenceRoom.transform.position &&
+                rm.transform.position.x > referenceRoom.transform.position.x)
+            {
+                closestDist = Vector3.Distance(rm.transform.position, referenceRoom.transform.position);
+                temp = rm;
+            }
+        }
+        
+        if (temp == referenceRoom)
+            return null;
+        else
+            return temp;
+    }
+
+    Room GetLeftRoom(Room referenceRoom, List<Room> rooms)
+    {
+        Room temp = referenceRoom;
+        float closestDist = Mathf.Infinity;
+
+        foreach (Room rm in rooms)
+        {
+            if (Vector3.Distance(rm.transform.position, referenceRoom.transform.position) < closestDist &&
+                rm.transform.position != referenceRoom.transform.position &&
+                rm.transform.position.x < referenceRoom.transform.position.x)
+            {
+                closestDist = Vector3.Distance(rm.transform.position, referenceRoom.transform.position);
+                temp = rm;
+            }
         }
 
-        if (TopWallParent == null)
+        if (temp == referenceRoom)
+            return null;
+        else
+            return temp;
+    }
+
+    Room GetTopRoom(Room referenceRoom, List<Room> rooms)
+    {
+        Room temp = referenceRoom;
+        float closestDist = Mathf.Infinity;
+
+        foreach (Room rm in rooms)
         {
-            TopWallParent = (new GameObject("TopWallParent")).AddComponent<Wall>();
-            
-            TopWallParent.transform.position = RoomParent.transform.position;
-            TopWallParent.transform.parent = RoomParent.transform;
+            if (Vector3.Distance(rm.transform.position, referenceRoom.transform.position) < closestDist &&
+                rm.transform.position != referenceRoom.transform.position &&
+                rm.transform.position.y > referenceRoom.transform.position.y)
+            {
+                closestDist = Vector3.Distance(rm.transform.position, referenceRoom.transform.position);
+                temp = rm;
+            }
+
         }
 
-        if (BtmWallParent == null)
+        if (temp == referenceRoom)
+            return null;
+        else
+            return temp;
+    }
+
+    Room GetBtmRoom(Room referenceRoom, List<Room> rooms)
+    {
+        Room temp = referenceRoom;
+        float closestDist = Mathf.Infinity;
+
+        foreach (Room rm in rooms)
         {
-            BtmWallParent = (new GameObject("BtmWallParent")).AddComponent<Wall>();
-            
-            BtmWallParent.transform.position = RoomParent.transform.position;
-            BtmWallParent.transform.parent = RoomParent.transform;
+            if (Vector3.Distance(rm.transform.position, referenceRoom.transform.position) < closestDist &&
+                rm.transform.position != referenceRoom.transform.position &&
+                rm.transform.position.y < referenceRoom.transform.position.y)
+            {
+                closestDist = Vector3.Distance(rm.transform.position, referenceRoom.transform.position);
+                temp = rm;
+            }
         }
 
-        DefineBoundaries(roomCenter);
+        if (temp == referenceRoom)
+            return null;
+        else
+            return temp;
+    }
 
-        GenerateWall(btmLeft, topLeft, CornerObj, WALL_TEMPLATE.BLOCKED, 0, LeftWallParent);
+    // Update is called once per frame
+    void Update()
+    {
+        //Debug.DrawLine(btmLeft, topLeft, Color.red);
+        //Debug.DrawLine(topLeft, topRight, Color.white);
+        //Debug.DrawLine(topRight, btmRight, Color.blue);
+        //Debug.DrawLine(btmRight, btmLeft, Color.green);
 
-        //for (int i = 0; i < 100; i++)
+        //foreach (Room rm in rooms)
         //{
-        //    //PlaceObjectWithinBoxBoundary(btmLeft -  new Vector3(10.5f,0,0), topLeft+new Vector3(10.5f,0,0),CenterObj);
-        //    PlaceObjectWithinRadius(btmLeft, 5, CenterObj);
+
+        //    Debug.DrawLine(rm.transform.position, rm.getRightMostWall().middle, Color.red);
+        //    Debug.DrawLine(rm.transform.position, rm.getLeftMostWall().middle, Color.white);
+        //    Debug.DrawLine(rm.transform.position, rm.getBtmMostWall().middle, Color.blue);
+        //    Debug.DrawLine(rm.transform.position, rm.getTopMostWall().middle, Color.green);
+
         //}
 
-        //GenerateLineOfPrefabs(topLeft, topRight, CornerObj,TopWallParent);
-        GenerateWall(topLeft, topRight, CornerObj, WALL_TEMPLATE.BLOCKED, 0, TopWallParent);
-        //GenerateLineOfPrefabs(topRight, btmRight, CornerObj,RightWallParent);
-        GenerateWall(topLeft, topRight, CornerObj, WALL_TEMPLATE.NO_WALL, 0, RightWallParent);
-        //GenerateLineOfPrefabs(btmRight, btmLeft, CornerObj, BtmWallParent);
-        GenerateWall(btmRight, btmLeft, CornerObj, WALL_TEMPLATE.ONE_OPENINGS, 10, BtmWallParent);
+    }
 
-        RoomParent.GetComponent<Room>().walls.Add(LeftWallParent.GetComponent<Wall>());
-        LeftWallParent.GetComponent<Wall>().adjRooms.Add(RoomParent.GetComponent<Room>());
-
-        RoomParent.GetComponent<Room>().walls.Add(TopWallParent.GetComponent<Wall>());
-        TopWallParent.GetComponent<Wall>().adjRooms.Add(RoomParent.GetComponent<Room>());
-
-        RoomParent.GetComponent<Room>().walls.Add(RightWallParent.GetComponent<Wall>());
-        RightWallParent.GetComponent<Wall>().adjRooms.Add(RoomParent.GetComponent<Room>());
-
-        RoomParent.GetComponent<Room>().walls.Add(BtmWallParent.GetComponent<Wall>());
-        BtmWallParent.GetComponent<Wall>().adjRooms.Add(RoomParent.GetComponent<Room>());
+    Room GenerateRoom(Vector3 roomCenter,
+        float roomWidth,
+        float roomHeight,
+        WALL_TEMPLATE? topWallRestriction = null,
+        WALL_TEMPLATE? leftWallRestriction = null,
+        WALL_TEMPLATE? rightWallRestriction = null,
+        WALL_TEMPLATE? btmWallRestriction = null)
+    {
+        Room roomParent;
+        Wall leftWall;
+        Wall rightWall;
+        Wall topWall;
+        Wall btmWall;
 
 
-        FillRoom(btmLeft, topRight, FUNITURE_TEMPLATE.SCATTERED, funiture_list, RoomParent);
+        roomParent = (new GameObject("Room")).AddComponent<Room>();
+        roomParent.transform.position = roomCenter;
 
-        LeftWallParent =null;
-        RightWallParent = null;
-        BtmWallParent = null;
-        TopWallParent = null;
 
+        leftWall = (new GameObject("LeftWallParent")).AddComponent<Wall>();
+        leftWall.transform.position = roomParent.transform.position;
+        leftWall.transform.parent = roomParent.transform;
+
+        rightWall = (new GameObject("RightWallParent")).AddComponent<Wall>();
+        rightWall.transform.position = roomParent.transform.position;
+        rightWall.transform.parent = roomParent.transform;
+
+
+        topWall = (new GameObject("TopWallParent")).AddComponent<Wall>();
+        topWall.transform.position = roomParent.transform.position;
+        topWall.transform.parent = roomParent.transform;
+
+        btmWall = (new GameObject("BtmWallParent")).AddComponent<Wall>();
+        btmWall.transform.position = roomParent.transform.position;
+        btmWall.transform.parent = roomParent.transform;
+
+
+        DefineBoundaries(roomCenter, roomWidth, roomHeight);
+
+        if(leftWallRestriction != null)
+            GenerateWall(btmLeft, topLeft, CornerObj, (WALL_TEMPLATE)leftWallRestriction, 5, leftWall);
+        else
+            GenerateWall(btmLeft, topLeft, CornerObj, (WALL_TEMPLATE)EnumRand(typeof(WALL_TEMPLATE)), 5, leftWall);
+        
+        if (topWallRestriction != null)
+            GenerateWall(topLeft, topRight, CornerObj, (WALL_TEMPLATE)topWallRestriction, 5, topWall);
+        else
+            GenerateWall(topLeft, topRight, CornerObj, (WALL_TEMPLATE)EnumRand(typeof(WALL_TEMPLATE)), 5, topWall);
+
+
+        if (rightWallRestriction != null)
+            GenerateWall(topRight, btmRight, CornerObj, (WALL_TEMPLATE)rightWallRestriction, 5, rightWall);
+        else
+            GenerateWall(topRight, btmRight, CornerObj, (WALL_TEMPLATE)EnumRand(typeof(WALL_TEMPLATE)), 5, rightWall);
+
+
+        if (btmWallRestriction != null)
+            GenerateWall(btmRight, btmLeft, CornerObj, (WALL_TEMPLATE)btmWallRestriction, 5, btmWall);
+        else
+            GenerateWall(btmRight, btmLeft, CornerObj, (WALL_TEMPLATE)EnumRand(typeof(WALL_TEMPLATE)), 5, btmWall);
+        
+
+        roomParent.walls.Add(leftWall);
+        roomParent.leftWall = leftWall;
+        leftWall.adjRooms.Add(roomParent);
+
+        roomParent.walls.Add(topWall);
+        roomParent.topWall = topWall;
+        topWall.adjRooms.Add(roomParent);
+
+        roomParent.walls.Add(rightWall);
+        roomParent.rightWall = rightWall;
+        rightWall.adjRooms.Add(roomParent);
+
+        roomParent.walls.Add(btmWall);
+        roomParent.btmWall = btmWall;
+        btmWall.adjRooms.Add(roomParent);
+
+        FillRoom(btmLeft, topRight, (FUNITURE_TEMPLATE)EnumRand(typeof(FUNITURE_TEMPLATE)), funiture_list, roomParent);
+
+        return roomParent;
     }
 
 
@@ -154,7 +327,7 @@ public class RoomGenerator : MonoBehaviour {
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    void DefineBoundaries(Vector3 roomCent)
+    void DefineBoundaries(Vector3 roomCent,float roomWidth, float roomHeight)
     {
         btmLeft = roomCent + new Vector3(-roomWidth / 2, -roomHeight / 2, 0);
         topLeft = roomCent + new Vector3(-roomWidth / 2, roomHeight / 2, 0);
@@ -162,12 +335,11 @@ public class RoomGenerator : MonoBehaviour {
         btmRight = roomCent + new Vector3(roomWidth / 2, -roomHeight / 2, 0);
         topRight = roomCent + new Vector3(roomWidth / 2, roomHeight / 2, 0);
 
-        print(roomCent);
-        print(btmLeft);
-        print(topLeft);
-        print(btmRight);
-        print(topRight);
-
+        //print(roomCent);
+        //print(btmLeft);
+        //print(topLeft);
+        //print(btmRight);
+        //print(topRight);
 
         //GameObject.Instantiate(CenterObj, roomCent, CenterObj.transform.rotation);
 
@@ -179,29 +351,40 @@ public class RoomGenerator : MonoBehaviour {
 
     }
 
-    void GenerateWall(Vector3 start, Vector3 end, GameObject WallBrick, WALL_TEMPLATE wall_temp,int openingBrickSize =0,Wall Parent =null)
+    void GenerateWall(Vector3 start, Vector3 end, GameObject WallBrick, WALL_TEMPLATE wall_temp, int openingBrickSize = 0, Wall Parent = null)
     {
 
         float PrefabRadius = 1;// = Vector3.Distance(WallBrick.collider.bounds.max , WallBrick.collider.bounds.min);
+        Parent.middle = (start + end) / 2;
+        Parent.transform.position = Parent.middle;
+        Parent.template = wall_temp;
 
         switch (wall_temp)
         {
             case WALL_TEMPLATE.BLOCKED:
                 GenerateLineOfPrefabs(start, end, WallBrick, Parent.gameObject, Parent.wallPieces);
+                Parent.leftMostDoorEdge = start;
+                Parent.rightMostDoorEdge = end;
                 break;
 
             case WALL_TEMPLATE.NO_WALL:
                 //GenerateLineOfPrefabs(start, end, WallBrick, Parent);
                 //do nothing
+                Parent.leftMostDoorEdge = start;
+                Parent.rightMostDoorEdge = end;
                 break;
 
+            case WALL_TEMPLATE.TWO_OPENINGS:
             case WALL_TEMPLATE.ONE_OPENINGS:
 
                 Vector3 middleStart = (end + start) / 2 - (end - start).normalized * openingBrickSize * PrefabRadius;
                 Vector3 middleEnd = (end + start) / 2 + (end - start).normalized * openingBrickSize * PrefabRadius;
 
+                Parent.leftMostDoorEdge = middleStart;
+                Parent.rightMostDoorEdge = middleEnd;
+
                 GenerateLineOfPrefabs(start, middleStart, WallBrick, Parent.gameObject, Parent.wallPieces);
-                GenerateLineOfPrefabs(middleEnd, end, WallBrick, Parent.gameObject, Parent.wallPieces);
+                GenerateLineOfPrefabs(end, middleEnd, WallBrick, Parent.gameObject, Parent.wallPieces);
                 break;
 
             default:
@@ -215,18 +398,8 @@ public class RoomGenerator : MonoBehaviour {
 
     }
 
-    void FillRoom(Vector3 btmLeft, Vector3 topRight, FUNITURE_TEMPLATE fun_temp,GameObject[] funiture_list, Room Parent = null)
+    void FillRoom(Vector3 btmLeft, Vector3 topRight, FUNITURE_TEMPLATE fun_temp, GameObject[] funiture_list, Room Parent = null)
     {
-        /*
-         * public enum FUNITURE_TEMPLATE
-{
-    CORRIDOR,
-    OPEN,
-    CENTRAL,
-    SCATTERED,
-}
-         * */
-
         GameObject tempObj;
         switch (fun_temp)
         {
@@ -236,11 +409,19 @@ public class RoomGenerator : MonoBehaviour {
             case FUNITURE_TEMPLATE.CENTRAL:
 
                 tempObj = funiture_list[Random.Range(0, funiture_list.Length)];
-
-                Instantiate(tempObj, (btmLeft + topRight) / 2, tempObj.transform.rotation);
+                //PlaceObjectWithinBoxBoundary((btmLeft + topRight) / 2, (btmLeft + topRight) / 2, tempObj, Parent.gameObject);
+                
                 //PlaceObjectWithinBoxBoundary((btmLeft + topRight) / 2, (btmLeft + topRight) / 2, tempObj, Parent);
+
+                if (Parent == null)
+                    Instantiate(tempObj, (btmLeft + topRight) / 2, tempObj.transform.rotation);
+                else
+                    ((GameObject)Instantiate(tempObj, (btmLeft + topRight) / 2, tempObj.transform.rotation)).transform.parent = Parent.transform;
+
+
                 break;
 
+            case FUNITURE_TEMPLATE.CORRIDOR:
             case FUNITURE_TEMPLATE.SCATTERED:
 
                 int num = Random.Range(10, 20);
@@ -253,8 +434,8 @@ public class RoomGenerator : MonoBehaviour {
                 //Instantiate(tempObj, (btmLeft + topRight) / 2, tempObj.transform.rotation);
                 break;
 
-            //case FUNITURE_TEMPLATE.CORRIDOR:
 
+            //case FUNITURE_TEMPLATE.CORRIDOR:
             //    int num = Random.Range(10, 20);
             //    for (int i = 0; i < num; i++)
             //    {
@@ -263,8 +444,7 @@ public class RoomGenerator : MonoBehaviour {
             //        PlaceObjectWithinBoxBoundary(btmLeft, topRight, tempObj, Parent);
             //    }
             //    //Instantiate(tempObj, (btmLeft + topRight) / 2, tempObj.transform.rotation);
-            //    break;    
-
+            //    break;
             default:
                 break;
         }
@@ -278,13 +458,27 @@ public class RoomGenerator : MonoBehaviour {
         Destroy(b.gameObject);
     }
 
-    void ConnectWallsViaCorridor(Wall a, Wall b)
+    void ConnectWallsViaCorridor(Wall a, Wall b, Corridor c = null)
     {
+        if (a == null || b == null)
+            return;
 
+        if (a.template == WALL_TEMPLATE.BLOCKED || b.template == WALL_TEMPLATE.BLOCKED)
+            return;
+
+        //GenerateLineOfPrefabs(a.middle, b.middle, CornerObj);
+        if (c != null)
+        {
+            c.walls.Add(a);
+            c.walls.Add(b);
+        }
+
+        GenerateLineOfPrefabs(a.leftMostDoorEdge, b.rightMostDoorEdge, CornerObj,c.gameObject);
+        GenerateLineOfPrefabs(a.rightMostDoorEdge, b.leftMostDoorEdge, CornerObj,c.gameObject);
     }
 
 
-    void GenerateLineOfPrefabs(Vector3 start, Vector3 end, GameObject WallBrick, GameObject Parent =null, List<GameObject> ReferenceList =null)
+    void GenerateLineOfPrefabs(Vector3 start, Vector3 end, GameObject WallBrick, GameObject Parent = null, List<GameObject> ReferenceList = null)
     {
         float PrefabRadius;// = Vector3.Distance(WallBrick.collider.bounds.max , WallBrick.collider.bounds.min);
 
@@ -296,11 +490,11 @@ public class RoomGenerator : MonoBehaviour {
         //print(WallBrick.GetComponent<MeshFilter>().mesh.bounds.min);
 
         PrefabRadius = 1;
-        print("PrefabRadius: " + PrefabRadius);
+        //print("PrefabRadius: " + PrefabRadius);
 
         int numOfPrefabsToGen = (int)(Vector3.Distance(start, end) / PrefabRadius);
 
-        print("numOfPrefabsToGen: " + numOfPrefabsToGen);
+        //print("numOfPrefabsToGen: " + numOfPrefabsToGen);
 
         Vector3 DirOfGen = (end - start).normalized;
         Vector3 pointer = start;
@@ -309,7 +503,7 @@ public class RoomGenerator : MonoBehaviour {
         for (int i = 0; i < numOfPrefabsToGen; i++)
         {
 
-            temp= (GameObject)Instantiate(WallBrick, pointer, WallBrick.transform.rotation);
+            temp = (GameObject)Instantiate(WallBrick, pointer, WallBrick.transform.rotation);
 
             if (Parent != null)
                 temp.transform.parent = Parent.transform;
@@ -339,7 +533,7 @@ public class RoomGenerator : MonoBehaviour {
         float CorrectedBtmLeftY = btmLeft.y + PrefabRadius;
 
         if (CorrectedTopRightX < CorrectedBtmLeftX)
-            CorrectedTopRightX = CorrectedBtmLeftX = (topRight.x + topLeft.x)/2;
+            CorrectedTopRightX = CorrectedBtmLeftX = (topRight.x + topLeft.x) / 2;
 
         if (CorrectedTopRightY < CorrectedBtmLeftY)
             CorrectedTopRightY = CorrectedBtmLeftY = (topRight.y + topLeft.y) / 2;
@@ -353,7 +547,7 @@ public class RoomGenerator : MonoBehaviour {
             Instantiate(obj, new Vector3(xPos, yPos, 0), obj.transform.rotation);
         else
             ((GameObject)Instantiate(obj, new Vector3(xPos, yPos, 0), obj.transform.rotation)).transform.parent = Parent.transform;
-            
+
     }
 
     /// <summary>
@@ -375,4 +569,11 @@ public class RoomGenerator : MonoBehaviour {
         return new Vector3(val.x, val.y);
     }
 
+    static int EnumRand(System.Type e)
+    {
+        return Random.Range(0,
+            System.Enum.GetNames(e).Length);
+
+        //return new Vector3(val.x, val.y);
+    }
 }
