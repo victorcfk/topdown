@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EngineSystem : MonoBehaviour {
 
     //[HideInInspector]
-    public List<BasicShipPart> engines = new List<BasicShipPart>();
+    public List<EngineBasic> engines = new List<EngineBasic>();
 
     public Vector3 upDir;
     public Vector3 rightDir;

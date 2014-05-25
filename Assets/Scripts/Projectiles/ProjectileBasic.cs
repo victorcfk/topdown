@@ -23,11 +23,12 @@ public abstract class ProjectileBasic : MonoBehaviour {
     public float distTravelled = 0;
 
     // Use this for initialization
-    protected void Start()
+    protected virtual void Start()
     {
         prevPos = transform.position;
 
-        Invoke("DestroySelf", lifeTime);
+        if(lifeTime > 0)
+            Invoke("DestroySelf", lifeTime);
         //if ( IsHoming == true && HomingLifeTime > 0 ) {
         //    Invoke ( "StopHoming" , HomingLifeTime );
         //}
@@ -35,12 +36,12 @@ public abstract class ProjectileBasic : MonoBehaviour {
         //Emitters = GetComponentsInChildren<ParticleEmitter>();
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         distTravelled += Vector3.Distance(prevPos, transform.position);
         prevPos = transform.position;
 
-        if (distTravelled >= range)
+        if (distTravelled >= range && range > 0 )
             DestroySelf();
     }
 
@@ -59,8 +60,6 @@ public abstract class ProjectileBasic : MonoBehaviour {
     public float getCenter()
     {
         return this.renderer.bounds.extents.z;
-
-
     }
 
 }

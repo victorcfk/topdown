@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
 
 public class ProjectileSingular: ProjectileBasic
 {
     //internal const float DEFAULT_MAX_DISTANCE = 10000;
 
-    public int classtype = 1;
-
+    //public int classtype = 1;
+    public LayerMask LayersThatAreDamaged;
     public LayerMask LayersThatArePenetrated;
 
     protected BasicShipPart tempPart;
@@ -31,9 +31,7 @@ public class ProjectileSingular: ProjectileBasic
     public float Acceleration = 1.1f;
     public float MaxSpeed = 100;
     //=====================================
-
-    public float Damage = 1;
-
+    
     //internal CollisionTag TargetTagType;
     //private Transform Target;
     //protected ParticleEmitter[] Emitters;
@@ -46,7 +44,8 @@ public class ProjectileSingular: ProjectileBasic
         if (IsAccelerating) AccelerateProjectile();
         if (IsHoming) HomeTowardsTarget(HomingTarget);
 
-        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, minSpeed > MaxSpeed? minSpeed : MaxSpeed);
+        if(rigidbody != null)
+            rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, minSpeed > MaxSpeed? minSpeed : MaxSpeed);
 
         /*
         if(MaxSpeed > MinSpeed)
@@ -90,9 +89,11 @@ public class ProjectileSingular: ProjectileBasic
     void OnCollisionEnter(Collision collision)
     {
         print(name +" has collided with "+collision.gameObject.name);
-        tempPart = collision.gameObject.GetComponent<BasicShipPart>();
+        //tempPart = collision.gameObject.GetComponent<BasicShipPart>();
 
-        if(tempPart != null)    tempPart.ApplyDamage(Damage);
+        //if (tempPart != null) tempPart.ApplyDamage(Damage);
+        //else
+            collision.collider.gameObject.GetComponent<DamageReceiver>().ApplyDamage(damage);
 
         //Is it able to penetrate the layer?
         if ((LayersThatArePenetrated.value & 1 << collision.gameObject.layer) == 0)
@@ -103,15 +104,37 @@ public class ProjectileSingular: ProjectileBasic
 
     }
 
+    void OnCollisionStay(Collision collision)
+    {
+        print(name + " has collided with " + collision.gameObject.name);
+        //tempPart = collision.gameObject.GetComponent<BasicShipPart>();
+
+        //if (tempPart != null) tempPart.ApplyDamage(Damage);
+        //else
+        collision.collider.gameObject.GetComponent<DamageReceiver>().ApplyDamage(damage);
+
+        //Is it able to penetrate the layer?
+        if ((LayersThatArePenetrated.value & 1 << collision.gameObject.layer) == 0)
+        {
+            //No.
+            DestroySelf();
+        }
+
+    }
+
+    //void OnCollisionStay()
+
 
     void OnTriggerEnter(Collider other)
     {
         print(name + " has triggered " + other.gameObject.name);
 
         //other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
-        tempPart = other.gameObject.GetComponent<BasicShipPart>();
+        //tempPart = other.gameObject.GetComponent<BasicShipPart>();
 
-        if (tempPart != null) tempPart.ApplyDamage(Damage);
+        //if (tempPart != null) tempPart.ApplyDamage(Damage);
+        //else
+            other.gameObject.GetComponent<DamageReceiver>().ApplyDamage(damage);
 
         //Is it able to penetrate the layer?
         if ((LayersThatArePenetrated.value & 1 << other.gameObject.layer) == 0)
@@ -119,7 +142,25 @@ public class ProjectileSingular: ProjectileBasic
             //No.
             DestroySelf();
         }
+    }
 
+    void OnTriggerStay(Collider other)
+    {
+        print(name + " has triggered " + other.gameObject.name);
+
+        //other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
+        //tempPart = other.gameObject.GetComponent<BasicShipPart>();
+
+        //if (tempPart != null) tempPart.ApplyDamage(Damage);
+        //else
+        other.gameObject.GetComponent<DamageReceiver>().ApplyDamage(damage);
+
+        //Is it able to penetrate the layer?
+        if ((LayersThatArePenetrated.value & 1 << other.gameObject.layer) == 0)
+        {
+            //No.
+            DestroySelf();
+        }
     }
 
     //// On Invisible we delete and remove from memory.
@@ -137,7 +178,6 @@ public class ProjectileSingular: ProjectileBasic
     protected void AccelerateProjectile()
     {
         rigidbody.AddForce(transform.forward * Acceleration,ForceMode.Acceleration);// *rigidbody.velocity;
-
     }
 
     protected void HomeTowardsTarget(GameObject target)

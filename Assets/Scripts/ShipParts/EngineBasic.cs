@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// Modifies the ship behaviour, use on attached component
 /// </summary>
-public class EngineBasic : BasicShipPart
+public class EngineBasic : MonoBehaviour
 {
 
     public float turnSpeedAdd = 0;

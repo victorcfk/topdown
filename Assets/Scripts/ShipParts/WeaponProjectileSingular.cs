@@ -23,6 +23,14 @@ public class WeaponProjectileSingular : WeaponBasic
     public int numOfProjectilesInBurst = 3;
     //============================
 
+    //Multi shot functionality
+    //============================
+    //public bool isMultiShot = false;
+    //public float FiringAngle = 90;       //Time spacing between each projectiles firing in burst
+    //public int numOfProjectilesInMultiShot = 3;
+    //============================
+
+
     public GameObject target;
 
     //override
@@ -56,15 +64,15 @@ public class WeaponProjectileSingular : WeaponBasic
             //print("ang"+fireAngle);
             
             fireDirection = transform.forward;//target.transform.position - gameObject.transform.position;//transform.forward;
-            fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation,angleDeviation),transform.right) * fireDirection;
+            fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation,angleDeviation),Vector3.forward) * fireDirection;
 
             ProjectileBasic instance = CreateProjectile(fireLocation, fireAngle);
             instance.rigidbody.velocity = (fireDirection).normalized * projectileSpeed;
             instance.GetComponent<ProjectileSingular>().HomingTarget = target;
 
 
-            if(activationPS != null)
-                activationPS.Play();
+            //if(activationPS != null)
+            //    activationPS.Play();
         }
     }
 

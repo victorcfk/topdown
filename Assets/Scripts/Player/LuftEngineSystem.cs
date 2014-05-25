@@ -6,7 +6,7 @@ public class LuftEngineSystem : MonoBehaviour {
 	
 	//[HideInInspector]
     public GameObject controlObj;
-    public List<BasicShipPart> engines = new List<BasicShipPart>();
+    public List<EngineBasic> engines = new List<EngineBasic>();
 
 	public float basicAcceleration = 1.0f;
 	public float basicMaxSpeed = 10.0f;
@@ -55,10 +55,10 @@ public class LuftEngineSystem : MonoBehaviour {
 	/// </summary>
 	void accelerate(float input)
 	{
-        if(input!=0){
-            foreach (BasicShipPart e in engines)
-                e.activationPS.Play();
-        }
+        //if(input!=0){
+        //    foreach (EngineBasic e in engines)
+        //        e.activationPS.Play();
+        //}
 
         controlObj.rigidbody.velocity += controlObj.transform.forward * input * resultantAcceleration;
 	}

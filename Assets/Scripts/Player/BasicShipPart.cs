@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//[RequireComponent(typeof(DamageReceiver))]
+
 public class BasicShipPart : MonoBehaviour {
 
     public ShipPartType partType;
+    public bool isApplyToUnit = true;
 
-    public PlayerBasic shipCore;
-    public EnemyBasic shipCoreE;
+    public UnitBasic shipCore;
 
-    public float collisionDamage = 1.0f;
+    //public float collisionDamage = 1;
 
     public ParticleSystem activationPS;
     //public LayerMask LayersThatDestroyThis;
@@ -16,9 +18,9 @@ public class BasicShipPart : MonoBehaviour {
 	// Use this for initialization
     protected virtual void Start()
     {
-        if (shipCoreE == null)
+        if (shipCore == null)
         {
-            shipCoreE = this.GetComponent<EnemyBasic>();
+            shipCore = this.GetComponent<UnitBasic>();
         }
 
         if (activationPS == null)
@@ -26,16 +28,14 @@ public class BasicShipPart : MonoBehaviour {
 	}
 
 
-    public virtual void ApplyDamage(float Damage)
+    public virtual void ApplyDamage(float Damage = 1)
     {
+        if (!isApplyToUnit)
+            return;
+
         print("APPLY!");
         if (shipCore != null) {
             shipCore.ApplyDamage(Damage);
-        }
-        
-        if (shipCoreE != null){
-            print("APPLY2");
-            shipCoreE.ApplyDamage(Damage);
         }
 
     }

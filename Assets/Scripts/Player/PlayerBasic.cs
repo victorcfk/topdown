@@ -7,12 +7,9 @@ using System.Collections.Generic;
 [RequireComponent(typeof(WeaponsSystem))]
 
 
-public class PlayerBasic : MonoBehaviour {
+public class PlayerBasic : UnitBasic {
 
 	public bool luft;
-
-    public float health = 10;
-    public float maxHealth = 10;
 
     public List<BasicShipPart> attachedParts;// = new List<BasicShipPart>();       //The list of attached, parts, may contain weapons. Temp will be initialised by hand
     [HideInInspector]
@@ -34,12 +31,11 @@ public class PlayerBasic : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
+        if (attachedParts == null) attachedParts = new List<BasicShipPart>(); 
         if (engineSystem == null) engineSystem = GetComponent<EngineSystem>();
 		if (luftEngineSystem == null) luftEngineSystem = GetComponent<LuftEngineSystem>();
-        if (weaponsSystem == null) weaponsSystem = GetComponent<WeaponsSystem>();
-        if (attachedParts == null) attachedParts = new List<BasicShipPart>();
-
-
+        if (weaponsSystem   == null) weaponsSystem = GetComponent<WeaponsSystem>();
+        
         initAllParts();
         initWeaponsSystem();
         initEngineSystem();
@@ -80,15 +76,41 @@ public class PlayerBasic : MonoBehaviour {
     }
 
     public void initWeaponsSystem(){
-        weaponsSystem.weapons = attachedParts.FindAll(isWeapon);
+        WeaponBasic weapon;
+        foreach (BasicShipPart part in attachedParts)
+        {
+            weapon = part.GetComponent<WeaponBasic>();
+            if (weapon != null)
+                weaponsSystem.weapons.Add(weapon);
+        }
+        //weaponsSystem.weapons = attachedParts.FindAll(isWeapon);
     }
 
     public void initEngineSystem()
     {
         if (!luft)
-        engineSystem.engines = attachedParts.FindAll(isEngine);
+        {
+            EngineBasic engine;
+            foreach(BasicShipPart part in attachedParts){
+                engine = part.GetComponent<EngineBasic>();
+                if(engine != null )
+                    engineSystem.engines.Add(engine);
+            }
+            //engineSystem.engines = attachedParts.FindAll(isEngine);
+        }
         else
-        luftEngineSystem.engines = attachedParts.FindAll(isEngine);
+        {
+            EngineBasic engine;
+            foreach (BasicShipPart part in attachedParts)
+            {
+                engine = part.GetComponent<EngineBasic>();
+                if (engine != null)
+                    luftEngineSystem.engines.Add(engine);
+            }
+
+            //luftEngineSystem.engines = attachedParts.FindAll(isEngine);
+
+        }
     }
 
     //utility predicate to find all weapons in a list of ship parts
@@ -108,7 +130,8 @@ public class PlayerBasic : MonoBehaviour {
     
     private bool isEngine(BasicShipPart part)
     {
-        if (part is EngineBasic)
+        if (part.GetComponent<EngineBasic>() != null)
+            //(part is EngineBasic)
         {
             return true;
         }
@@ -118,14 +141,15 @@ public class PlayerBasic : MonoBehaviour {
         }
     }
 
-    public virtual void ApplyDamage(float Damage){
+    public override void ApplyDamage(float Damage)
+    {
         print(name + "got hit"); 
         health -= Damage;
 
         if (health <= 0) DestroySelf();
     }
 
-    protected virtual void DestroySelf(){
+    public override void DestroySelf(){
         //ResetGame();
         Invoke("ResetGame", 2);
 

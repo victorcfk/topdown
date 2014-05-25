@@ -5,16 +5,16 @@ using System.Collections.Generic;
 public class WeaponsSystem : MonoBehaviour {
 
     //[HideInInspector]
-    public List<BasicShipPart> weapons;//= new List<BasicShipPart>();
+    public List<WeaponBasic> weapons;//= new List<BasicShipPart>();
 
     private bool isFiring;
 	// Use this for initialization
 	void Start () {
-        
-        if(weapons == null) weapons = new List<BasicShipPart>();
+
+        if (weapons == null) weapons = new List<WeaponBasic>();
         if( weapons.Count <= 0)
         {
-            weapons.AddRange(this.GetComponentsInChildren<BasicShipPart>());
+            weapons.AddRange(this.GetComponentsInChildren<WeaponBasic>());
         }
 	}
 	
@@ -25,9 +25,9 @@ public class WeaponsSystem : MonoBehaviour {
     
     public void fireAllWeapons()
     {
-        foreach (BasicShipPart weap in weapons)
+        foreach (WeaponBasic weap in weapons)
         {
-            weap.GetComponent<WeaponBasic>().FireWeapon();
+            weap.FireWeapon();
         }
     }
 }
