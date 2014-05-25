@@ -5,7 +5,9 @@ public enum ShipPartType
 {
     CORE,
     ENGINE,
-    GUN,
+    MACHINE_GUN,
+    SHOT_GUN,
+    BURST_GUN,
     SHIELD,
     LASER
 }

@@ -5,14 +5,7 @@ using System.Collections;
 
 public class EnemyPursuitWithShootAI : EnemyPursuitAI{
 
-
     public bool IsAttacking = true;
-	
-    // Use this for initialization
-    protected virtual new void Start()
-    {
-        if(WeaponScript == null)    WeaponScript = this.GetComponent<WeaponBasic>();
-	}
 	
 	// Update is called once per frame
     protected virtual new void Update()
