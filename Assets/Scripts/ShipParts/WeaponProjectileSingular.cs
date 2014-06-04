@@ -15,6 +15,7 @@ public class WeaponProjectileSingular : WeaponBasic
     public override Vector3 fireLocation { get { return transform.position;  } }
     public float angleDeviation = 0;
 
+    public bool isTeleportProjectile =false;
 
     //Burst Fire functionality
     //============================
@@ -25,9 +26,9 @@ public class WeaponProjectileSingular : WeaponBasic
 
     //Multi shot functionality
     //============================
-    //public bool isMultiShot = false;
-    //public float FiringAngle = 90;       //Time spacing between each projectiles firing in burst
-    //public int numOfProjectilesInMultiShot = 3;
+    public bool isMultiShot = false;
+    public float FiringAngle = 90;       //Time spacing between each projectiles firing in burst
+    public int numOfProjectilesInMultiShot = 3;
     //============================
 
 
@@ -38,10 +39,24 @@ public class WeaponProjectileSingular : WeaponBasic
     {
         if (coolDownTimer <= 0)
         {
-            if (isBurstFire)
-                LaunchBurstOfProjectiles();
-            else
-               LaunchProjectile();
+            //if (isBurstFire)
+            //    LaunchBurstOfProjectiles();
+            //else
+            //   LaunchProjectile();
+
+                if (isMultiShot)
+                {
+                    for (int i = 0; i < numOfProjectilesInMultiShot; i++)
+                    {
+                        LaunchProjectile(
+                        Quaternion.AngleAxis(
+                            -FiringAngle / 2 + 
+                            (FiringAngle / (numOfProjectilesInMultiShot-1) * i), Vector3.forward) * 
+                            transform.forward
+                        );
+                        
+                    }
+                }
 
             coolDownTimer = coolDownBetweenShots;
         }
@@ -76,6 +91,27 @@ public class WeaponProjectileSingular : WeaponBasic
         }
     }
 
+    protected void LaunchProjectile(Vector3 targetDir)
+    {
+        //print("centar"+projectilePrefab.getCenter());
+        if (projectilePrefab != null)
+        {
+            fireAngle = transform.rotation;
+
+            fireDirection = targetDir;
+                //targetPos - transform.position;//target.transform.position - gameObject.transform.position;//transform.forward;
+            //fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation, angleDeviation), Vector3.forward) * fireDirection;
+
+            ProjectileBasic instance = CreateProjectile(fireLocation, fireAngle);
+            instance.rigidbody.velocity = (fireDirection).normalized * projectileSpeed;
+            instance.GetComponent<ProjectileSingular>().HomingTarget = target;
+
+
+            //if(activationPS != null)
+            //    activationPS.Play();
+        }
+    }
+
     /// <summary>
     /// Create and Fire off a number of projectiles, assuming it is created at the 
     /// Weapon's position and shares the same forward as the weapon
@@ -88,5 +124,7 @@ public class WeaponProjectileSingular : WeaponBasic
             Invoke("LaunchProjectile", i * delayWithinBurst);
         }
     }
+
+
 
 }
