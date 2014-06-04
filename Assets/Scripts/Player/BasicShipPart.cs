@@ -12,7 +12,7 @@ public class BasicShipPart : MonoBehaviour {
 
     //public float collisionDamage = 1;
 
-    public ParticleSystem activationPS;
+    protected ParticleSystem activationPS;
     //public LayerMask LayersThatDestroyThis;
 
 	// Use this for initialization
@@ -21,6 +21,11 @@ public class BasicShipPart : MonoBehaviour {
         if (shipCore == null)
         {
             shipCore = this.GetComponent<UnitBasic>();
+        }
+
+        if (shipCore == null)
+        {
+            shipCore = this.transform.parent.GetComponent<UnitBasic>();
         }
 
         if (activationPS == null)

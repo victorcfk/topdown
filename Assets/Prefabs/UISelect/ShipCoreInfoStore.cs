@@ -40,6 +40,8 @@ public class ShipCoreInfoStore : MonoBehaviour {
     }
 
     public PlayerBasic ShipCore;
+    public PlayerBasic ShipCorePrefab;
+
     public List<BasicShipPart> listOfPartPrefabs;      //Reference to all the part things, needs to be initialized
     public List<PartInfo> listOfPartInfo;
     
@@ -71,8 +73,6 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
         //}
 
-        
-        
         DontDestroyOnLoad(this.gameObject);
 	}
 
@@ -85,8 +85,9 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
             if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
 
-            if (listOfPartInfo != null)  //This should be assigned at the start of the stage
-                loadPartInfoOnShipCore(ShipCore);
+            if (ShipCore == null) ShipCore = (PlayerBasic)Instantiate(ShipCorePrefab);
+
+            if (listOfPartInfo != null) loadPartInfoOnShipCore(ShipCore);       //This should be assigned at the start of the stage
 
             ShipCore.initAllParts();
             ShipCore.initEngineSystem();
@@ -121,7 +122,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
     {
         BasicShipPart tempPart;
 
-        print(ShipCore.transform.childCount);
+        print("Parts On Ship: "+ ShipCore.transform.childCount);
 
         for (int i = 0; i < ShipCore.transform.childCount; i++)
         {
@@ -130,7 +131,6 @@ public class ShipCoreInfoStore : MonoBehaviour {
             if(tempPart != null)
             listOfPartInfo.Add(new PartInfo(tempPart));
         }
-
     }
 
     //void saveShipPartInfo(BasicShipPart part)
@@ -151,7 +151,13 @@ public class ShipCoreInfoStore : MonoBehaviour {
         //foreach(ShipPartType type in typeList)        //Go through the list of recorded parts
         for (int i = 0; i < listOfPartInfo.Count; i++)
         {
-            (listOfPartInfo[i].loadPart()).transform.parent = ShipCore.transform;
+            BasicShipPart g = listOfPartInfo[i].loadPart();
+
+            g.transform.parent = ShipCore.transform;
+
+            g.transform.position = listOfPartInfo[i].partPosition;
+            g.transform.rotation = listOfPartInfo[i].partRotation;
+
         }
         //==========================================================================
 

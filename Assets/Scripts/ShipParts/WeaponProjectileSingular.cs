@@ -39,24 +39,26 @@ public class WeaponProjectileSingular : WeaponBasic
     {
         if (coolDownTimer <= 0)
         {
-            //if (isBurstFire)
-            //    LaunchBurstOfProjectiles();
-            //else
-            //   LaunchProjectile();
-
+            if (isBurstFire)
+                LaunchBurstOfProjectiles();
+            else
+            {
                 if (isMultiShot)
                 {
                     for (int i = 0; i < numOfProjectilesInMultiShot; i++)
                     {
                         LaunchProjectile(
                         Quaternion.AngleAxis(
-                            -FiringAngle / 2 + 
-                            (FiringAngle / (numOfProjectilesInMultiShot-1) * i), Vector3.forward) * 
+                            -FiringAngle / 2 +
+                            (FiringAngle / (numOfProjectilesInMultiShot - 1) * i), Vector3.forward) *
                             transform.forward
                         );
-                        
+
                     }
                 }
+                else
+                    LaunchProjectile();
+            }
 
             coolDownTimer = coolDownBetweenShots;
         }

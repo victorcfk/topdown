@@ -57,8 +57,12 @@ public class PlayerBasic : UnitBasic {
 						luftEngineSystem.verticalMoveVal = verticalMoveInput;
 				}
 
-        if(isFiringInputActive)
+        if (isFiringInputActive)
+        {
+            //print("fire");
             weaponsSystem.fireAllWeapons();
+
+        }
 	}
 
     protected void ResetGame()

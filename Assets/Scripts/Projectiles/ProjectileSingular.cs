@@ -31,7 +31,9 @@ public class ProjectileSingular: ProjectileBasic
     public float Acceleration = 1.1f;
     public float MaxSpeed = 100;
     //=====================================
-    
+
+    protected DamageReceiver receiver;
+
     //internal CollisionTag TargetTagType;
     //private Transform Target;
     //protected ParticleEmitter[] Emitters;
@@ -93,25 +95,10 @@ public class ProjectileSingular: ProjectileBasic
 
         //if (tempPart != null) tempPart.ApplyDamage(Damage);
         //else
-            collision.collider.gameObject.GetComponent<DamageReceiver>().ApplyDamage(damage);
+        receiver = collision.collider.gameObject.GetComponent<DamageReceiver>();
 
-        //Is it able to penetrate the layer?
-        if ((LayersThatArePenetrated.value & 1 << collision.gameObject.layer) == 0)
-        {
-            //No.
-            DestroySelf();
-        }
-
-    }
-
-    void OnCollisionStay(Collision collision)
-    {
-        print(name + " has collided with " + collision.gameObject.name);
-        //tempPart = collision.gameObject.GetComponent<BasicShipPart>();
-
-        //if (tempPart != null) tempPart.ApplyDamage(Damage);
-        //else
-        collision.collider.gameObject.GetComponent<DamageReceiver>().ApplyDamage(damage);
+        if(receiver != null)
+            receiver.ApplyDamage(damage);
 
         //Is it able to penetrate the layer?
         if ((LayersThatArePenetrated.value & 1 << collision.gameObject.layer) == 0)
@@ -134,26 +121,10 @@ public class ProjectileSingular: ProjectileBasic
 
         //if (tempPart != null) tempPart.ApplyDamage(Damage);
         //else
-            other.gameObject.GetComponent<DamageReceiver>().ApplyDamage(damage);
+        receiver = other.gameObject.GetComponent<DamageReceiver>();
 
-        //Is it able to penetrate the layer?
-        if ((LayersThatArePenetrated.value & 1 << other.gameObject.layer) == 0)
-        {
-            //No.
-            DestroySelf();
-        }
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        print(name + " has triggered " + other.gameObject.name);
-
-        //other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
-        //tempPart = other.gameObject.GetComponent<BasicShipPart>();
-
-        //if (tempPart != null) tempPart.ApplyDamage(Damage);
-        //else
-        other.gameObject.GetComponent<DamageReceiver>().ApplyDamage(damage);
+        if (receiver != null)
+            receiver.ApplyDamage(damage);
 
         //Is it able to penetrate the layer?
         if ((LayersThatArePenetrated.value & 1 << other.gameObject.layer) == 0)

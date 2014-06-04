@@ -16,7 +16,7 @@ public class DamageReceiver : MonoBehaviour {
 	
 	}
 
-    public void ApplyDamage(float Damage = 1)
+    public virtual void ApplyDamage(float Damage = 1)
     {
         if (ParentReceiver != null)
             ParentReceiver.ApplyDamage(Damage);

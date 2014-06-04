@@ -73,7 +73,7 @@ public abstract class WeaponBasic : MonoBehaviour
     {
         //LaunchProjectile();
         if(coolDownTimer > 0)
-            coolDownTimer -= Time.fixedDeltaTime;
+            coolDownTimer -= Time.deltaTime;
                 
     }
 

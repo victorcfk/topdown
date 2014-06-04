@@ -21,21 +21,6 @@ public class PartInfo {
     public Quaternion partRotation;
     public ShipPartType partType;
 
-    //// Use this for initialization
-    //void Start () {
-	
-    //}
-	
-    //// Update is called once per frame
-    //void Update () {
-	
-    //}
-
-    public PartInfo()
-    {
-
-    }
-
     public PartInfo(BasicShipPart shipPart)
     {
         savePart(shipPart);
@@ -55,7 +40,6 @@ public class PartInfo {
                 tempPart.transform.position = partPosition;  //assign a position
                 tempPart.transform.rotation = partRotation;  //assign a rotation
                 //=========================================================
-
             }
         }
 
