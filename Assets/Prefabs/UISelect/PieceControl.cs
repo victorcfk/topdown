@@ -71,7 +71,7 @@ public class PieceControl : MonoBehaviour {
                 if (CurrentPart != null)
                 {
                     print("rota");
-                    CurrentPart.transform.Rotate(45,0 , 0);
+                    CurrentPart.transform.Rotate(0,45 , 0);
                     CurrentPartRotation = CurrentPart.transform.rotation;
                 }
             
