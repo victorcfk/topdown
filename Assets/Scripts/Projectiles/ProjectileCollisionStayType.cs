@@ -7,28 +7,24 @@ public class ProjectileCollisionStayType : ProjectileBasic{
     public LayerMask LayersThatArePenetrated;
 
     public float TriggerInterval = 0.1f;
-    private float TriggerTimer = 0;
+    //private float TriggerTimer = 0;
+    private bool isTriggerPossible = true;
     // Use this for initialization
     protected override void Start()
     {
-
+        InvokeRepeating("EnableTrigger", 0, TriggerInterval);
     }
 
-    protected override void Update()
+    void EnableTrigger()
     {
-
+        isTriggerPossible = true;
     }
 
     void OnCollisionStay(Collision collision)
     {
-        if (TriggerTimer > 0)
+        if (isTriggerPossible)
         {
-            TriggerTimer -= Time.deltaTime;
-
-        }
-        else
-        {
-            TriggerTimer = TriggerInterval;
+            isTriggerPossible = false;
 
             print(name + " has collided with " + collision.gameObject.name);
             //tempPart = collision.gameObject.GetComponent<BasicShipPart>();
@@ -55,14 +51,9 @@ public class ProjectileCollisionStayType : ProjectileBasic{
 
     void OnTriggerStay(Collider other)
     {
-        if (TriggerTimer > 0)
+        if (isTriggerPossible)
         {
-            TriggerTimer -= Time.deltaTime;
-
-        }
-        else
-        {
-            TriggerTimer = TriggerInterval;
+            isTriggerPossible = false;
 
             print(name + " has triggered " + other.gameObject.name);
 
