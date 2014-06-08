@@ -15,7 +15,11 @@ public class EnemyPursuitWithShootAI : EnemyPursuitAI{
         //isAttacking;
         if (IsAttacking)
         {
-            moveModule.LookToPoint(target.transform.position);
+
+            print("thinga");
+            moveModule.LookToPoint( LeadCalculator.FirstOrderInterceptPosition(this.gameObject,WeaponScript.projectileSpeed,target));
+                
+                //target.transform.position);
             WeaponScript.FireWeapon();
         }
 	}

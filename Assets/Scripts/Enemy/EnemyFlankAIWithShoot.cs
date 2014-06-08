@@ -12,7 +12,7 @@ public class EnemyFlankAIWithShoot : EnemyFlankAI
         //isAttacking;
         if (IsAttacking)
         {
-            moveModule.LookToPoint(target.transform.position);
+            moveModule.LookToPoint(LeadCalculator.FirstOrderInterceptPosition(this.gameObject, WeaponScript.projectileSpeed, target));
             WeaponScript.FireWeapon();
         }
     }

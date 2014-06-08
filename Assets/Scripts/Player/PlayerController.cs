@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour {
         //Vector3 currDir = playerUnit.transform.forward;
         //currDir.z = 0;
 
-        Vector3 tarDir = -playerUnit.transform.position + rel;
+        Vector3 tarDir = rel - playerUnit.transform.position;
         tarDir.z = 0;
 
         playerUnit.LookAtVector = tarDir;

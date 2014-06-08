@@ -12,9 +12,9 @@ public class EnemyBasic : UnitBasic{
 
     private GameObject _target;
     public GameObject target { 
-        get { 
-            if(_target == null)
-               _target = GameObject.FindGameObjectWithTag("Player");
+        get {
+            if (_target == null)
+                _target = FindObjectOfType<PlayerBasic>().gameObject;
             
             return _target;
         }

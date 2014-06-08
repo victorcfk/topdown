@@ -58,6 +58,7 @@ public class WeaponProjectileSingular : WeaponBasic
                 }
                 else
                     LaunchProjectile();
+                    //launchAtTarget();
             }
 
             coolDownTimer = coolDownBetweenShots;
@@ -125,6 +126,17 @@ public class WeaponProjectileSingular : WeaponBasic
         for(int i =0; i<numOfProjectilesInBurst; i++){
             Invoke("LaunchProjectile", i * delayWithinBurst);
         }
+    }
+
+
+    protected void launchAtTarget(){
+
+        PlayerBasic g = GameObject.FindObjectOfType<PlayerBasic>();
+
+        Vector3 targ = LeadCalculator.FirstOrderInterceptPosition(transform.position, this.rigidbody.velocity, this.projectileSpeed, g.transform.position, g.rigidbody.velocity);
+
+        LaunchProjectile(targ - transform.position);
+
     }
 
 
