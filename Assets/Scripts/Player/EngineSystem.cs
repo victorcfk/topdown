@@ -96,7 +96,7 @@ public class EngineSystem : MonoBehaviour {
     /// </summary>
     void clampMovement()
     {
-        controlObj.rigidbody.velocity = Vector3.ClampMagnitude(controlObj.rigidbody.velocity, basicMaxSpeed);
+        controlObj.rigidbody.velocity = Vector3.ClampMagnitude(controlObj.rigidbody.velocity, resultantMaxSpeed);
     }
 
     void getAllEngineModifiers()
