@@ -83,10 +83,17 @@ public abstract class WeaponBasic : MonoBehaviour
     /// <returns>The instance of the Projectile.</returns>
     virtual protected ProjectileBasic CreateProjectile(Vector3 spawnLocation, Quaternion initialFacing)
     {
-        ProjectileBasic instance = (ProjectileBasic)Instantiate(
+        //ProjectileBasic instance = (ProjectileBasic)Instantiate(
+        //    projectilePrefab,
+        //    spawnLocation,
+        //    initialFacing);
+
+        ProjectileBasic instance =
+            (ProjectileBasic)(
+            ObjectManager.instance.Spawn(
             projectilePrefab,
             spawnLocation,
-            initialFacing);
+            initialFacing));
 
         if (isOverrideProjectileDamage) instance.damage = projectileDamage;
         if (isOverrideProjectileRange) instance.range = projectileRange;

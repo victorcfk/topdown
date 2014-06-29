@@ -39,8 +39,17 @@ public class WeaponProjectileSingular : WeaponBasic
     {
         if (coolDownTimer <= 0)
         {
+            /// <summary>
+            /// Create and Fire off a number of projectiles, assuming it is created at the 
+            /// Weapon's position and shares the same forward as the weapon
+            /// </summary>
             if (isBurstFire)
-                LaunchBurstOfProjectiles();
+            {
+                for (int i = 0; i < numOfProjectilesInBurst; i++)
+                {
+                    Invoke("LaunchProjectile", i * delayWithinBurst);
+                }
+            }
             else
             {
                 if (isMultiShot)
@@ -58,7 +67,7 @@ public class WeaponProjectileSingular : WeaponBasic
                 }
                 else
                     LaunchProjectile();
-                    //launchAtTarget();
+                //launchAtTarget();
             }
 
             coolDownTimer = coolDownBetweenShots;
@@ -113,30 +122,6 @@ public class WeaponProjectileSingular : WeaponBasic
             //if(activationPS != null)
             //    activationPS.Play();
         }
-    }
-
-    /// <summary>
-    /// Create and Fire off a number of projectiles, assuming it is created at the 
-    /// Weapon's position and shares the same forward as the weapon
-    /// </summary>
-    protected void LaunchBurstOfProjectiles()
-    {
-        //print("burst");
-
-        for(int i =0; i<numOfProjectilesInBurst; i++){
-            Invoke("LaunchProjectile", i * delayWithinBurst);
-        }
-    }
-
-
-    protected void launchAtTarget(){
-
-        PlayerBasic g = GameObject.FindObjectOfType<PlayerBasic>();
-
-        Vector3 targ = LeadCalculator.FirstOrderInterceptPosition(transform.position, this.rigidbody.velocity, this.projectileSpeed, g.transform.position, g.rigidbody.velocity);
-
-        LaunchProjectile(targ - transform.position);
-
     }
 
 

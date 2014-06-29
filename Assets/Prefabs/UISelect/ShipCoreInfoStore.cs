@@ -15,7 +15,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
                 _instance = GameObject.FindObjectOfType<ShipCoreInfoStore>();
 
                 //Tell unity not to destroy this object when loading a new scene!
-                DontDestroyOnLoad(_instance.gameObject);
+                //DontDestroyOnLoad(_instance.gameObject);
             }
 
             return _instance;
@@ -28,7 +28,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
         {
             //If I am the first instance, make me the Singleton
             _instance = this;
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
         }
         else
         {
@@ -118,6 +118,22 @@ public class ShipCoreInfoStore : MonoBehaviour {
         //}
 	}
 
+    void OnGUI()
+    {
+        if (GUI.Button(
+            new Rect(Screen.width - 80,
+                    20,
+                    60,
+                    30), "Start"))
+        {
+
+            Debug.Log("Clicked the button with text");
+
+            ShipCoreInfoStore.instance.savePartsAndNewStage = true;
+
+        }
+    }
+
     void savePartInfoOnShipCore(PlayerBasic ShipCore)
     {
         BasicShipPart tempPart;
@@ -128,8 +144,8 @@ public class ShipCoreInfoStore : MonoBehaviour {
         {
             tempPart = ShipCore.transform.GetChild(i).GetComponent<BasicShipPart>();
 
-            if(tempPart != null)
-            listOfPartInfo.Add(new PartInfo(tempPart));
+            if(tempPart != null && tempPart.partType != ShipPartType.CORE)
+                listOfPartInfo.Add(new PartInfo(tempPart));
         }
     }
 
