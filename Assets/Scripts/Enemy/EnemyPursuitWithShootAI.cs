@@ -5,7 +5,8 @@ using System.Collections;
 
 public class EnemyPursuitWithShootAI : EnemyPursuitAI{
 
-    public bool IsAttacking = true;
+    public bool isAttacking = true;
+    public bool isLeadingTarget = true;
 	
 	// Update is called once per frame
     protected virtual new void Update()
@@ -13,13 +14,17 @@ public class EnemyPursuitWithShootAI : EnemyPursuitAI{
         base.Update();
 
         //isAttacking;
-        if (IsAttacking)
+        if (isAttacking)
         {
+            if (isLeadingTarget)
+            {
+                moveModule.LookToPoint(LeadCalculator.FirstOrderInterceptPosition(this.gameObject, WeaponScript.projectileSpeed, target));  //Attempt to lead the target
+            }
+            else
+            {
+                moveModule.LookToPoint(target.transform.position);  //Attempt to lead the target
+            }
 
-            print("thinga");
-            moveModule.LookToPoint( LeadCalculator.FirstOrderInterceptPosition(this.gameObject,WeaponScript.projectileSpeed,target));
-                
-                //target.transform.position);
             WeaponScript.FireWeapon();
         }
 	}
