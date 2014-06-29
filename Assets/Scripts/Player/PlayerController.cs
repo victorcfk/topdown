@@ -18,7 +18,11 @@ public class PlayerController : MonoBehaviour {
     //public GameObject controlledObj;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        if (playerUnit == null)
+            GameObject.FindObjectOfType<PlayerBasic>();
+
 
 	}
 	
