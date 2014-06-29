@@ -32,9 +32,9 @@ public class RoomGenerator : MonoBehaviour
 
     public List<Room> rooms;
 
-    static int rowCount = 5;
-    static int colCount = 2;
-    public Room[][] roomArr = new Room[rowCount][];
+    public int rowCount = 5;
+    public int colCount = 2;
+    public Room[][] roomArr;// = new Room[][];
     //Template type object.
 
     // Use this for initialization
@@ -46,6 +46,8 @@ public class RoomGenerator : MonoBehaviour
 
     void GenerateRoomGrid(int rowCount, int colCount)
     {
+        roomArr = new Room[rowCount][];
+
         //Vector3 roomCent = Vector3.zero;
         for (int i = 0; i < rowCount; i++)
         {
