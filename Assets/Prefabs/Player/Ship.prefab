@@ -191,7 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentReceiver: {fileID: 0}
-  dat: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -284,7 +283,7 @@ MonoBehaviour:
   upDir: {x: 0, y: 1, z: 0}
   rightDir: {x: 1, y: 0, z: 0}
   basicAcceleration: 1
-  basicMaxSpeed: 10
+  basicMaxSpeed: 5
   basicMaxRadiansDelta: 1
   controlObj: {fileID: 100004}
   horizontalMoveVal: 0

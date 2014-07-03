@@ -33,6 +33,7 @@ Transform:
   m_LocalScale: {x: .699999988, y: .699999988, z: .699999988}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -51,9 +52,8 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!33 &3300000
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -96,10 +96,10 @@ MonoBehaviour:
   distTravelled: 0
   LayersThatAreDamaged:
     serializedVersion: 2
-    m_Bits: 0
-  LayersThatArePenetrated:
+    m_Bits: 1536
+  LayersThatBlockSelf:
     serializedVersion: 2
-    m_Bits: 6912
+    m_Bits: 1792
   IsHoming: 0
   HomingTarget: {fileID: 0}
   maxRadiansDelta: 2
@@ -1189,9 +1189,8 @@ ParticleSystemRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_MaxParticleSize: .5
   m_CameraVelocityScale: 0

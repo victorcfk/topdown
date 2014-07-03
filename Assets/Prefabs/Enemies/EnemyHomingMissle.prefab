@@ -166,10 +166,10 @@ MonoBehaviour:
   distTravelled: 0
   LayersThatAreDamaged:
     serializedVersion: 2
-    m_Bits: 0
-  LayersThatArePenetrated:
+    m_Bits: 1536
+  LayersThatBlockSelf:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1792
   IsHoming: 1
   HomingTarget: {fileID: 0}
   maxRadiansDelta: .0250000004
