@@ -10,7 +10,7 @@ public class ProjectileSingular: ProjectileBasic
 
     //public int classtype = 1;
     public LayerMask LayersThatAreDamaged;
-    public LayerMask LayersThatArePenetrated;
+    public LayerMask LayersThatBlockSelf;
 
     protected BasicShipPart tempPart;
 
@@ -95,13 +95,18 @@ public class ProjectileSingular: ProjectileBasic
 
         //if (tempPart != null) tempPart.ApplyDamage(Damage);
         //else
-        receiver = collision.collider.gameObject.GetComponent<DamageReceiver>();
 
-        if(receiver != null)
-            receiver.ApplyDamage(damage);
+        if ((LayersThatAreDamaged.value & 1 << collision.gameObject.layer) != 0)
+        {
+            receiver = collision.collider.gameObject.GetComponent<DamageReceiver>();
+
+            if (receiver != null)
+                receiver.ApplyDamage(damage);
+        }
+        
 
         //Is it able to penetrate the layer?
-        if ((LayersThatArePenetrated.value & 1 << collision.gameObject.layer) == 0)
+        if ((LayersThatBlockSelf.value & 1 << collision.gameObject.layer) != 0)
         {
             //No.
             DestroySelf();
@@ -114,20 +119,24 @@ public class ProjectileSingular: ProjectileBasic
 
     void OnTriggerEnter(Collider other)
     {
-        print(name + " has triggered " + other.gameObject.name);
+        //print(name + " has triggered " + other.gameObject.name);
 
         //other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
         //tempPart = other.gameObject.GetComponent<BasicShipPart>();
 
         //if (tempPart != null) tempPart.ApplyDamage(Damage);
         //else
-        receiver = other.gameObject.GetComponent<DamageReceiver>();
+        if ((LayersThatAreDamaged.value & 1 << other.gameObject.layer) != 0)
+        {
+            receiver = other.gameObject.GetComponent<DamageReceiver>();
 
-        if (receiver != null)
-            receiver.ApplyDamage(damage);
+            if (receiver != null)
+                receiver.ApplyDamage(damage);
+        }
+        
 
         //Is it able to penetrate the layer?
-        if ((LayersThatArePenetrated.value & 1 << other.gameObject.layer) == 0)
+        if ((LayersThatBlockSelf.value & 1 << other.gameObject.layer) != 0)
         {
             //No.
             DestroySelf();

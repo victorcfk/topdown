@@ -4,7 +4,7 @@ using System.Collections;
 public class ProjectileCollisionStayType : ProjectileBasic{
 
     public LayerMask LayersThatAreDamaged;
-    public LayerMask LayersThatArePenetrated;
+    public LayerMask LayersThatBlockSelf;
 
     public float TriggerInterval = 0.1f;
     //private float TriggerTimer = 0;
@@ -39,7 +39,7 @@ public class ProjectileCollisionStayType : ProjectileBasic{
             }
 
             //Is it able to penetrate the layer?
-            if ((LayersThatArePenetrated.value & 1 << collision.collider.gameObject.layer) == 0)
+            if ((LayersThatBlockSelf.value & 1 << collision.collider.gameObject.layer) != 0)
             {
                 //No.
                 DestroySelf();
@@ -69,7 +69,7 @@ public class ProjectileCollisionStayType : ProjectileBasic{
             }
 
             //Is it able to penetrate the layer?
-            if ((LayersThatArePenetrated.value & 1 << other.gameObject.layer) == 0)
+            if ((LayersThatBlockSelf.value & 1 << other.gameObject.layer) != 0)
             {
                 //No.
                 DestroySelf();
