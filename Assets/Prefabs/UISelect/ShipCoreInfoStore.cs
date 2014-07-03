@@ -171,8 +171,8 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
             g.transform.parent = ShipCore.transform;
 
-            g.transform.position = listOfPartInfo[i].partPosition;
-            g.transform.rotation = listOfPartInfo[i].partRotation;
+            g.transform.localPosition = listOfPartInfo[i].partPosition;
+            g.transform.localRotation = listOfPartInfo[i].partRotation;
 
         }
         //==========================================================================

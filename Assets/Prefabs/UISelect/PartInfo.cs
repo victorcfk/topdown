@@ -49,8 +49,8 @@ public class PartInfo {
     public void savePart(BasicShipPart shipPart)
     {
         partType = (shipPart.partType);    //save the type on record
-        partPosition = (shipPart.transform.position);
-        partRotation = (shipPart.transform.rotation);  //save the transform for later.
+        partPosition = (shipPart.transform.localPosition);
+        partRotation = (shipPart.transform.localRotation);  //save the transform for later.
     }
 
 
