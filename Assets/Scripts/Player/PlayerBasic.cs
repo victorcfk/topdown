@@ -147,7 +147,7 @@ public class PlayerBasic : UnitBasic {
 
     public override void ApplyDamage(float Damage)
     {
-        print(name + "got hit"); 
+        //print(name + "got hit"); 
         health -= Damage;
 
         if (health <= 0) DestroySelf();

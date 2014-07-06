@@ -38,7 +38,7 @@ public class BasicShipPart : MonoBehaviour {
         if (!isApplyToUnit)
             return;
 
-        print("APPLY!");
+        //print("APPLY!");
         if (shipCore != null) {
             shipCore.ApplyDamage(Damage);
         }
