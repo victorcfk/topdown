@@ -212,9 +212,9 @@ MonoBehaviour:
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 6144
-  LayersThatArePenetrated:
+  LayersThatBlockSelf:
     serializedVersion: 2
-    m_Bits: 3328
+    m_Bits: 0
   TriggerInterval: .100000001
 --- !u!114 &11400006
 MonoBehaviour:
@@ -282,9 +282,9 @@ MonoBehaviour:
   engines: []
   upDir: {x: 0, y: 1, z: 0}
   rightDir: {x: 1, y: 0, z: 0}
-  basicAcceleration: 1
-  basicMaxSpeed: 5
-  basicMaxRadiansDelta: 1
+  basicAcceleration: 2
+  basicMaxSpeed: 10
+  basicMaxRadiansDelta: 2
   controlObj: {fileID: 100004}
   horizontalMoveVal: 0
   verticalMoveVal: 0

@@ -17,6 +17,7 @@ GameObject:
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400012}
+  - 114: {fileID: 11400014}
   m_Layer: 11
   m_Name: ShooterEnemy
   m_TagString: Untagged
@@ -34,8 +35,6 @@ GameObject:
   - 4: {fileID: 400002}
   - 33: {fileID: 3300002}
   - 23: {fileID: 2300002}
-  - 114: {fileID: 11400008}
-  - 114: {fileID: 11400010}
   m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
@@ -50,7 +49,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -31.7012253, y: -15.1663704, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400002}
@@ -147,8 +146,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.00000024, y: 1, z: 1.00000024}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.00000024, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: -.50999999}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,12 +159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffffa75da4014e046a8611448c369e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
-  maxHealth: 10
-  moveModule: {fileID: 11400004}
-  WeaponScript: {fileID: 11400002}
-  movePos: {x: 0, y: 0, z: 0}
-  flankDistance: 10
+  EnemyUnit: {fileID: 0}
+  MoveModule: {fileID: 11400004}
+  Weapon: {fileID: 0}
+  flankDistance: 30
   collisionlayermask:
     serializedVersion: 2
     m_Bits: 256
@@ -191,18 +188,18 @@ MonoBehaviour:
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
-  projectileRange: 100
+  projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
-  coolDownBetweenShots: 4
+  coolDownBetweenShots: 3
   ExistingProjectiles: []
   angleDeviation: 0
   isTeleportProjectile: 0
-  isBurstFire: 1
+  isBurstFire: 0
   delayWithinBurst: .100000001
   numOfProjectilesInBurst: 3
-  isMultiShot: 0
-  FiringAngle: 90
+  isMultiShot: 1
+  FiringAngle: 30
   numOfProjectilesInMultiShot: 3
   target: {fileID: 0}
 --- !u!114 &11400004
@@ -218,10 +215,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 30
   BaseSpeed: 10
-  minDistFromDestination: 1
+  minDistFromDestination: 15
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
-  maxRadiansDelta: 90
+  maxRadiansDelta: 180
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,32 +231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentReceiver: {fileID: 0}
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f42040c36e016074091abc455b42607b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  partType: 0
-  isApplyToUnit: 1
-  shipCore: {fileID: 0}
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3961a4751595bc47a955ebd4c2b8dd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParentReceiver: {fileID: 11400008}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,6 +245,21 @@ MonoBehaviour:
   partType: 0
   isApplyToUnit: 1
   shipCore: {fileID: 0}
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  maxHealth: 10
+  moveModule: {fileID: 0}
+  WeaponScript: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

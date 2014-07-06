@@ -11,13 +11,13 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 135: {fileID: 13500000}
-  - 114: {fileID: 11400010}
-  - 114: {fileID: 11400008}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400004}
+  - 114: {fileID: 11400010}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
   m_Layer: 11
   m_Name: JetEnemy
   m_TagString: Untagged
@@ -143,25 +143,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 100
   BaseSpeed: 1
-  minDistFromDestination: 0
+  minDistFromDestination: 10
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   maxRadiansDelta: 90
-  maxMagnitudeDelta: 2
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7966a00e32d4aef45a12e5424351f64b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cc6f75d3e46b8c4ebb75e0e88f17147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionlayermask:
-    serializedVersion: 2
-    m_Bits: 256
+  EnemyUnit: {fileID: 0}
+  MoveModule: {fileID: 0}
+  Weapon: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,14 +169,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4415c3e186ffea548bf3ce3b6641a6ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
   maxHealth: 10
   moveModule: {fileID: 0}
   WeaponScript: {fileID: 0}
-  movePos: {x: 0, y: 0, z: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

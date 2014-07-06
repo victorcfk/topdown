@@ -99,7 +99,7 @@ MonoBehaviour:
     m_Bits: 6144
   LayersThatBlockSelf:
     serializedVersion: 2
-    m_Bits: 6400
+    m_Bits: 2304
   IsHoming: 0
   HomingTarget: {fileID: 0}
   maxRadiansDelta: 2

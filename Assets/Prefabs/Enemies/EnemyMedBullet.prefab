@@ -16,7 +16,7 @@ GameObject:
   - 199: {fileID: 19900000}
   - 198: {fileID: 19800000}
   m_Layer: 12
-  m_Name: EnemyBullet
+  m_Name: EnemyMedBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -99,7 +99,7 @@ MonoBehaviour:
     m_Bits: 1536
   LayersThatBlockSelf:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 1280
   IsHoming: 0
   HomingTarget: {fileID: 0}
   maxRadiansDelta: 2

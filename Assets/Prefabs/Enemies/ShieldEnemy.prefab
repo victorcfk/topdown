@@ -34,6 +34,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400008}
+  - 114: {fileID: 11400010}
   m_Layer: 11
   m_Name: ShieldEnemy
   m_TagString: Untagged
@@ -163,11 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffffa75da4014e046a8611448c369e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
-  maxHealth: 10
-  moveModule: {fileID: 11400000}
-  WeaponScript: {fileID: 11400004}
-  movePos: {x: 0, y: 0, z: 0}
+  EnemyUnit: {fileID: 0}
+  MoveModule: {fileID: 0}
+  Weapon: {fileID: 0}
   flankDistance: 10
   collisionlayermask:
     serializedVersion: 2
@@ -234,6 +233,22 @@ MonoBehaviour:
   partType: 0
   isApplyToUnit: 1
   shipCore: {fileID: 0}
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  maxHealth: 10
+  moveModule: {fileID: 0}
+  WeaponScript: {fileID: 0}
+  movePos: {x: 0, y: 0, z: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

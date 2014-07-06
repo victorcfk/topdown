@@ -13,11 +13,11 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
-  - 114: {fileID: 11400002}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400010}
+  - 114: {fileID: 11400002}
   m_Layer: 11
   m_Name: HomingMissleEnemy
   m_TagString: Untagged
@@ -234,18 +234,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 10
   maxHealth: 10
-  moveModule: {fileID: 11400004}
-  WeaponScript: {fileID: 11400000}
-  movePos: {x: 0, y: 0, z: 0}
-  isAttacking: 1
-  isLeadingTarget: 1
+  moveModule: {fileID: 0}
+  WeaponScript: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,11 +256,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 100
   BaseSpeed: 10
-  minDistFromDestination: 0
+  minDistFromDestination: 10
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
   maxRadiansDelta: 90
-  maxMagnitudeDelta: 2
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,11 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffffa75da4014e046a8611448c369e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
-  maxHealth: 10
-  moveModule: {fileID: 11400004}
-  WeaponScript: {fileID: 11400000}
-  movePos: {x: 0, y: 0, z: 0}
+  EnemyUnit: {fileID: 0}
+  MoveModule: {fileID: 0}
+  Weapon: {fileID: 0}
   flankDistance: 20
   collisionlayermask:
     serializedVersion: 2

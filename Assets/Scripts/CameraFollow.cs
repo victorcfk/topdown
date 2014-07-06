@@ -26,8 +26,8 @@ public class CameraFollow : MonoBehaviour {
         //followTarget.rigidbody.velocity;
 
         Vector3 wantedPos = new Vector3(
-            followTarget.transform.position.x +  followTarget.transform.forward.x*10,
-            followTarget.transform.position.y +  followTarget.transform.forward.y*10,
+            followTarget.transform.position.x +  followTarget.transform.forward.x*1,
+            followTarget.transform.position.y +  followTarget.transform.forward.y*1,
              transform.position.z);
         //followTarget.rigidbody.velocity.x 
 
