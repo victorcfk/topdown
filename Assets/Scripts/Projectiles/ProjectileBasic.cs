@@ -22,6 +22,8 @@ public abstract class ProjectileBasic : MonoBehaviour {
     protected Vector3 prevPos;
     public float distTravelled = 0;
 
+    protected DamageReceiver receiver;
+
     // Use this for initialization
     protected virtual void Start()
     {
