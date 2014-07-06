@@ -8,20 +8,6 @@ public class EnemyBasic : UnitBasic{
     public EnemyMoveModuleBasic moveModule;
     public WeaponBasic WeaponScript;
 
-    public Vector3 movePos;
-
-    private GameObject _target;
-    public GameObject target { 
-        get {
-            if (_target == null)
-                _target = FindObjectOfType<PlayerBasic>().gameObject;
-            
-            return _target;
-        }
-
-        set { _target = value; }
-    }
-
     protected virtual void Start()
     {
         //if (target == null)     GameObject.FindGameObjectWithTag("Player");

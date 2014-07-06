@@ -16,24 +16,26 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     //public bool isMonitoringDestination = false;
 
     private Vector3 temp;
-    private float OrigDrag;
+    //private float OrigDrag;
 
     public float maxRadiansDelta = 2.0f;
 
 	// Use this for initialization
     protected virtual void Start()
     {
-        OrigDrag = rigidbody.drag;
+        //OrigDrag = rigidbody.drag;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        //rigidbody.AddForce(new Vector3(0.1f,0,0) * BaseSpeed, ForceMode.VelocityChange);
 
         if (!hasReachedDestination)
         {
             MoveToPoint(lastKnownDest);
             rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, MaxSpeed);
+        } else
+        {
+            StopMovement();
         }
 	}
 
@@ -57,23 +59,6 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     }
 
     /// <summary>
-    /// Move in direction until you stop, coroutine used to monitor whether the destination has been reached.
-    /// </summary>
-    /// <param name="destinationPoint"></param>
-    /// <returns>The point to stop at</returns>
-    private IEnumerator MoveToPointRoutine(Vector3 destinationPoint)
-    {
-        lastKnownDest = destinationPoint;
-        
-        while (!hasReachedDestination)
-        {
-            MoveInDirection(lastKnownDest - transform.position);
-            yield return null;
-        }
-        StopMovement();
-    }
-
-    /// <summary>
     /// Just simply move in a direction
     /// </summary>
     /// <param name="direction">the direction of movement</param>
@@ -85,11 +70,13 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
 
         if (isRealisticMotion)
         {
+            rigidbody.drag = 0;
             rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
             //rigidbody.drag = 0.1f;
         }
         else
         {
+            rigidbody.drag = 0;
            // rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.VelocityChange);       //this does not work right when called externally
             rigidbody.velocity = direction.normalized * BaseSpeed;
         }

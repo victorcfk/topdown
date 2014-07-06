@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyFlankAI : EnemyBasic {
+public class EnemyFlankAI : EnemyAIBasic {
 
     Vector3 temp;
     Vector3 vec3holder;
@@ -12,17 +12,31 @@ public class EnemyFlankAI : EnemyBasic {
 
     public float destinationChangeInterval = 1.5f;
 
-    // Use this for initialization
-    protected override void Start()
+    protected virtual void Start()
     {
-        InvokeRepeating("getToRandomSurroundingPoint", 1, destinationChangeInterval);
+        if (MoveModule == null)
+            MoveModule = GetComponent<EnemyMoveModuleBasic>();
+        
+        if (EnemyUnit == null)
+            EnemyUnit = GetComponent<EnemyBasic>(); 
+        
+        if (MoveModule == null)
+            MoveModule = GetComponent<EnemyMoveModuleBasic>();
+        
+        if (Weapon == null)
+            Weapon = GetComponent<WeaponBasic>();
+
+        getToRandomSurroundingPoint();
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        base.Update();
-
+        //base.Update();
+        if (MoveModule.hasReachedDestination)
+        {
+            getToRandomSurroundingPoint();
+        }
     }
 
     /// <summary>
@@ -70,16 +84,11 @@ public class EnemyFlankAI : EnemyBasic {
 
     public void getToRandomSurroundingPoint()
     {
-        temp = GetRandomPointWithRayCast(target.transform.position, flankDistance);
+        temp = GetRandomPointWithRayCast(Target.transform.position, flankDistance);
 
-        moveModule.MoveToPoint(temp);
+        MoveModule.MoveToPoint(temp);
 
         Debug.DrawLine(transform.position, temp, Color.red, 2, false);
     }
-
-    //public Vector3 gopoint()
-    //{
-    //    return GetRandomPointWithRayCast(target.transform.position, distance);
-    //}
 
 }
