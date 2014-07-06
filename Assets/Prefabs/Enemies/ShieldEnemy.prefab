@@ -146,15 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 1.10000002
   MaxSpeed: 100
   BaseSpeed: 10
   minDistFromDestination: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
-  isMonitoringDestination: 0
-  maxRadiansDelta: .00999999978
-  maxMagnitudeDelta: .00999999978
+  maxRadiansDelta: 90
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,7 +173,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   destinationChangeInterval: 1.5
-  IsAttacking: 1
+  isAttacking: 1
+  isLeadingTarget: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,7 +190,7 @@ MonoBehaviour:
   fireAngle: {x: 0, y: 0, z: 0, w: 1}
   fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
-  projectileSpeed: 20
+  projectileSpeed: 100
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1

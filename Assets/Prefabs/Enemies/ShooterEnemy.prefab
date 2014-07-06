@@ -130,8 +130,8 @@ Rigidbody:
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_Drag: .100000001
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -170,7 +170,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   destinationChangeInterval: 1.5
-  IsAttacking: 1
+  isAttacking: 1
+  isLeadingTarget: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,19 +187,19 @@ MonoBehaviour:
   fireAngle: {x: 0, y: 0, z: 0, w: 1}
   fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
-  projectileSpeed: 20
+  projectileSpeed: 30
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
-  projectileRange: 50
+  projectileRange: 100
   isOverrideProjectileLifeTime: 1
-  projectileLifeTime: 10
+  projectileLifeTime: 15
   coolDownBetweenShots: 4
   ExistingProjectiles: []
   angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 1
-  delayWithinBurst: .5
+  delayWithinBurst: .100000001
   numOfProjectilesInBurst: 3
   isMultiShot: 0
   FiringAngle: 90
@@ -215,15 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 1.10000002
-  MaxSpeed: 100
+  MaxSpeed: 30
   BaseSpeed: 10
-  minDistFromDestination: 0
+  minDistFromDestination: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
-  isRealisticMotion: 0
-  isMonitoringDestination: 0
-  maxRadiansDelta: .00999999978
-  maxMagnitudeDelta: .00999999978
+  isRealisticMotion: 1
+  maxRadiansDelta: 90
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

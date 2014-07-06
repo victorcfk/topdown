@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyMoveModuleBasic : MonoBehaviour {
 
-    public float Acceleration = 1.1f;
+    //public float Acceleration = 1.1f;
     public float MaxSpeed = 100;
     public float BaseSpeed = 10;
 
@@ -13,13 +13,12 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     public Vector3 lastKnownDest;
 
     public bool isRealisticMotion = false;
-    public bool isMonitoringDestination = false;
+    //public bool isMonitoringDestination = false;
 
     private Vector3 temp;
     private float OrigDrag;
 
     public float maxRadiansDelta = 2.0f;
-    public float maxMagnitudeDelta = 2.0f;
 
 	// Use this for initialization
     protected virtual void Start()
@@ -30,26 +29,30 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         //rigidbody.AddForce(new Vector3(0.1f,0,0) * BaseSpeed, ForceMode.VelocityChange);
-	}
 
-    void Update()
-    {
-        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, MaxSpeed);
-    }
+        if (!hasReachedDestination)
+        {
+            MoveToPoint(lastKnownDest);
+            rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, MaxSpeed);
+        }
+	}
 
     public void MoveToPoint(Vector3 destinationPoint)
     {
         //print("movePt");
 
-        if (isMonitoringDestination)
-        {
-            StopAllCoroutines();
-            StartCoroutine(MoveToPointRoutine(destinationPoint));
-        }
-        else
-        {   
-            MoveInDirection(destinationPoint - transform.position);
-        }
+//        if (isMonitoringDestination)
+//        {
+        lastKnownDest = destinationPoint;
+//            StopAllCoroutines();
+//            StartCoroutine(MoveToPointRoutine(destinationPoint));
+
+        MoveInDirection(lastKnownDest - transform.position);
+//        }
+//        else
+//        {   
+//            MoveInDirection(destinationPoint - transform.position);
+//        }
 
     }
 
@@ -82,8 +85,8 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
 
         if (isRealisticMotion)
         {
-            rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Acceleration);
-            rigidbody.drag = 0.1f;
+            rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
+            //rigidbody.drag = 0.1f;
         }
         else
         {
@@ -100,11 +103,11 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     {
         //transform.LookAt(point);
 
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, point - transform.position, maxRadiansDelta, maxMagnitudeDelta);
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, point - transform.position, Mathf.Deg2Rad*maxRadiansDelta*Time.deltaTime, 0);
         newDir.z = 0;
         //transform.forward.z = 0;
 
-        transform.rotation = Quaternion.LookRotation(newDir, new Vector3(0, 1, 0));    //Force up to be -z to prevent flipping due to quaternion representation
+        transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);    //Force up to be -z to prevent flipping due to quaternion representation
         
     }
 

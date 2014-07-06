@@ -401,7 +401,7 @@ MonoBehaviour:
   defRoomWidth: 60
   funiture_list:
   - {fileID: 100000, guid: 6dfa5ac0bec1cab4eadcfbaa62f6adf6, type: 2}
-  - {fileID: 100000, guid: 2439d848f09c851478c73b7970cad922, type: 2}
+  - {fileID: 100000, guid: 6dfa5ac0bec1cab4eadcfbaa62f6adf6, type: 2}
   CornerObj: {fileID: 100000, guid: 2439d848f09c851478c73b7970cad922, type: 2}
   CenterObj: {fileID: 100000, guid: 6dfa5ac0bec1cab4eadcfbaa62f6adf6, type: 2}
   rooms: []
@@ -464,7 +464,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 86403442a60c79d44b046bb2bf760358, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86403442a60c79d44b046bb2bf760358, type: 2}
@@ -513,7 +513,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
 --- !u!114 &259422386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,7 +630,7 @@ Transform:
   m_Children:
   - {fileID: 1214030193}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 17
 --- !u!65 &341144544
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -656,15 +656,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 1.10000002
-  MaxSpeed: 100
+  MaxSpeed: 30
   BaseSpeed: 10
-  minDistFromDestination: 0
+  minDistFromDestination: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
-  isRealisticMotion: 0
-  isMonitoringDestination: 0
-  maxRadiansDelta: .00999999978
-  maxMagnitudeDelta: .00999999978
+  isRealisticMotion: 1
+  maxRadiansDelta: 90
 --- !u!114 &341144546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,8 +695,8 @@ Rigidbody:
   m_GameObject: {fileID: 341144542}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_Drag: .100000001
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -721,19 +718,19 @@ MonoBehaviour:
   fireAngle: {x: 0, y: 0, z: 0, w: 1}
   fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
-  projectileSpeed: 20
+  projectileSpeed: 30
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
-  projectileRange: 50
+  projectileRange: 100
   isOverrideProjectileLifeTime: 1
-  projectileLifeTime: 10
+  projectileLifeTime: 15
   coolDownBetweenShots: 4
   ExistingProjectiles: []
   angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 1
-  delayWithinBurst: .5
+  delayWithinBurst: .100000001
   numOfProjectilesInBurst: 3
   isMultiShot: 0
   FiringAngle: 90
@@ -1024,15 +1021,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 1.10000002
   MaxSpeed: 100
   BaseSpeed: 0
   minDistFromDestination: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
-  isMonitoringDestination: 0
-  maxRadiansDelta: .00999999978
-  maxMagnitudeDelta: .00999999978
+  maxRadiansDelta: 90
 --- !u!54 &510277620
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1125,7 +1119,7 @@ Transform:
   - {fileID: 1215597698}
   - {fileID: 1267899721}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
 --- !u!1001 &583358245
 Prefab:
   m_ObjectHideFlags: 0
@@ -1487,7 +1481,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 27284176f6d64b240bc341a7d9c4221c, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27284176f6d64b240bc341a7d9c4221c, type: 2}
@@ -1590,9 +1584,9 @@ MonoBehaviour:
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 6144
-  LayersThatArePenetrated:
+  LayersThatBlockSelf:
     serializedVersion: 2
-    m_Bits: 3328
+    m_Bits: 0
   TriggerInterval: .100000001
 --- !u!1 &933779390
 GameObject:
@@ -1666,7 +1660,7 @@ Transform:
   m_LocalScale: {x: 5, y: 20, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &973114974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,15 +1735,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 1.10000002
   MaxSpeed: 100
   BaseSpeed: 10
   minDistFromDestination: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
-  isMonitoringDestination: 0
   maxRadiansDelta: .0199999996
-  maxMagnitudeDelta: .0199999996
 --- !u!114 &973114978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,7 +1966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipArray: []
   numOfShips: 5
-  ShipPrefab: {fileID: 100000, guid: 86403442a60c79d44b046bb2bf760358, type: 2}
+  ShipPrefab: {fileID: 100000, guid: 27789d81213126a4fb0eb83dfec24a61, type: 2}
   coolDown: 1
 --- !u!4 &1169175973
 Transform:
@@ -2302,7 +2293,7 @@ Transform:
   m_LocalScale: {x: 5, y: 20, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &1235266427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,7 +2630,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 13
 --- !u!1 &1426051896
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,15 +2826,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 1.10000002
   MaxSpeed: 100
   BaseSpeed: 10
   minDistFromDestination: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
-  isMonitoringDestination: 0
-  maxRadiansDelta: .00999999978
-  maxMagnitudeDelta: .00999999978
+  maxRadiansDelta: 90
 --- !u!114 &1448837212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2900,7 +2888,7 @@ MonoBehaviour:
   fireAngle: {x: 0, y: 0, z: 0, w: 1}
   fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
-  projectileSpeed: 20
+  projectileSpeed: 100
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
@@ -3074,7 +3062,7 @@ Rigidbody:
   m_GameObject: {fileID: 1506605561}
   serializedVersion: 2
   m_Mass: .100000001
-  m_Drag: 0
+  m_Drag: .100000001
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -3093,15 +3081,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 1.10000002
-  MaxSpeed: 10
-  BaseSpeed: 10
+  MaxSpeed: 70
+  BaseSpeed: 1
   minDistFromDestination: .5
   lastKnownDest: {x: 0, y: 0, z: 0}
-  isRealisticMotion: 0
-  isMonitoringDestination: 0
+  isRealisticMotion: 1
   maxRadiansDelta: 2
-  maxMagnitudeDelta: 2
 --- !u!114 &1506605564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3187,7 +3172,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!114 &1506605570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3238,9 +3223,9 @@ MonoBehaviour:
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 1536
-  LayersThatArePenetrated:
+  LayersThatBlockSelf:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 1536
   TriggerInterval: .100000001
 --- !u!1 &1540749979
 GameObject:
@@ -3415,7 +3400,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b807aa0e21b89614ca4b0fdef79de1ce, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b807aa0e21b89614ca4b0fdef79de1ce, type: 2}
@@ -3537,7 +3522,7 @@ Transform:
   m_LocalScale: {x: 5, y: 20, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1001 &1851145390
 Prefab:
   m_ObjectHideFlags: 0
@@ -3699,7 +3684,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ff819a332cefaa48b53287916578178, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400002, guid: 6ff819a332cefaa48b53287916578178, type: 2}
@@ -3994,6 +3979,10 @@ Prefab:
     - target: {fileID: 11400002, guid: e3ff4fba990ef4d468a60a506679ce93, type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: e3ff4fba990ef4d468a60a506679ce93, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400010, guid: e3ff4fba990ef4d468a60a506679ce93, type: 2}

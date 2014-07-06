@@ -32,7 +32,7 @@ public class ProjectileSingular: ProjectileBasic
     public float MaxSpeed = 100;
     //=====================================
 
-    protected DamageReceiver receiver;
+
 
     //internal CollisionTag TargetTagType;
     //private Transform Target;
@@ -174,7 +174,7 @@ public class ProjectileSingular: ProjectileBasic
         Vector3 tarDir = -controlledObj.transform.position + rel;
         tarDir.z = 0;*/
 
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, target.transform.position- transform.position, maxRadiansDelta, maxMagnitudeDelta);
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, target.transform.position- transform.position, maxRadiansDelta*Time.deltaTime, 0);
         newDir.z = 0;
         //transform.forward.z = 0;
 
