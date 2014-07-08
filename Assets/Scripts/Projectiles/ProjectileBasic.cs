@@ -20,7 +20,9 @@ public abstract class ProjectileBasic : MonoBehaviour {
     public float lifeTime = 1;		// In seconds
 
     protected Vector3 prevPos;
-    public float distTravelled = 0;
+    protected float distTravelled = 0;
+
+    public GameObject target;
 
     protected DamageReceiver receiver;
 

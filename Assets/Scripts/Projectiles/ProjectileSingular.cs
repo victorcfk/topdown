@@ -20,7 +20,7 @@ public class ProjectileSingular: ProjectileBasic
     //Homing functionality
     //=====================================
     public bool IsHoming = false; 
-    public GameObject HomingTarget;
+
     public float maxRadiansDelta = 2.0f;
     public float maxMagnitudeDelta = 2.0f;
     //=====================================
@@ -44,7 +44,7 @@ public class ProjectileSingular: ProjectileBasic
         base.Update();
 
         if (IsAccelerating) AccelerateProjectile();
-        if (IsHoming) HomeTowardsTarget(HomingTarget);
+        if (IsHoming) HomeTowardsTarget(target);
 
         if(rigidbody != null)
             rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, minSpeed > MaxSpeed? minSpeed : MaxSpeed);

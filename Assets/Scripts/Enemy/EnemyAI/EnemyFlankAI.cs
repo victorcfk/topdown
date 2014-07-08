@@ -12,7 +12,7 @@ public class EnemyFlankAI : EnemyAIBasic {
 
     public float destinationChangeInterval = 1.5f;
 
-    protected virtual void Start()
+    protected override void Start()
     {
         if (MoveModule == null)
             MoveModule = GetComponent<EnemyMoveModuleBasic>();
@@ -52,7 +52,7 @@ public class EnemyFlankAI : EnemyAIBasic {
         //Do we raycast to hit something?
         if (Physics.Raycast(center, vec3holder, out raycasthitholder, dist, collisionlayermask))
         {//Yes. Take point on wall
-            print("coll");
+
             return raycasthitholder.point;
         }
         else

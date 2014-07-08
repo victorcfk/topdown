@@ -555,7 +555,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 08ae23dd6ee6a32488b4f2665cb578e9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -50
+      value: -76.2102661
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 08ae23dd6ee6a32488b4f2665cb578e9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -587,11 +587,15 @@ Prefab:
       objectReference: {fileID: 2031006480}
     - target: {fileID: 2000000, guid: 08ae23dd6ee6a32488b4f2665cb578e9, type: 2}
       propertyPath: orthographic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 08ae23dd6ee6a32488b4f2665cb578e9, type: 2}
       propertyPath: orthographic size
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 08ae23dd6ee6a32488b4f2665cb578e9, type: 2}
+      propertyPath: field of view
+      value: 55.7999992
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08ae23dd6ee6a32488b4f2665cb578e9, type: 2}
@@ -746,6 +750,7 @@ MonoBehaviour:
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 20
   coolDownBetweenShots: 1
+  LaunchLocation: []
   ExistingProjectiles: []
   angleDeviation: 5
   isTeleportProjectile: 0
@@ -850,8 +855,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 341144543}
-  - 33: {fileID: 341144550}
-  - 23: {fileID: 341144549}
   - 114: {fileID: 341144548}
   - 54: {fileID: 341144547}
   - 114: {fileID: 341144546}
@@ -877,6 +880,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
+  - {fileID: 463028707}
+  - {fileID: 465208724}
+  - {fileID: 455431405}
   - {fileID: 1214030193}
   m_Father: {fileID: 0}
   m_RootOrder: 17
@@ -892,7 +898,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.00000024, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: -.50999999}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &341144545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,6 +979,10 @@ MonoBehaviour:
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
   coolDownBetweenShots: 3
+  LaunchLocation:
+  - {fileID: 465208724}
+  - {fileID: 455431405}
+  - {fileID: 1214030193}
   ExistingProjectiles: []
   angleDeviation: 0
   isTeleportProjectile: 0
@@ -980,7 +990,7 @@ MonoBehaviour:
   delayWithinBurst: .100000001
   numOfProjectilesInBurst: 3
   isMultiShot: 1
-  FiringAngle: 20
+  FiringAngle: 30
   numOfProjectilesInMultiShot: 3
   target: {fileID: 0}
 --- !u!23 &341144549
@@ -989,14 +999,14 @@ Renderer:
   m_PrefabParentObject: {fileID: 2300000, guid: b807aa0e21b89614ca4b0fdef79de1ce,
     type: 2}
   m_PrefabInternal: {fileID: 392521725}
-  m_GameObject: {fileID: 341144542}
+  m_GameObject: {fileID: 455431404}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: b0ebd643dfa850c4ba52975708686867, type: 2}
+  - {fileID: 2100000, guid: b6942a06057fd8340b7e0ec3c4cd8d05, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1010,7 +1020,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 3300000, guid: b807aa0e21b89614ca4b0fdef79de1ce,
     type: 2}
   m_PrefabInternal: {fileID: 392521725}
-  m_GameObject: {fileID: 341144542}
+  m_GameObject: {fileID: 455431404}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &341144551
 MonoBehaviour:
@@ -1212,6 +1222,151 @@ Prefab:
   m_RootGameObject: {fileID: 51883000}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &455431404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100004, guid: b807aa0e21b89614ca4b0fdef79de1ce, type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 455431405}
+  - 33: {fileID: 341144550}
+  - 23: {fileID: 341144549}
+  m_Layer: 11
+  m_Name: GunTwo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &455431405
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400004, guid: b807aa0e21b89614ca4b0fdef79de1ce, type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  m_GameObject: {fileID: 455431404}
+  m_LocalRotation: {x: .173648193, y: 0, z: 0, w: .984807789}
+  m_LocalPosition: {x: 0, y: -.643852115, z: .464393079}
+  m_LocalScale: {x: 1, y: .25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 341144543}
+  m_RootOrder: 2
+--- !u!1 &463028704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100008, guid: b807aa0e21b89614ca4b0fdef79de1ce, type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 463028707}
+  - 33: {fileID: 463028706}
+  - 23: {fileID: 463028705}
+  m_Layer: 11
+  m_Name: SphereBody
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &463028705
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300006, guid: b807aa0e21b89614ca4b0fdef79de1ce,
+    type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  m_GameObject: {fileID: 463028704}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &463028706
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300006, guid: b807aa0e21b89614ca4b0fdef79de1ce,
+    type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  m_GameObject: {fileID: 463028704}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &463028707
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400008, guid: b807aa0e21b89614ca4b0fdef79de1ce, type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  m_GameObject: {fileID: 463028704}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: .200000003}
+  m_Children: []
+  m_Father: {fileID: 341144543}
+  m_RootOrder: 0
+--- !u!1 &465208723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: b807aa0e21b89614ca4b0fdef79de1ce, type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 465208724}
+  - 33: {fileID: 465208726}
+  - 23: {fileID: 465208725}
+  m_Layer: 11
+  m_Name: GunOne
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &465208724
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: b807aa0e21b89614ca4b0fdef79de1ce, type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  m_GameObject: {fileID: 465208723}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: .622938693}
+  m_LocalScale: {x: 1, y: .25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 341144543}
+  m_RootOrder: 1
+--- !u!23 &465208725
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300004, guid: b807aa0e21b89614ca4b0fdef79de1ce,
+    type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  m_GameObject: {fileID: 465208723}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: b6942a06057fd8340b7e0ec3c4cd8d05, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &465208726
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300004, guid: b807aa0e21b89614ca4b0fdef79de1ce,
+    type: 2}
+  m_PrefabInternal: {fileID: 392521725}
+  m_GameObject: {fileID: 465208723}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &504122991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1552,7 @@ MonoBehaviour:
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
   coolDownBetweenShots: 5
+  LaunchLocation: []
   ExistingProjectiles: []
   angleDeviation: 0
   isTeleportProjectile: 0
@@ -1910,7 +2066,7 @@ MonoBehaviour:
   range: -1
   minSpeed: 0
   lifeTime: -1
-  distTravelled: 0
+  target: {fileID: 0}
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 6144
@@ -2124,6 +2280,7 @@ MonoBehaviour:
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
   coolDownBetweenShots: 4
+  LaunchLocation: []
   ExistingProjectiles: []
   angleDeviation: 0
   isTeleportProjectile: 0
@@ -2457,7 +2614,7 @@ GameObject:
   - 33: {fileID: 1214030192}
   - 23: {fileID: 1214030191}
   m_Layer: 11
-  m_Name: Cube
+  m_Name: GunThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2476,7 +2633,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b6942a06057fd8340b7e0ec3c4cd8d05, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2498,12 +2655,12 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: b807aa0e21b89614ca4b0fdef79de1ce, type: 2}
   m_PrefabInternal: {fileID: 392521725}
   m_GameObject: {fileID: 1214030190}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 4.94817032e-09, y: 0, z: -.509403288}
-  m_LocalScale: {x: 2, y: 2, z: .200000003}
+  m_LocalRotation: {x: .173648298, y: 0, z: 0, w: -.98480773}
+  m_LocalPosition: {x: 0, y: .638103664, z: .463732541}
+  m_LocalScale: {x: 1, y: .25, z: 1}
   m_Children: []
   m_Father: {fileID: 341144543}
-  m_RootOrder: 0
+  m_RootOrder: 3
 --- !u!1 &1215597697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,8 +3146,8 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 46.7000008
-  orthographic: 1
+  field of view: 55.7999992
+  orthographic: 0
   orthographic size: 50
   m_Depth: -1
   m_CullingMask:
@@ -3010,7 +3167,7 @@ Transform:
   m_PrefabInternal: {fileID: 312352152}
   m_GameObject: {fileID: 1389345621}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -50}
+  m_LocalPosition: {x: 0, y: 0, z: -76.2102661}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3279,6 +3436,7 @@ MonoBehaviour:
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
   coolDownBetweenShots: 4
+  LaunchLocation: []
   ExistingProjectiles: []
   angleDeviation: 0
   isTeleportProjectile: 0
@@ -3617,7 +3775,7 @@ MonoBehaviour:
   range: -1
   minSpeed: 0
   lifeTime: -1
-  distTravelled: 0
+  target: {fileID: 0}
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 1536
@@ -3747,8 +3905,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.33000004, y: 1.5, z: 1}
-  m_Center: {x: .180000007, y: .409999996, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1631811408
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3824,6 +3982,22 @@ Prefab:
       propertyPath: projectileRange
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 34154e188045a574c97c317768654128, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.37346898e-07
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 34154e188045a574c97c317768654128, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.66873217
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 34154e188045a574c97c317768654128, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.42505495e-07
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 34154e188045a574c97c317768654128, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.71200562
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34154e188045a574c97c317768654128, type: 2}
   m_RootGameObject: {fileID: 313211141}
@@ -3894,7 +4068,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1670854093}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 0, z: 50}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 15, y: 1, z: 15}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3984,7 +4158,7 @@ Transform:
   m_PrefabInternal: {fileID: 1636918585}
   m_GameObject: {fileID: 1744965806}
   m_LocalRotation: {x: -.5, y: -.5, z: .5, w: .5}
-  m_LocalPosition: {x: -7.20885339e-07, y: -1.95124817, z: 3.87861848}
+  m_LocalPosition: {x: -4.42505495e-07, y: -1.95124817, z: 3.71200562}
   m_LocalScale: {x: 3, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 313211143}
@@ -4021,8 +4195,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.33000004, y: 1.5, z: 1}
-  m_Center: {x: .180000007, y: .409999996, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1744965810
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4056,7 +4230,7 @@ Transform:
   m_PrefabInternal: {fileID: 1636918585}
   m_GameObject: {fileID: 1747502347}
   m_LocalRotation: {x: -.5, y: -.5, z: .5, w: .5}
-  m_LocalPosition: {x: -7.10205086e-07, y: 2.01025963, z: 3.78902626}
+  m_LocalPosition: {x: -4.37346898e-07, y: 2.01025963, z: 3.66873217}
   m_LocalScale: {x: 3, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 313211143}
@@ -4093,8 +4267,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.33000004, y: 1.5, z: 1}
-  m_Center: {x: .180000007, y: .409999996, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1747502351
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4622,6 +4796,7 @@ MonoBehaviour:
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
   coolDownBetweenShots: 5
+  LaunchLocation: []
   ExistingProjectiles: []
   angleDeviation: 2
   isTeleportProjectile: 0

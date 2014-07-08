@@ -40,7 +40,7 @@ public class EnemyAIBasic : MonoBehaviour
     }
     
     // Update is called once per frame
-    public virtual new void Update()
+    public virtual void Update()
     {
         if (Target != null) 
             HomeTowardsPoint(Target.transform.position);

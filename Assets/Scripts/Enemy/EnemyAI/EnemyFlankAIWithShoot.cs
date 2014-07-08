@@ -6,7 +6,7 @@ public class EnemyFlankAIWithShoot : EnemyFlankAI
     public bool isAttacking = true;
     public bool isLeadingTarget = true;
 
-    protected virtual void Start()
+    override protected void Start()
     {
         if (MoveModule == null)
             MoveModule = GetComponent<EnemyMoveModuleBasic>();
