@@ -160,10 +160,6 @@ public class PlayerBasic : UnitBasic {
         gameObject.SetActive(false);
     }
 
-    public void OnGUI()
-    {
-        GUI.Box(new Rect(Screen.width - health / maxHealth * 100, 0, health / maxHealth * 100, 20), health.ToString());
-    }
 
 }
 
