@@ -52,22 +52,7 @@ public class WeaponProjectileSingular : WeaponBasic
             }
             else
             {
-                if (isMultiShot)
-                {
-                    for (int i = 0; i < numOfProjectilesInMultiShot; i++)
-                    {
-                        LaunchProjectile(
-                        Quaternion.AngleAxis(
-                            -FiringAngle / 2 +
-                            (FiringAngle / (numOfProjectilesInMultiShot - 1) * i), Vector3.forward) *
-                            transform.forward
-                        );
-
-                    }
-                }
-                else
-                    LaunchProjectile();
-                //launchAtTarget();
+                LaunchProjectile();
             }
 
             coolDownTimer = coolDownBetweenShots;
@@ -85,45 +70,18 @@ public class WeaponProjectileSingular : WeaponBasic
         //print("centar"+projectilePrefab.getCenter());
         if (projectilePrefab != null)
         {
-            fireAngle = transform.rotation;
-            //print("ang" + fireAngle);
-            //fireAngle.Set(fireAngle.x, fireAngle.y , fireAngle.z, fireAngle.w);
-            //print("ang"+fireAngle);
-            
-            fireDirection = transform.forward;//target.transform.position - gameObject.transform.position;//transform.forward;
-            fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation,angleDeviation),Vector3.forward) * fireDirection;
 
-            ProjectileBasic instance = CreateProjectile(fireLocation, fireAngle);
-            instance.rigidbody.velocity = (fireDirection).normalized * projectileSpeed;
-            instance.GetComponent<ProjectileSingular>().HomingTarget = target;
+            for(int i=0; i < LaunchLocation.Length; i++){
 
+                ProjectileBasic instance = CreateProjectile(LaunchLocation[i].position,LaunchLocation[i].rotation);
 
-            //if(activationPS != null)
-            //    activationPS.Play();
+                fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation,angleDeviation),Vector3.forward) * LaunchLocation[i].forward;
+
+                instance.rigidbody.velocity = fireDirection * projectileSpeed;
+
+                instance.target = target;
+
+            }
         }
     }
-
-    protected void LaunchProjectile(Vector3 targetDir)
-    {
-        //print("centar"+projectilePrefab.getCenter());
-        if (projectilePrefab != null)
-        {
-            fireAngle = transform.rotation;
-
-            fireDirection = targetDir;
-                //targetPos - transform.position;//target.transform.position - gameObject.transform.position;//transform.forward;
-            //fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation, angleDeviation), Vector3.forward) * fireDirection;
-
-            ProjectileBasic instance = CreateProjectile(fireLocation, fireAngle);
-            instance.rigidbody.velocity = (fireDirection).normalized * projectileSpeed;
-            instance.GetComponent<ProjectileSingular>().HomingTarget = target;
-
-
-            //if(activationPS != null)
-            //    activationPS.Play();
-        }
-    }
-
-
-
 }
