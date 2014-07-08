@@ -59,8 +59,22 @@ public class ShipCoreInfoStore : MonoBehaviour {
 	// Use this for initialization. In dont destroy on load, this is only called once.
 	void Start () {
 
-        ShipCoreInfoStore._instance = this;
-        if (ShipCore == null) GameObject.FindObjectOfType<PlayerBasic>();
+        //ShipCoreInfoStore._instance = this;
+        if (ShipCoreInfoStore._instance != null)
+        {
+            if(GameObject.FindObjectsOfType<ShipCoreInfoStore>().Length > 0)
+            {
+                foreach(ShipCoreInfoStore g in GameObject.FindObjectsOfType<ShipCoreInfoStore>())
+                {
+                    if(g != ShipCoreInfoStore._instance)
+                        GameObject.Destroy(g);
+                }
+            }
+
+        }
+
+        if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
+
         if(listOfPartInfo == null)  listOfPartInfo = new List<PartInfo>();
         //if (listOfPartsToAssignToShipCore == null)      listOfPartsToAssignToShipCore = new List<ShipPartType>();
         //if (listOfPartsPositions == null)             listOfPartsPositions = new List<Vector3>();
@@ -79,6 +93,21 @@ public class ShipCoreInfoStore : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (savePartsAndNewStage)
+        {
+            savePartsAndNewStage = !savePartsAndNewStage;
+            
+            if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
+            
+            //print("childCount: " + ShipCore.transform.childCount);
+            
+            savePartInfoOnShipCore(ShipCore);
+            
+            Application.LoadLevel(Application.loadedLevel + 1);
+            
+        }
+
+
         if (buildShipNow)
         {
             buildShipNow = !buildShipNow;
@@ -92,20 +121,11 @@ public class ShipCoreInfoStore : MonoBehaviour {
             ShipCore.initAllParts();
             ShipCore.initEngineSystem();
             ShipCore.initWeaponsSystem();
+
+            //Destroy(this.gameObject);
         }
 
-        if (savePartsAndNewStage)
-        {
-            savePartsAndNewStage = !savePartsAndNewStage;
-
-            print("childCount: " + ShipCore.transform.childCount);
-
-            savePartInfoOnShipCore(ShipCore);
-
-            Application.LoadLevel(Application.loadedLevel + 1);
-
-        }
-
+       
         //if (parts != null)
         //{
         //    print("Ze Count " + parts.Count);
@@ -138,7 +158,11 @@ public class ShipCoreInfoStore : MonoBehaviour {
     {
         BasicShipPart tempPart;
 
-        print("Parts On Ship: "+ ShipCore.transform.childCount);
+       // print("Parts On Ship: "+ ShipCore.transform.childCount);
+
+        listOfPartInfo.Clear();
+
+        if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
 
         for (int i = 0; i < ShipCore.transform.childCount; i++)
         {
@@ -175,6 +199,8 @@ public class ShipCoreInfoStore : MonoBehaviour {
             g.transform.localRotation = listOfPartInfo[i].partRotation;
 
         }
+
+        //Destroy(this.gameObject);
         //==========================================================================
 
     }

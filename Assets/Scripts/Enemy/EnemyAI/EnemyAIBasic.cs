@@ -14,9 +14,14 @@ public class EnemyAIBasic : MonoBehaviour
     public GameObject Target 
     { 
         get {
-            if (_Target == null)
-                _Target = FindObjectOfType<PlayerBasic>().gameObject;
-            
+            if (_Target == null){
+
+                if(FindObjectOfType<PlayerBasic>())
+                    _Target = FindObjectOfType<PlayerBasic>().gameObject;
+                else
+                    _Target =this.gameObject;   //return self to avoid exceptions
+            }
+
             return _Target;
         }
         

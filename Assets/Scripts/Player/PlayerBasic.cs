@@ -28,6 +28,8 @@ public class PlayerBasic : UnitBasic {
     [HideInInspector]
     public Vector3 LookAtVector;
 
+    public bool isPlayerDead =false;
+
 
     // Use this for initialization
 	void Start () {
@@ -154,8 +156,11 @@ public class PlayerBasic : UnitBasic {
     }
 
     public override void DestroySelf(){
+
+        isPlayerDead = true;
+
         //ResetGame();
-        Invoke("ResetGame", 2);
+        Invoke("ResetGame", 3);
 
         gameObject.SetActive(false);
     }
