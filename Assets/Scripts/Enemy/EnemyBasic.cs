@@ -6,13 +6,13 @@ using System.Collections;
 public class EnemyBasic : UnitBasic{
 
     public EnemyMoveModuleBasic moveModule;
-    public WeaponBasic WeaponScript;
+    //public WeaponBasic WeaponScript;
 
     protected virtual void Start()
     {
         //if (target == null)     GameObject.FindGameObjectWithTag("Player");
         if (moveModule == null) moveModule = GetComponent<EnemyMoveModuleBasic>();
-        if (WeaponScript == null) WeaponScript = GetComponent<WeaponBasic>();
+        //if (WeaponScript == null) WeaponScript = GetComponent<WeaponBasic>();
 
     }
 

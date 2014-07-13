@@ -45,7 +45,7 @@ public class EnemyFlankAIWithShoot : EnemyFlankAI
             
             if (Weapon != null && isWithinRangeOfTarget)
             {
-                Weapon.FireWeapon();
+                Weapon.FireWeapon(Target);
                 
             }
         }

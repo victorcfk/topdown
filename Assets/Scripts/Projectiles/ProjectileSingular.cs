@@ -22,7 +22,6 @@ public class ProjectileSingular: ProjectileBasic
     public bool IsHoming = false; 
 
     public float maxRadiansDelta = 2.0f;
-    public float maxMagnitudeDelta = 2.0f;
     //=====================================
 
     //Accelerating Functionality
@@ -174,7 +173,7 @@ public class ProjectileSingular: ProjectileBasic
         Vector3 tarDir = -controlledObj.transform.position + rel;
         tarDir.z = 0;*/
 
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, target.transform.position- transform.position, maxRadiansDelta*Time.deltaTime, 0);
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, target.transform.position- transform.position, Mathf.Deg2Rad*maxRadiansDelta*Time.deltaTime, 0);
         newDir.z = 0;
         //transform.forward.z = 0;
 

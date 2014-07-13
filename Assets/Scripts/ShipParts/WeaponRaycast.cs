@@ -5,6 +5,14 @@ public class WeaponRaycast : WeaponBasic
 {
 
 
+    override public void FireWeapon(){
+
+    }
+
+    override public void FireWeapon(GameObject target){
+
+    }
+
     /// <summary>
     /// Creates a projectile with properties to be initialised later. Raycast and particle weapons.
     /// </summary>

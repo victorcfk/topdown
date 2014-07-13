@@ -26,16 +26,14 @@ public class WeaponProjectileSingular : WeaponBasic
 
     //Multi shot functionality
     //============================
-    public bool isMultiShot = false;
-    public float FiringAngle = 90;       //Time spacing between each projectiles firing in burst
-    public int numOfProjectilesInMultiShot = 3;
+//    public bool isMultiShot = false;
+//    public float FiringAngle = 90;       //Time spacing between each projectiles firing in burst
+//    public int numOfProjectilesInMultiShot = 3;
     //============================
 
 
-    public GameObject target;
-
     //override
-    public override void FireWeapon()
+    override public void FireWeapon()
     {
         if (coolDownTimer <= 0)
         {
@@ -60,6 +58,13 @@ public class WeaponProjectileSingular : WeaponBasic
         else
             return;
     }
+
+    public override void FireWeapon(GameObject Target)
+    {
+        this.target = Target;
+        FireWeapon();
+    }
+
 
     /// <summary>
     /// Create and Fire off the projectile, assuming it is created at the 

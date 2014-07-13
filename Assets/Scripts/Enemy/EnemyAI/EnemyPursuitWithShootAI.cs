@@ -14,19 +14,24 @@ public class EnemyPursuitWithShootAI : EnemyAIBasic{
         if (Target != null) 
             HomeTowardsPoint(Target.transform.position);
 
-        //isAttacking;
-        if (isAttacking)
+        if (Weapon != null)
         {
-            if (isLeadingTarget)
-            {
-                MoveModule.LookToPoint(LeadCalculator.FirstOrderInterceptPosition(this.gameObject, Weapon.projectileSpeed, Target));  //Attempt to lead the target
-            }
-            else
-            {
-                MoveModule.LookToPoint(Target.transform.position);  //Attempt to lead the target
-            }
 
-            Weapon.FireWeapon();
+            Vector3 pointToAttack;
+            if (isLeadingTarget)
+                pointToAttack = LeadCalculator.FirstOrderInterceptPosition(this.gameObject, Weapon.projectileSpeed, Target);
+            else
+                pointToAttack = Target.transform.position;
+
+
+            //isAttacking;
+            if (isAttacking)
+            {
+                MoveModule.LookToPoint(pointToAttack);  //Attempt to lead the target
+
+                if (isSpamWeaponWhenOutOfFacing || MoveModule.isFacingPoint(pointToAttack))
+                    Weapon.FireWeapon(Target);
+            }
         }
 	}
 

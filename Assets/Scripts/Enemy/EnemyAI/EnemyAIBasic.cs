@@ -7,6 +7,8 @@ public class EnemyAIBasic : MonoBehaviour
     public EnemyMoveModuleBasic MoveModule;
     public WeaponBasic Weapon;
 
+    public bool isSpamWeaponWhenOutOfFacing = true;
+
     protected bool isWithinRangeOfTarget
     { get { return Weapon.projectileRange*Weapon.projectileRange >= Vector3.SqrMagnitude(Target.transform.position - transform.position);}}
 
@@ -49,15 +51,6 @@ public class EnemyAIBasic : MonoBehaviour
     {
         if (Target != null) 
             HomeTowardsPoint(Target.transform.position);
-        
-        if (Weapon != null && isWithinRangeOfTarget)
-        {
-            //print(Vector3.Magnitude(Target.transform.position - transform.position));
-
-            Weapon.FireWeapon();
-
-        }
-        
     }
     
     public void HomeTowardsPoint(Vector3 position)
