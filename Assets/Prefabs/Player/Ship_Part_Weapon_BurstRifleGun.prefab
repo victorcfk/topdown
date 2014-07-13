@@ -260,28 +260,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb0615f053d60347b79d101a2af429c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 11400000, guid: 54c705fd5d9a855499d18bb4717ef4fc, type: 2}
+  projectilePrefab: {fileID: 11400000, guid: 3205994479c163548b2dc41c90b3e2e3, type: 2}
   fireAngle: {x: 0, y: 0, z: 0, w: 1}
   fireDirection: {x: 0, y: 0, z: 1}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 70
   isOverrideProjectileDamage: 1
-  projectileDamage: 2
+  projectileDamage: 2.5
   isOverrideProjectileRange: 1
   projectileRange: 150
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 8
   coolDownBetweenShots: 2.5
+  LaunchLocation: []
   ExistingProjectiles: []
+  target: {fileID: 0}
   angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 1
-  delayWithinBurst: .075000003
-  numOfProjectilesInBurst: 8
-  isMultiShot: 0
-  FiringAngle: 90
-  numOfProjectilesInMultiShot: 3
-  target: {fileID: 0}
+  delayWithinBurst: .0500000007
+  numOfProjectilesInBurst: 4
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

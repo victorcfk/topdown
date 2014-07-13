@@ -92,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -43.9726295, y: -15.1663704, z: 1.46286516e-06}
+  m_LocalPosition: {x: -32.9617081, y: 0, z: 3.92934135e-06}
   m_LocalScale: {x: 1, y: 1, z: 5}
   m_Children:
   - {fileID: 400000}
@@ -221,9 +221,11 @@ MonoBehaviour:
   MaxSpeed: 100
   BaseSpeed: 0
   minDistFromDestination: 10
+  minAngleForFacing: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
-  maxRadiansDelta: 70
+  isRealisticTurning: 0
+  maxRadiansDelta: 180
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,6 +240,7 @@ MonoBehaviour:
   EnemyUnit: {fileID: 0}
   MoveModule: {fileID: 11400000}
   Weapon: {fileID: 0}
+  isSpamWeaponWhenOutOfFacing: 1
   flankDistance: 10
   collisionlayermask:
     serializedVersion: 2
@@ -264,20 +267,18 @@ MonoBehaviour:
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
-  projectileRange: 100
+  projectileRange: 60
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
   coolDownBetweenShots: 5
+  LaunchLocation: []
   ExistingProjectiles: []
-  angleDeviation: 5
+  target: {fileID: 0}
+  angleDeviation: 2
   isTeleportProjectile: 0
   isBurstFire: 1
   delayWithinBurst: .150000006
   numOfProjectilesInBurst: 15
-  isMultiShot: 0
-  FiringAngle: 90
-  numOfProjectilesInMultiShot: 3
-  target: {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,10 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  maxHealth: 10
+  health: 20
+  maxHealth: 20
   moveModule: {fileID: 0}
-  WeaponScript: {fileID: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

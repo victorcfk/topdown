@@ -13,11 +13,11 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   - 135: {fileID: 13500000}
-  - 199: {fileID: 19900000}
   - 198: {fileID: 19800000}
-  m_Layer: 12
-  m_Name: EnemyMedBullet
-  m_TagString: Untagged
+  - 199: {fileID: 19900000}
+  m_Layer: 9
+  m_Name: PlayerProjectile_Bullet
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .699999988, y: .699999988, z: .699999988}
+  m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,7 +46,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: bd9743992fcda834383b88ea5ab67af4, type: 2}
+  - {fileID: 2100000, guid: c64607e98577f544491568455826cde4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -60,7 +60,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -90,20 +90,18 @@ MonoBehaviour:
   weapon: {fileID: 0}
   center: {x: 0, y: 0, z: 0}
   damage: 1
-  range: 50
+  range: 10
   minSpeed: 10
   lifeTime: 1
-  distTravelled: 0
+  target: {fileID: 0}
   LayersThatAreDamaged:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 6144
   LayersThatBlockSelf:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 2304
   IsHoming: 0
-  HomingTarget: {fileID: 0}
   maxRadiansDelta: 2
-  maxMagnitudeDelta: 2
   IsAccelerating: 0
   Acceleration: 1.10000002
   MaxSpeed: 30
@@ -293,7 +291,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4278190335
+        rgba: 4278231753
       minMaxState: 0
     startSize:
       scalar: 1
@@ -381,7 +379,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 1
     rate:
-      scalar: 5
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:

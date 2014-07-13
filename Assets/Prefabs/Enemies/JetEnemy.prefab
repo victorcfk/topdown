@@ -96,7 +96,7 @@ MonoBehaviour:
   range: -1
   minSpeed: 0
   lifeTime: -1
-  distTravelled: 0
+  target: {fileID: 0}
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 1536
@@ -144,8 +144,10 @@ MonoBehaviour:
   MaxSpeed: 100
   BaseSpeed: 1
   minDistFromDestination: 10
+  minAngleForFacing: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
+  isRealisticTurning: 0
   maxRadiansDelta: 90
 --- !u!114 &11400008
 MonoBehaviour:

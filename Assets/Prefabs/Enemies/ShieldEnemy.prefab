@@ -150,8 +150,10 @@ MonoBehaviour:
   MaxSpeed: 100
   BaseSpeed: 10
   minDistFromDestination: 0
+  minAngleForFacing: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
+  isRealisticTurning: 0
   maxRadiansDelta: 90
 --- !u!114 &11400002
 MonoBehaviour:
@@ -197,6 +199,7 @@ MonoBehaviour:
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
   coolDownBetweenShots: 4
+  LaunchLocation: []
   ExistingProjectiles: []
   angleDeviation: 0
   isTeleportProjectile: 0
@@ -248,7 +251,6 @@ MonoBehaviour:
   maxHealth: 10
   moveModule: {fileID: 0}
   WeaponScript: {fileID: 0}
-  movePos: {x: 0, y: 0, z: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

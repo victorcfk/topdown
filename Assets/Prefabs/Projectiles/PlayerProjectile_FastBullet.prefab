@@ -12,11 +12,11 @@ GameObject:
   - 23: {fileID: 2300000}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
-  - 135: {fileID: 13500000}
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
+  - 65: {fileID: 6500000}
   m_Layer: 9
-  m_Name: PlayerProjectile_Bullet
+  m_Name: PlayerProjectile_FastBullet
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
+  m_LocalPosition: {x: 2.91833735, y: 0, z: 0}
+  m_LocalScale: {x: .300000012, y: .300000012, z: 1.20000005}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,7 +60,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -76,6 +76,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 48
   m_CollisionDetection: 0
+--- !u!65 &6500000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,11 +101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
   center: {x: 0, y: 0, z: 0}
-  damage: 1
+  damage: 2
   range: 10
   minSpeed: 10
   lifeTime: 1
-  distTravelled: 0
+  target: {fileID: 0}
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 6144
@@ -101,24 +113,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2304
   IsHoming: 0
-  HomingTarget: {fileID: 0}
   maxRadiansDelta: 2
-  maxMagnitudeDelta: 2
   IsAccelerating: 0
   Acceleration: 1.10000002
   MaxSpeed: 30
---- !u!135 &13500000
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .500000119
-  m_Center: {x: 5.96046448e-08, y: 0, z: -8.94069672e-08}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -293,7 +291,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4278229503
+        rgba: 4278245631
       minMaxState: 0
     startSize:
       scalar: 1
@@ -381,7 +379,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 1
     rate:
-      scalar: 5
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:

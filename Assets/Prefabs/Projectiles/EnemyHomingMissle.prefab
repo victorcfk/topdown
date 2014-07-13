@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.03295302, y: 0, z: 0}
-  m_LocalScale: {x: .25, y: .25, z: 1.5}
+  m_LocalScale: {x: .800000012, y: .800000012, z: 1.5}
   m_Children:
   - {fileID: 400004}
   - {fileID: 400002}
@@ -161,22 +161,20 @@ MonoBehaviour:
   center: {x: 0, y: 0, z: 0}
   damage: 1
   range: 50
-  minSpeed: 10
-  lifeTime: 1
-  distTravelled: 0
+  minSpeed: 2
+  lifeTime: 1.5
+  target: {fileID: 0}
   LayersThatAreDamaged:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 1024
   LayersThatBlockSelf:
     serializedVersion: 2
     m_Bits: 1792
   IsHoming: 1
-  HomingTarget: {fileID: 0}
-  maxRadiansDelta: .0250000004
-  maxMagnitudeDelta: .0250000004
+  maxRadiansDelta: 75
   IsAccelerating: 1
   Acceleration: 10
-  MaxSpeed: 40
+  MaxSpeed: 65
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

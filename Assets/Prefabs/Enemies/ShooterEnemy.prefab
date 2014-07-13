@@ -362,8 +362,10 @@ MonoBehaviour:
   MaxSpeed: 30
   BaseSpeed: 10
   minDistFromDestination: 15
+  minAngleForFacing: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
+  isRealisticTurning: 0
   maxRadiansDelta: 180
 --- !u!114 &11400006
 MonoBehaviour:

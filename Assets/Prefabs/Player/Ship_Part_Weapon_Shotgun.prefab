@@ -213,16 +213,14 @@ MonoBehaviour:
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 1
   coolDownBetweenShots: 1
+  LaunchLocation: []
   ExistingProjectiles: []
-  angleDeviation: 30
-  isTeleportProjectile: 0
-  isBurstFire: 0
-  delayWithinBurst: .00499999989
-  numOfProjectilesInBurst: 25
-  isMultiShot: 1
-  FiringAngle: 50
-  numOfProjectilesInMultiShot: 30
   target: {fileID: 0}
+  angleDeviation: 40
+  isTeleportProjectile: 0
+  isBurstFire: 1
+  delayWithinBurst: .00499999989
+  numOfProjectilesInBurst: 30
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
