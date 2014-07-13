@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class StageManager : MonoBehaviour {
     //Here is a private reference only this class can access
@@ -8,8 +8,9 @@ public class StageManager : MonoBehaviour {
 
     protected float StageTimer = 0;
 
+    public float[] SpawnTimingsSeconds;
 
-    protected float[] SpawnTimingsSeconds;
+    public List<GameObject> spawnWaves;
 
     public GUIStyle style;
 
@@ -39,9 +40,20 @@ public class StageManager : MonoBehaviour {
 	void Update () {
 	    //skyboxMat.x
         StageTimer += Time.deltaTime;
+
+        for (int i=0; i <SpawnTimingsSeconds.Length; i++)
+        {
+            
+            if(StageTimer >= SpawnTimingsSeconds[i])
+            {
+                print("Spawnaaaaaaa!!!!!! " +SpawnTimingsSeconds[i]);
+
+                SpawnTimingsSeconds[i] = Mathf.Infinity;
+                spawnWaves[i].SetActive(true);
+               
+            }
+        }
 	}
-
-
 
     public void OnGUI()
     {
