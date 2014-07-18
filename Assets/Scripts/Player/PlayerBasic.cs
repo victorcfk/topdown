@@ -67,11 +67,6 @@ public class PlayerBasic : UnitBasic {
         }
 	}
 
-    protected void ResetGame()
-    {
-        Application.LoadLevel(Application.loadedLevelName);
-    }
-
     public void initAllParts()
     {
         attachedParts.Clear();
@@ -158,9 +153,6 @@ public class PlayerBasic : UnitBasic {
     public override void DestroySelf(){
 
         isPlayerDead = true;
-
-        //ResetGame();
-        Invoke("ResetGame", 3);
 
         gameObject.SetActive(false);
     }

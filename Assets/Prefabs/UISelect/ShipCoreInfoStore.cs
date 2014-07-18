@@ -41,6 +41,8 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
     public PlayerBasic ShipCore;
     public PlayerBasic ShipCorePrefab;
+    public PieceControl PieceControlPrefab;
+
 
     public List<BasicShipPart> listOfPartPrefabs;      //Reference to all the part things, needs to be initialized
     public List<PartInfo> listOfPartInfo;
@@ -103,7 +105,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
             
             savePartInfoOnShipCore(ShipCore);
             
-            Application.LoadLevel(Application.loadedLevel + 1);
+            //Application.LoadLevel(Application.loadedLevel + 1);
             
         }
 
@@ -116,7 +118,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
             if (ShipCore == null) ShipCore = (PlayerBasic)Instantiate(ShipCorePrefab);
 
-            if (listOfPartInfo != null) loadPartInfoOnShipCore(ShipCore);       //This should be assigned at the start of the stage
+            if (listOfPartInfo != null) loadPartInfoOnShipCore(ShipCore,Application.loadedLevel == 0 );       //This should be assigned at the start of the stage
 
             ShipCore.initAllParts();
             ShipCore.initEngineSystem();
@@ -137,22 +139,6 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
         //}
 	}
-
-    void OnGUI()
-    {
-        if (GUI.Button(
-            new Rect(Screen.width - 80,
-                    20,
-                    60,
-                    30), "Start"))
-        {
-
-            Debug.Log("Clicked the button with text");
-
-            ShipCoreInfoStore.instance.savePartsAndNewStage = true;
-
-        }
-    }
 
     void savePartInfoOnShipCore(PlayerBasic ShipCore)
     {
@@ -181,7 +167,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
     //}
 
 
-    void loadPartInfoOnShipCore(PlayerBasic ShipCore)
+    void loadPartInfoOnShipCore(PlayerBasic ShipCore, bool isBuilderScene = false)
     {
         //print(listOfPartsToAssignToShipCore.Count + " , " + listOfPartsRotations.Count + " , " + listOfPartPrefabs.Count);
 
@@ -197,6 +183,15 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
             g.transform.localPosition = listOfPartInfo[i].partPosition;
             g.transform.localRotation = listOfPartInfo[i].partRotation;
+
+            if(isBuilderScene)
+            {
+                PieceControl obj = Instantiate(PieceControlPrefab,listOfPartInfo[i].partPosition,listOfPartInfo[i].partRotation) as PieceControl;
+                obj.transform.parent = ShipCore.transform;
+
+                obj.CurrentPart = g;
+
+            }
 
         }
 
