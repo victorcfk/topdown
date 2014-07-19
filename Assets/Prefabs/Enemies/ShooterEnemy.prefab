@@ -304,6 +304,7 @@ MonoBehaviour:
   EnemyUnit: {fileID: 0}
   MoveModule: {fileID: 11400004}
   Weapon: {fileID: 0}
+  isSpamWeaponWhenOutOfFacing: 1
   flankDistance: 30
   collisionlayermask:
     serializedVersion: 2
@@ -339,15 +340,12 @@ MonoBehaviour:
   - {fileID: 400004}
   - {fileID: 400002}
   ExistingProjectiles: []
+  target: {fileID: 0}
   angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 0
   delayWithinBurst: .100000001
   numOfProjectilesInBurst: 3
-  isMultiShot: 1
-  FiringAngle: 30
-  numOfProjectilesInMultiShot: 3
-  target: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -407,7 +405,6 @@ MonoBehaviour:
   health: 10
   maxHealth: 10
   moveModule: {fileID: 0}
-  WeaponScript: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

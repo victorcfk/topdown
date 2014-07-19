@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Scenes/PlanePartsMenu.unity
   - enabled: 1
     path: Assets/Scenes/Framework.unity
+  - enabled: 1
+    path: Assets/Scenes/Framework2.unity

@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: RoomGen
   m_TagString: Untagged
@@ -23,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 58.121994, y: .010559082, z: -23.742527}
+  m_LocalPosition: {x: -75, y: -75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -34,12 +35,35 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 796ecb98f96926041be48aa5647f565c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defRoomHeight: 40
+  btmLeftRoomCent: {x: 0, y: 0, z: 0}
+  defRoomHeight: 50
+  defRoomWidth: 50
+  funiture_list:
+  - {fileID: 100000, guid: 6dfa5ac0bec1cab4eadcfbaa62f6adf6, type: 2}
+  - {fileID: 100000, guid: 6dfa5ac0bec1cab4eadcfbaa62f6adf6, type: 2}
+  CornerObj: {fileID: 100000, guid: 2439d848f09c851478c73b7970cad922, type: 2}
+  CenterObj: {fileID: 100000, guid: 6dfa5ac0bec1cab4eadcfbaa62f6adf6, type: 2}
+  rooms: []
+  rowCount: 2
+  colCount: 2
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8ae558869caca4787e9b12dee8b184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btmLeftRoomCent: {x: -60, y: -60, z: 0}
+  defRoomHeight: 60
   defRoomWidth: 60
   funiture_list:
   - {fileID: 100000, guid: 6dfa5ac0bec1cab4eadcfbaa62f6adf6, type: 2}
@@ -47,8 +71,8 @@ MonoBehaviour:
   CornerObj: {fileID: 100000, guid: 2439d848f09c851478c73b7970cad922, type: 2}
   CenterObj: {fileID: 100000, guid: 6dfa5ac0bec1cab4eadcfbaa62f6adf6, type: 2}
   rooms: []
-  rowCount: 4
-  colCount: 4
+  rowCount: 3
+  colCount: 3
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

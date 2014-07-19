@@ -268,7 +268,7 @@ MonoBehaviour:
   isOverrideProjectileDamage: 1
   projectileDamage: 2.5
   isOverrideProjectileRange: 1
-  projectileRange: 150
+  projectileRange: 100
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 8
   coolDownBetweenShots: 2.5

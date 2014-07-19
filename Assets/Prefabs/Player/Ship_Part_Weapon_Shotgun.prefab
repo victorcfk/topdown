@@ -212,11 +212,11 @@ MonoBehaviour:
   projectileRange: 20
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 1
-  coolDownBetweenShots: 1
+  coolDownBetweenShots: 1.5
   LaunchLocation: []
   ExistingProjectiles: []
   target: {fileID: 0}
-  angleDeviation: 40
+  angleDeviation: 35
   isTeleportProjectile: 0
   isBurstFire: 1
   delayWithinBurst: .00499999989

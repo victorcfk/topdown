@@ -12,7 +12,7 @@ GameObject:
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PieceControlBlk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3a61e275f1e7ca468b47d84f968a319, type: 3}
+  m_Script: {fileID: 11500000, guid: 1801b4bfcb8178d47915c0c8f0c0d622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PossibleParts:
@@ -89,6 +89,13 @@ MonoBehaviour:
   - {fileID: 11400004, guid: 054b213060706a74dafdef3f1d8f04be, type: 2}
   - {fileID: 11400002, guid: 7324b1cbe9de9fc48979d1502b6530a6, type: 2}
   scrollSpeed: .300000012
+  CurrentPart: {fileID: 0}
+  partInfo:
+    partType: 0
+    partLocalPosition: {x: 0, y: 0, z: 0}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    shipPartInst: {fileID: 0}
+    partBuildControllerInst: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

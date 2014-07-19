@@ -27,6 +27,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,7 +40,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShipCore: {fileID: 0}
-  ShipCorePrefab: {fileID: 11400014, guid: 98dbc38a9a3ce66419832420df7ff7b3, type: 2}
+  ShipCorePrefab: {fileID: 11400006, guid: 98dbc38a9a3ce66419832420df7ff7b3, type: 2}
+  PieceControlPrefab: {fileID: 11400000, guid: 9e335a84a7a06d140bba61e81876d05a, type: 2}
   listOfPartPrefabs:
   - {fileID: 11400004, guid: bc926ae81dbf5dc44918163d72804135, type: 2}
   - {fileID: 11400004, guid: 97da9ca27eb9161409618092516b1ab0, type: 2}
@@ -47,7 +49,23 @@ MonoBehaviour:
   - {fileID: 11400004, guid: cdfcb6394790b7d44b565c3972ab139a, type: 2}
   - {fileID: 11400004, guid: 054b213060706a74dafdef3f1d8f04be, type: 2}
   - {fileID: 11400002, guid: 7324b1cbe9de9fc48979d1502b6530a6, type: 2}
-  listOfPartInfo: []
+  listOfPartInfo:
+  - partType: 1
+    partLocalPosition: {x: 1, y: 0, z: 0}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    shipPartInst: {fileID: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 1
+    partLocalPosition: {x: -1, y: 0, z: 0}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    shipPartInst: {fileID: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 1
+    partLocalPosition: {x: 0, y: 0, z: -1}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    shipPartInst: {fileID: 0}
+    partBuildControllerInst: {fileID: 0}
+  startFlightNow: 0
   buildShipNow: 0
   savePartsAndNewStage: 0
 --- !u!1001 &100100000

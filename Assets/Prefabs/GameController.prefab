@@ -53,14 +53,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5ce26ff92d8eb43a3ef51da9f37984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnTimingsSeconds:
-  - 10
-  - 20
-  - 30
+  currentWave: 0
   spawnWaves:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  spawnTimingsSeconds:
+  - 5
+  - 10
+  - 20
   style:
     m_Name: 
     m_Normal:
@@ -120,6 +121,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  pg: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

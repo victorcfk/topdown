@@ -246,8 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   maxHealth: 1
-  moveModule: {fileID: 0}
-  WeaponScript: {fileID: 0}
+  moveModule: {fileID: 11400006}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,14 +284,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 15
+  MaxSpeed: 10
   BaseSpeed: 5
   minDistFromDestination: 4
   minAngleForFacing: 10
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 30
+  maxRadiansDelta: 25
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -337,15 +336,12 @@ MonoBehaviour:
   - {fileID: 400000}
   - {fileID: 400004}
   ExistingProjectiles: []
+  target: {fileID: 0}
   angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 0
   delayWithinBurst: .100000001
   numOfProjectilesInBurst: 3
-  isMultiShot: 1
-  FiringAngle: 30
-  numOfProjectilesInMultiShot: 3
-  target: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

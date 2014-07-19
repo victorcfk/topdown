@@ -141,13 +141,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 100
-  BaseSpeed: 1
+  MaxSpeed: 70
+  BaseSpeed: 2
   minDistFromDestination: 10
   minAngleForFacing: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
-  isRealisticTurning: 0
+  isRealisticTurning: 1
   maxRadiansDelta: 90
 --- !u!114 &11400008
 MonoBehaviour:
@@ -163,6 +163,7 @@ MonoBehaviour:
   EnemyUnit: {fileID: 0}
   MoveModule: {fileID: 0}
   Weapon: {fileID: 0}
+  isSpamWeaponWhenOutOfFacing: 1
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,7 +178,6 @@ MonoBehaviour:
   health: 4
   maxHealth: 10
   moveModule: {fileID: 0}
-  WeaponScript: {fileID: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

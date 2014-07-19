@@ -48,8 +48,8 @@ GameObject:
   - 4: {fileID: 400006}
   - 33: {fileID: 3300006}
   - 23: {fileID: 2300006}
-  - 114: {fileID: 11400004}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400012}
@@ -92,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -32.9617081, y: 0, z: 3.92934135e-06}
+  m_LocalPosition: {x: -32.9617081, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 5}
   m_Children:
   - {fileID: 400000}
@@ -225,7 +225,7 @@ MonoBehaviour:
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
   isRealisticTurning: 0
-  maxRadiansDelta: 180
+  maxRadiansDelta: 60
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -267,7 +267,7 @@ MonoBehaviour:
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
-  projectileRange: 60
+  projectileRange: 65
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
   coolDownBetweenShots: 5
