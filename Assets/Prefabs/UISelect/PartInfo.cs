@@ -5,28 +5,36 @@ public enum ShipPartType
 {
     CORE,
     ENGINE,
+    SHIELD,
     MACHINE_GUN,
     SHOT_GUN,
     BURST_GUN,
-    SHIELD,
     LASER
 }
 
 [System.Serializable]
 public class PartInfo {
 
-    //static ShipPartType PartPrefabList;
-
-    public Vector3 partPosition;
-    public Quaternion partRotation;
     public ShipPartType partType;
+
+    public Vector3 partLocalPosition;
+    public Quaternion partLocalRotation;
+
+    //public BasicShipPart shipPartInst;
+    public PartBuildController partBuildControllerInst;
 
     public PartInfo(BasicShipPart shipPart)
     {
         savePart(shipPart);
     }
 
-    public BasicShipPart loadPart()
+    /// <summary>
+    /// We create a part from the stored data.
+    /// </summary>
+    /// <returns>The part.</returns>
+    /// <param name="parentShip">If there is a Parent ship, attach the created part as well.</param>
+    /// <param name="createController">If set to <c>true</c> create ctrler as well.</param>
+    public BasicShipPart loadPart(GameObject parentShip = null,bool createController = false)
     {
         BasicShipPart tempPart = null;
 
@@ -34,12 +42,53 @@ public class PartInfo {
         {
             if (ShipCoreInfoStore.instance.listOfPartPrefabs[j].partType == this.partType)
             {
+                
                 //=========================================================
-                tempPart = (BasicShipPart)MonoBehaviour.Instantiate(ShipCoreInfoStore.instance.listOfPartPrefabs[j]);    //Create a part
+                
+                if(parentShip ==null)
+                {
+                    tempPart = MonoBehaviour.Instantiate(ShipCoreInfoStore.instance.listOfPartPrefabs[j],partLocalPosition,partLocalRotation) as BasicShipPart;    //Create a part
+                    //shipPartInst = tempPart;
+                }
+                else
+                {
+                    tempPart = MonoBehaviour.Instantiate(ShipCoreInfoStore.instance.listOfPartPrefabs[j]) as BasicShipPart;    //Create a part
+                    
+                    tempPart.transform.parent = parentShip.transform;
+                    tempPart.transform.localPosition = partLocalPosition;
+                    tempPart.transform.localRotation = partLocalRotation;
+                    //shipPartInst = tempPart;
+                }
 
-                tempPart.transform.position = partPosition;  //assign a position
-                tempPart.transform.rotation = partRotation;  //assign a rotation
                 //=========================================================
+
+                if(createController)
+                {
+                    if(parentShip ==null)
+                    {
+                        partBuildControllerInst = 
+                            MonoBehaviour.Instantiate(
+                                ShipCoreInfoStore.instance.PieceControlPrefab,
+                                partLocalPosition,
+                                ShipCoreInfoStore.instance.PieceControlPrefab.transform.rotation) as PartBuildController;//Create a part
+                    }
+                    else
+                    {
+                        partBuildControllerInst = 
+                            MonoBehaviour.Instantiate(ShipCoreInfoStore.instance.PieceControlPrefab) as PartBuildController;//Create a part
+                        
+                        partBuildControllerInst.transform.parent = parentShip.transform;
+                        partBuildControllerInst.transform.localPosition = partLocalPosition;
+                        partBuildControllerInst.transform.localRotation = partLocalRotation;
+                    }
+                    
+                    partBuildControllerInst.partInfo = this;
+                    partBuildControllerInst.CurrentPart = tempPart;
+                    
+                }
+
+                //=========================================================
+
             }
         }
 
@@ -49,8 +98,17 @@ public class PartInfo {
     public void savePart(BasicShipPart shipPart)
     {
         partType = (shipPart.partType);    //save the type on record
-        partPosition = (shipPart.transform.localPosition);
-        partRotation = (shipPart.transform.localRotation);  //save the transform for later.
+     
+        partLocalPosition = (shipPart.transform.localPosition);
+        partLocalRotation = (shipPart.transform.localRotation);  //save the transform for later.
+    }
+
+    public void savePart(PartBuildController pieceCntrlPart)
+    {
+        partType = pieceCntrlPart.CurrentPart.partType;
+            
+        partLocalPosition = (pieceCntrlPart.CurrentPart.transform.localPosition);
+        partLocalRotation = (pieceCntrlPart.CurrentPart.transform.localRotation);  //save the transform for later.
     }
 
 

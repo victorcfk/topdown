@@ -36,11 +36,22 @@ public class StageManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake() {
 
+     
+	}
+
+    void Start()
+    {
         stageTimer = 0;
         upcomingWave = 0;
-
+        
         ShipCoreInfoStore.instance.buildShipNow = true;
-	}
+
+        if (Application.loadedLevel != 0)
+        {
+            ShipCoreInfoStore.instance.startFlightNow =true;
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -82,7 +93,7 @@ public class StageManager : MonoBehaviour {
 
             if(currentWaveClear) 
             {   
-                print("allded");
+                //print("allded");
 
                 if(upcomingWave >= spawnWaves.Count){
                     ++stageToLoad;
