@@ -7,6 +7,11 @@ public class WeaponsSystem : MonoBehaviour {
     //[HideInInspector]
     public List<WeaponBasic> weapons;//= new List<BasicShipPart>();
 
+    public List<WeaponBasic> weaponsSet1;
+    public List<WeaponBasic> weaponsSet2;
+    public List<WeaponBasic> weaponsSet3;
+
+
     private bool isFiring;
 	// Use this for initialization
 	void Start () {
@@ -29,5 +34,42 @@ public class WeaponsSystem : MonoBehaviour {
         {
             weap.FireWeapon();
         }
+    }
+
+    public void fireWeaponsSet(int set)
+    {
+        switch(set){
+
+            case 1:
+                foreach (WeaponBasic weap in weaponsSet1)
+                {
+                    weap.FireWeapon();
+                }
+                break;
+
+            case 2:
+                foreach (WeaponBasic weap in weaponsSet2)
+                {
+                    weap.FireWeapon();
+                }
+                break;
+
+            case 3:
+                foreach (WeaponBasic weap in weaponsSet3)
+                {
+                    weap.FireWeapon();
+                }
+                break;
+
+            default:
+                foreach (WeaponBasic weap in weaponsSet1)
+                {
+                    weap.FireWeapon();
+                }
+                break;
+
+        }
+
+
     }
 }

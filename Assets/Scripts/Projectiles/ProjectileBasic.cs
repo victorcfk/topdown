@@ -7,16 +7,16 @@ public abstract class ProjectileBasic : MonoBehaviour {
 
     public Vector3 center;
 
-    //[HideInInspector]
+    [HideInInspector]   //Assigned by weapon
     public float damage = 1;
     
-    //[HideInInspector]
+    [HideInInspector]   //Assigned by weapon
     public float range = 10;
 
-    //[HideInInspector]
+    [HideInInspector]   //Assigned by weapon
     public float minSpeed = 10;
 
-    //[HideInInspector]
+    [HideInInspector]   //Assigned by weapon
     public float lifeTime = 1;		// In seconds
 
     protected Vector3 prevPos;

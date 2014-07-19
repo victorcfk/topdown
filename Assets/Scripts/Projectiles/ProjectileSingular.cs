@@ -95,14 +95,6 @@ public class ProjectileSingular: ProjectileBasic
         //if (tempPart != null) tempPart.ApplyDamage(Damage);
         //else
 
-        if ((LayersThatAreDamaged.value & 1 << collision.gameObject.layer) != 0)
-        {
-            receiver = collision.collider.gameObject.GetComponent<DamageReceiver>();
-
-            if (receiver != null)
-                receiver.ApplyDamage(damage);
-        }
-        
 
         //Is it able to penetrate the layer?
         if ((LayersThatBlockSelf.value & 1 << collision.gameObject.layer) != 0)
@@ -110,6 +102,16 @@ public class ProjectileSingular: ProjectileBasic
             //No.
             DestroySelf();
         }
+
+        if ((LayersThatAreDamaged.value & 1 << collision.gameObject.layer) != 0)
+        {
+            receiver = collision.collider.gameObject.GetComponent<DamageReceiver>();
+
+            if (receiver != null)
+                receiver.ApplyDamage(damage);
+        }
+
+
 
     }
 
