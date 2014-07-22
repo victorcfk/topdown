@@ -50,7 +50,6 @@ public class StageManager : MonoBehaviour {
         {
             ShipCoreInfoStore.instance.startFlightNow =true;
         }
-
     }
 	
 	// Update is called once per frame
@@ -61,6 +60,7 @@ public class StageManager : MonoBehaviour {
 
         stageTimer += Time.deltaTime;
 		
+        //=====================================================
 		if(upcomingWave < spawnWaves.Count)
         {
 			secToNextWave = spawnTimingsSeconds[upcomingWave] - stageTimer;
@@ -71,6 +71,7 @@ public class StageManager : MonoBehaviour {
                     pg.Emit(spawnWaves [upcomingWave].transform.GetChild(j).position, Vector3.zero, 7 - secToNextWave, 0.1f, Color.red);
             }
         }
+        //=====================================================
 
         for (int i=0; i <spawnTimingsSeconds.Length; i++)
         {
@@ -82,6 +83,14 @@ public class StageManager : MonoBehaviour {
                 spawnTimingsSeconds[i] = Mathf.Infinity;
                 spawnWaves[i].SetActive(true);
             }
+        }
+
+        //=====================================================
+
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+            ++stageToLoad;
+            Application.LoadLevel(0);
         }
 
         if (upcomingWave - 1 >= 0)
@@ -102,7 +111,7 @@ public class StageManager : MonoBehaviour {
 
                 if(secToNextWave > 7 ){
                  
-                    healthGain = (int)((secToNextWave - 7)/2);
+                    healthGain = (int)((secToNextWave - 7)/3);
                     PlayerController.instance.playerUnit.health+= healthGain;
 
                     stageTimer = (spawnTimingsSeconds[upcomingWave] - 7);
@@ -110,6 +119,7 @@ public class StageManager : MonoBehaviour {
                 }
             }
         }
+        //=====================================================
 	}
 
     public void OnGUI()
@@ -125,10 +135,9 @@ public class StageManager : MonoBehaviour {
                 ShipCoreInfoStore.instance.savePartsAndNewStage = true;
                 Application.LoadLevel(stageToLoad);
             }
-        } else
+        } 
+        else
         {
-
-
             if (PlayerController.instance.playerUnit.isPlayerDead)
             {
                 if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 15, 100, 30), "Remake Ship"))
@@ -136,12 +145,13 @@ public class StageManager : MonoBehaviour {
 
                 if (GUI.Button(new Rect(Screen.width / 2 - 50, 3 * Screen.height / 4 - 15, 100, 30), "Restart level"))
                     Application.LoadLevel(Application.loadedLevelName);
-            } else
+            } 
+            else
             {
                 GUI.Box(new Rect((Screen.width - 
                     PlayerController.instance.playerUnit.health / PlayerController.instance.playerUnit.maxHealth * 200) / 2, 
-                         Screen.height - 50, 
-                         PlayerController.instance.playerUnit.health / PlayerController.instance.playerUnit.maxHealth * 200, 50), 
+                         Screen.height - 15, 
+                         PlayerController.instance.playerUnit.health / PlayerController.instance.playerUnit.maxHealth * 200, 15), 
                 PlayerController.instance.playerUnit.health.ToString(), style);
 
 //            GUI.Box(new Rect(Screen.width / 2 - 50, 0, 100, 20),

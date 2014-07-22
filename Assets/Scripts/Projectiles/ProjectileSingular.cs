@@ -110,13 +110,7 @@ public class ProjectileSingular: ProjectileBasic
             if (receiver != null)
                 receiver.ApplyDamage(damage);
         }
-
-
-
     }
-
-    //void OnCollisionStay()
-
 
     void OnTriggerEnter(Collider other)
     {
@@ -134,7 +128,6 @@ public class ProjectileSingular: ProjectileBasic
             if (receiver != null)
                 receiver.ApplyDamage(damage);
         }
-        
 
         //Is it able to penetrate the layer?
         if ((LayersThatBlockSelf.value & 1 << other.gameObject.layer) != 0)

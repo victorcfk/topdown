@@ -41,13 +41,16 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
     public List<PartInfo> listOfPartInfo;
 
-//    public List<PartInfo> StagePieces1;
-//    public List<PartInfo> StagePieces2;
-//    public List<PartInfo> StagePieces3;
+    public List<PartInfo> StagePieces1;
+    public List<PartInfo> StagePieces2;
+    public List<PartInfo> StagePieces3;
+    public List<PartInfo> StagePieces4;
 
     public bool startFlightNow = false;
     public bool buildShipNow = false;
     public bool savePartsAndNewStage = false;
+
+
 
 	// Use this for initialization. In dont destroy on load, this is only called once.
 	void Start () {
@@ -69,7 +72,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
 
         if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
 
-        if(listOfPartInfo == null)  listOfPartInfo = new List<PartInfo>();
+        //if(listOfPartInfo == null)  listOfPartInfo = new List<PartInfo>();
 
         DontDestroyOnLoad(this.gameObject);
 	}
@@ -77,12 +80,37 @@ public class ShipCoreInfoStore : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        int listPtr = StageManager.stageToLoad;
+            //Application.loadedLevel;
+        switch(listPtr)
+        {
+            case 1:
+                listOfPartInfo = StagePieces1;
+                break;
+
+            case 2:
+                listOfPartInfo = StagePieces2;
+                break;
+
+            case 3:
+                listOfPartInfo = StagePieces3;
+                break;
+
+            case 4:
+                listOfPartInfo = StagePieces4;
+                break;
+
+            default:
+                listOfPartInfo = StagePieces1;
+                break;
+        }
+
 
         if (savePartsAndNewStage)
         {
             savePartsAndNewStage = !savePartsAndNewStage;
 
-            if (listOfPartInfo != null) saveAllPartInfo();
+            if (listOfPartInfo != null) saveAllPartInfo(listOfPartInfo);
         }
 
         if (buildShipNow)
@@ -92,7 +120,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
             if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
             if (ShipCore == null) ShipCore = Instantiate(ShipCorePrefab) as PlayerBasic;
 
-            if (listOfPartInfo != null) loadAllPartInfo(ShipCore.gameObject,Application.loadedLevel == 0);
+            if (listOfPartInfo != null) loadAllPartInfo(listOfPartInfo,ShipCore.gameObject,Application.loadedLevel == 0);
         }
 
         if (startFlightNow)
@@ -102,66 +130,67 @@ public class ShipCoreInfoStore : MonoBehaviour {
             ShipCore.initAllParts();
             ShipCore.initEngineSystem();
             ShipCore.initWeaponsSystem();
+            ShipCore.initShieldSystem();
         }
 	}
 
-    void saveAllPartInfo()
+    void saveAllPartInfo(List<PartInfo> partList)
     {
-        for (int i=0; i <listOfPartInfo.Count; i++)
+        for (int i=0; i <partList.Count; i++)
         {
-            listOfPartInfo[i].savePart(listOfPartInfo[i].partBuildControllerInst);
+            partList[i].savePart(partList[i].partBuildControllerInst);
         }
     }
     
-    void loadAllPartInfo(GameObject ShipParent, bool isBuilderScene = false)
+    void loadAllPartInfo(List<PartInfo> partList, GameObject ShipParent, bool isBuilderScene = false)
     {   
-        for (int i=0; i <listOfPartInfo.Count; i++)
+        for (int i=0; i <partList.Count; i++)
         {
-            listOfPartInfo[i].loadPart(ShipParent,isBuilderScene);
+            partList[i].loadPart(ShipParent,isBuilderScene);
         }
     }
 
-    void savePartInfoOnShipCore(PlayerBasic ShipCore)
-    {
-        BasicShipPart tempPart;
-
-        if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
-
-        for (int i = 0; i < ShipCore.transform.childCount; i++)
-        {
-            tempPart = ShipCore.transform.GetChild(i).GetComponent<BasicShipPart>();
-
-            if(tempPart != null && tempPart.partType != ShipPartType.CORE)
-                listOfPartInfo.Add(new PartInfo(tempPart));
-        }
-    }
-
-    void loadPartInfoOnShipCore(PlayerBasic ShipCore, bool isBuilderScene = false)
-    {
-        //print(listOfPartsToAssignToShipCore.Count + " , " + listOfPartsRotations.Count + " , " + listOfPartPrefabs.Count);
-
-        //find the player, give him the parts;
-        //==========================================================================
-
-        for (int i = 0; i < listOfPartInfo.Count; i++)
-        {
-            BasicShipPart g = listOfPartInfo[i].loadPart();
-
-            if(isBuilderScene)
-            {
-                PartBuildController obj = Instantiate(PieceControlPrefab,listOfPartInfo[i].partLocalPosition,listOfPartInfo[i].partLocalRotation) as PartBuildController;
-                obj.transform.parent = ShipCore.transform;
-                
-                obj.CurrentPart = g;    
-            }
-
-            g.transform.parent = ShipCore.transform;
-
-            g.transform.localPosition = listOfPartInfo[i].partLocalPosition;
-            g.transform.localRotation = listOfPartInfo[i].partLocalRotation;
-
-        }
-
-    }
+//    void savePartInfoOnShipCore(PlayerBasic ShipCore)
+//    {
+//        BasicShipPart tempPart;
+//
+//        if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
+//
+//        for (int i = 0; i < ShipCore.transform.childCount; i++)
+//        {
+//            tempPart = ShipCore.transform.GetChild(i).GetComponent<BasicShipPart>();
+//
+//            if(tempPart != null && tempPart.partType != ShipPartType.CORE)
+//                listOfPartInfo.Add(new PartInfo(tempPart));
+//        }
+//    }
+//
+//    void loadPartInfoOnShipCore(PlayerBasic ShipCore, bool isBuilderScene = false)
+//    {
+//        //print(listOfPartsToAssignToShipCore.Count + " , " + listOfPartsRotations.Count + " , " + listOfPartPrefabs.Count);
+//
+//        //find the player, give him the parts;
+//        //==========================================================================
+//
+//        for (int i = 0; i < listOfPartInfo.Count; i++)
+//        {
+//            BasicShipPart g = listOfPartInfo[i].loadPart();
+//
+//            if(isBuilderScene)
+//            {
+//                PartBuildController obj = Instantiate(PieceControlPrefab,listOfPartInfo[i].partLocalPosition,listOfPartInfo[i].partLocalRotation) as PartBuildController;
+//                obj.transform.parent = ShipCore.transform;
+//                
+//                obj.CurrentPart = g;    
+//            }
+//
+//            g.transform.parent = ShipCore.transform;
+//
+//            g.transform.localPosition = listOfPartInfo[i].partLocalPosition;
+//            g.transform.localRotation = listOfPartInfo[i].partLocalRotation;
+//
+//        }
+//
+//    }
     
 }

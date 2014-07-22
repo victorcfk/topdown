@@ -82,7 +82,7 @@ public class PartBuildController : MonoBehaviour {
     {
         if (CurrentPart != null)
         {
-            CurrentPart.transform.Rotate(0, 45, 0);
+            CurrentPart.transform.Rotate(0, 30, 0);
             CurrentPartRotation = CurrentPart.transform.rotation;
         }
     }

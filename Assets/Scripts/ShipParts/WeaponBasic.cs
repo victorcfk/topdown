@@ -15,8 +15,9 @@ public abstract class WeaponBasic : MonoBehaviour
 //    public string projectileName;
     
     public virtual Vector3 fireLocation { get { return transform.position; } }
-    public Quaternion fireAngle = Quaternion.LookRotation(Vector3.forward);
-    public Vector3 fireDirection;
+
+    protected Quaternion fireAngle = Quaternion.LookRotation(Vector3.forward);
+    protected Vector3 fireDirection;
     //public GameObject target;                           //Any possible Homing/Final Targets
 
     [HideInInspector]
