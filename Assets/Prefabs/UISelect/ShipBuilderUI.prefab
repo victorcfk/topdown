@@ -45,25 +45,82 @@ MonoBehaviour:
   listOfPartPrefabs:
   - {fileID: 11400004, guid: bc926ae81dbf5dc44918163d72804135, type: 2}
   - {fileID: 11400004, guid: 97da9ca27eb9161409618092516b1ab0, type: 2}
-  - {fileID: 11400004, guid: 420c280f7d3e34b4a873bc228b5ef8f0, type: 2}
   - {fileID: 11400004, guid: cdfcb6394790b7d44b565c3972ab139a, type: 2}
   - {fileID: 11400004, guid: 054b213060706a74dafdef3f1d8f04be, type: 2}
+  - {fileID: 11400004, guid: 420c280f7d3e34b4a873bc228b5ef8f0, type: 2}
   - {fileID: 11400002, guid: 7324b1cbe9de9fc48979d1502b6530a6, type: 2}
-  listOfPartInfo:
+  listOfPartInfo: []
+  StagePieces1:
   - partType: 1
-    partLocalPosition: {x: 1, y: 0, z: 0}
+    partLocalPosition: {x: 1.5, y: 0, z: 0}
     partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
-    shipPartInst: {fileID: 0}
     partBuildControllerInst: {fileID: 0}
   - partType: 1
-    partLocalPosition: {x: -1, y: 0, z: 0}
+    partLocalPosition: {x: -1.5, y: 0, z: 0}
     partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
-    shipPartInst: {fileID: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 3
+    partLocalPosition: {x: 0, y: 0, z: -1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  StagePieces2:
+  - partType: 1
+    partLocalPosition: {x: 1.5, y: 0, z: 0}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
     partBuildControllerInst: {fileID: 0}
   - partType: 1
-    partLocalPosition: {x: 0, y: 0, z: -1}
+    partLocalPosition: {x: -1.5, y: 0, z: 0}
     partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
-    shipPartInst: {fileID: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 3
+    partLocalPosition: {x: 0, y: 0, z: 1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 3
+    partLocalPosition: {x: 0, y: 0, z: -1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  StagePieces3:
+  - partType: 3
+    partLocalPosition: {x: 1.5, y: 0, z: 1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 3
+    partLocalPosition: {x: -1.5, y: 0, z: 1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 3
+    partLocalPosition: {x: 0, y: 0, z: 1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 1
+    partLocalPosition: {x: 1.5, y: 0, z: -1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 1
+    partLocalPosition: {x: -1.5, y: 0, z: -1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  StagePieces4:
+  - partType: 3
+    partLocalPosition: {x: 1.5, y: 1.5, z: 0}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 3
+    partLocalPosition: {x: -1.5, y: 0, z: 1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 3
+    partLocalPosition: {x: 0, y: 0, z: 1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 1
+    partLocalPosition: {x: 1.5, y: 0, z: -1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+    partBuildControllerInst: {fileID: 0}
+  - partType: 1
+    partLocalPosition: {x: -1.5, y: 0, z: -1.5}
+    partLocalRotation: {x: 0, y: 0, z: 0, w: 0}
     partBuildControllerInst: {fileID: 0}
   startFlightNow: 0
   buildShipNow: 0

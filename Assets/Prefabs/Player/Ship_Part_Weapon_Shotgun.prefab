@@ -212,15 +212,15 @@ MonoBehaviour:
   projectileRange: 20
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 1
-  coolDownBetweenShots: 1.5
+  coolDownBetweenShots: 2
   LaunchLocation: []
   ExistingProjectiles: []
   target: {fileID: 0}
-  angleDeviation: 35
+  angleDeviation: 30
   isTeleportProjectile: 0
   isBurstFire: 1
   delayWithinBurst: .00499999989
-  numOfProjectilesInBurst: 30
+  numOfProjectilesInBurst: 16
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42040c36e016074091abc455b42607b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partType: 3
+  partType: 4
   isApplyToUnit: 1
   shipCore: {fileID: 0}
 --- !u!198 &19800000

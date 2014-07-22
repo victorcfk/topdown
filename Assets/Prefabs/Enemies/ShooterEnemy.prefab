@@ -8,14 +8,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
+  - 114: {fileID: 11400014}
+  - 114: {fileID: 11400012}
   - 114: {fileID: 11400002}
-  - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400004}
-  - 65: {fileID: 6500000}
   - 114: {fileID: 11400006}
-  - 114: {fileID: 11400012}
-  - 114: {fileID: 11400014}
+  - 54: {fileID: 5400000}
+  - 65: {fileID: 6500000}
   m_Layer: 11
   m_Name: ShooterEnemy
   m_TagString: Untagged
@@ -284,7 +284,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -301,15 +301,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffffa75da4014e046a8611448c369e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
+  EnemyUnit: {fileID: 11400014}
   MoveModule: {fileID: 11400004}
-  Weapon: {fileID: 0}
-  isSpamWeaponWhenOutOfFacing: 1
+  Weapon: {fileID: 11400002}
+  isSpamWeaponWhenOutOfFacing: 0
   flankDistance: 30
   collisionlayermask:
     serializedVersion: 2
     m_Bits: 256
-  destinationChangeInterval: 1.5
+  destinationChangeInterval: 2
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &11400002
@@ -324,8 +324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: bab4673a7d7fc0845a59ec88d55f91f5, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
@@ -357,14 +355,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 30
-  BaseSpeed: 10
+  MaxSpeed: 70
+  BaseSpeed: 20
   minDistFromDestination: 15
-  minAngleForFacing: 0
+  minAngleForFacing: 5
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 0
-  maxRadiansDelta: 180
+  maxRadiansDelta: 90
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -84,6 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentReceiver: {fileID: 0}
   dmgModifier: .25
+  healthBoost: 5
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42040c36e016074091abc455b42607b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partType: 5
+  partType: 2
   isApplyToUnit: 1
   shipCore: {fileID: 0}
 --- !u!1001 &100100000

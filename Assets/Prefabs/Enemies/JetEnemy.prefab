@@ -17,6 +17,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400012}
   - 114: {fileID: 11400008}
   m_Layer: 11
   m_Name: JetEnemy
@@ -115,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3961a4751595bc47a955ebd4c2b8dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentReceiver: {fileID: 0}
+  ParentReceiver: {fileID: 11400004}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,14 +142,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 70
+  MaxSpeed: 55
   BaseSpeed: 2
   minDistFromDestination: 10
   minAngleForFacing: 0
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 90
+  maxRadiansDelta: 25
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,13 +158,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cc6f75d3e46b8c4ebb75e0e88f17147, type: 3}
+  m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
-  Weapon: {fileID: 0}
+  EnemyUnit: {fileID: 11400010}
+  MoveModule: {fileID: 11400006}
+  Weapon: {fileID: 11400012}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
+  isAttacking: 1
+  isLeadingTarget: 1
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,9 +179,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
-  maxHealth: 10
-  moveModule: {fileID: 0}
+  health: 1
+  maxHealth: 1
+  moveModule: {fileID: 11400006}
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0615f053d60347b79d101a2af429c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 11400000, guid: 6b604928fbd85104d90ec396c795567d, type: 2}
+  isOverrideProjectileSpeed: 1
+  projectileSpeed: 0
+  isOverrideProjectileDamage: 1
+  projectileDamage: 1.5
+  isOverrideProjectileRange: 1
+  projectileRange: 100
+  isOverrideProjectileLifeTime: 1
+  projectileLifeTime: 10
+  coolDownBetweenShots: .200000003
+  LaunchLocation: []
+  ExistingProjectiles: []
+  target: {fileID: 0}
+  angleDeviation: 360
+  isTeleportProjectile: 0
+  isBurstFire: 0
+  delayWithinBurst: .100000001
+  numOfProjectilesInBurst: 3
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -113,7 +113,6 @@ MonoBehaviour:
     m_Bits: 0
   IsHoming: 0
   maxRadiansDelta: 2
-  maxMagnitudeDelta: 2
   IsAccelerating: 0
   Acceleration: 1.10000002
   MaxSpeed: 30

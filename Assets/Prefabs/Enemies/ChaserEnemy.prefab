@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400004}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400010}
-  - 114: {fileID: 11400000}
   - 114: {fileID: 11400012}
   - 54: {fileID: 5400000}
   - 135: {fileID: 13500002}
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 11400004}
 --- !u!114 &11400004
 MonoBehaviour:
@@ -248,14 +248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 15
-  BaseSpeed: 5
-  minDistFromDestination: 4
-  minAngleForFacing: 15
+  MaxSpeed: 18
+  BaseSpeed: 8
+  minDistFromDestination: 0
+  minAngleForFacing: 5
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 60
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,10 +318,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 11400000}
+  MoveModule: {fileID: 11400004}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!135 &13500002

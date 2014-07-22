@@ -237,10 +237,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffffa75da4014e046a8611448c369e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
+  EnemyUnit: {fileID: 11400012}
   MoveModule: {fileID: 11400000}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 11400004}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   flankDistance: 10
   collisionlayermask:
     serializedVersion: 2
@@ -260,8 +261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: bab4673a7d7fc0845a59ec88d55f91f5, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 40
   isOverrideProjectileDamage: 1

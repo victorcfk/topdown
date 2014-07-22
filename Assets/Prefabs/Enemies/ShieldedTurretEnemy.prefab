@@ -381,11 +381,11 @@ MonoBehaviour:
   fireAngle: {x: 0, y: 0, z: 0, w: 1}
   fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
-  projectileSpeed: 60
+  projectileSpeed: 70
   isOverrideProjectileDamage: 1
   projectileDamage: 3
   isOverrideProjectileRange: 1
-  projectileRange: 100
+  projectileRange: 60
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 20
   coolDownBetweenShots: 4
@@ -415,7 +415,7 @@ MonoBehaviour:
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
   isRealisticTurning: 0
-  maxRadiansDelta: 60
+  maxRadiansDelta: 40
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -457,6 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentReceiver: {fileID: 11400012}
   dmgModifier: .0500000007
+  healthBoost: 5
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentReceiver: {fileID: 11400012}
   dmgModifier: .0500000007
+  healthBoost: 5
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
