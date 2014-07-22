@@ -18,6 +18,8 @@ public class PlayerBasic : UnitBasic {
 	public EngineSystem engineSystem;
     [HideInInspector]
     public WeaponsSystem weaponsSystem;
+    [HideInInspector]
+    public ShieldSystem shieldSystem;
 
     [HideInInspector]
     public float horizontalMoveInput;
@@ -30,12 +32,14 @@ public class PlayerBasic : UnitBasic {
 
     public bool isPlayerDead =false;
 
-
     // Use this for initialization
 	void Start () {
         if (attachedParts == null) attachedParts = new List<BasicShipPart>(); 
-        if (engineSystem == null) engineSystem = GetComponent<EngineSystem>();
+
 		if (luftEngineSystem == null) luftEngineSystem = GetComponent<LuftEngineSystem>();
+
+        if (engineSystem == null) engineSystem = GetComponent<EngineSystem>();
+        if (shieldSystem == null) shieldSystem = GetComponent<ShieldSystem>();
         if (weaponsSystem   == null) weaponsSystem = GetComponent<WeaponsSystem>();
         
         initAllParts();
@@ -109,8 +113,23 @@ public class PlayerBasic : UnitBasic {
                     luftEngineSystem.engines.Add(engine);
             }
 
-            //luftEngineSystem.engines = attachedParts.FindAll(isEngine);
+        }
+    }
 
+
+    public void initShieldSystem()
+    {
+        ShieldBasic shield;
+
+        foreach(BasicShipPart part in attachedParts){
+            shield = part.GetComponent<ShieldBasic>();
+
+            if(shield != null ){
+                shieldSystem.shields.Add(shield);
+
+                this.health += shield.healthBoost;
+                this.maxHealth += shield.healthBoost;
+            }
         }
     }
 
