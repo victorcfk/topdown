@@ -64,46 +64,31 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     /// <param name="direction">the direction of movement</param>
     public void MoveInDirection(Vector3 direction)
     {
-        //print("moveDir");
-
-        //StopMovement();
 
         if (isRealisticMotion)
         {
-
-
-            if(isRealisticTurning ){
-
-                LookToDirection(direction);
-
-                if(!isFacingDirection(direction)){
-                    ApplyBrakes();
-                }
-                else{
+            if(isRealisticTurning )
+			{
+                //Brake to try to turn in a particular direction
+                if(!isFacingDirection(direction))	
+					ApplyBrakes();  
+                else
                     rigidbody.drag = 0;
-                }
-
-                rigidbody.AddForce(transform.forward * BaseSpeed, ForceMode.Force);
             }
-            else{
-
+            else
+			{
+                //You can always move in that direction
                 rigidbody.drag = 0;
-
-                LookToDirection(direction);
-                rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
             }
-            //rigidbody.drag = 0.1f;
+
+            LookToDirection(direction);
+			rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
         }
         else
         {
             rigidbody.drag = 0;
-           // rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.VelocityChange);       //this does not work right when called externally
             rigidbody.velocity = direction.normalized * BaseSpeed;
         }
-
-
-
-
     }
 
 
@@ -112,7 +97,7 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
         //print("stopmove");
 
         if (isRealisticMotion)
-            rigidbody.drag = BaseSpeed;
+            rigidbody.drag = BaseSpeed/2;
         else
             rigidbody.velocity = Vector3.zero;
     }
@@ -123,14 +108,12 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     /// <param name="point">the point to look at</param>
     public void LookToPoint(Vector3 point)
     {
+        //Movement is not divorced from turning
         if (isRealisticTurning)
             return;
-
-        //transform.LookAt(point);
         
         Vector3 newDir = Vector3.RotateTowards(transform.forward, point - transform.position, Mathf.Deg2Rad*maxRadiansDelta*Time.deltaTime, 0);
         newDir.z = 0;
-        //transform.forward.z = 0;
         
         transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);    //Force up to be -z to prevent flipping due to quaternion representation
         
@@ -153,7 +136,8 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
         newDir.z = 0;
         //transform.forward.z = 0;
         
-        transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);    //Force up to be -z to prevent flipping due to quaternion representation
+		if(newDir != Vector3.zero)
+        	transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);    //Force up to be -z to prevent flipping due to quaternion representation
         
     }
     

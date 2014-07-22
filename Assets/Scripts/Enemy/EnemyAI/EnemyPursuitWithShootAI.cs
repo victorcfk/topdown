@@ -29,7 +29,12 @@ public class EnemyPursuitWithShootAI : EnemyAIBasic{
             {
                 MoveModule.LookToPoint(pointToAttack);  //Attempt to lead the target
 
-                if (isSpamWeaponWhenOutOfFacing || MoveModule.isFacingPoint(pointToAttack))
+                if ((isSpamWeaponWhenOutOfRange ||
+                    isWithinRangeOfTarget)
+                    &&
+                    (isSpamWeaponWhenOutOfFacing || 
+                    MoveModule.isFacingPoint(pointToAttack))
+                    )
                     Weapon.FireWeapon(Target);
             }
         }

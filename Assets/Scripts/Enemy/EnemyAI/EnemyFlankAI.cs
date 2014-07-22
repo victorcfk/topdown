@@ -20,13 +20,12 @@ public class EnemyFlankAI : EnemyAIBasic {
         if (EnemyUnit == null)
             EnemyUnit = GetComponent<EnemyBasic>(); 
         
-        if (MoveModule == null)
-            MoveModule = GetComponent<EnemyMoveModuleBasic>();
-        
         if (Weapon == null)
             Weapon = GetComponent<WeaponBasic>();
 
         getToRandomSurroundingPoint();
+
+        InvokeRepeating("getToRandomSurroundingPoint", destinationChangeInterval, destinationChangeInterval);
     }
 
     // Update is called once per frame

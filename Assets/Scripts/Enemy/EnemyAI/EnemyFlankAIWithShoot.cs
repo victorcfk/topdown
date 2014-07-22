@@ -12,15 +12,14 @@ public class EnemyFlankAIWithShoot : EnemyFlankAI
             MoveModule = GetComponent<EnemyMoveModuleBasic>();
         
         if (EnemyUnit == null)
-            EnemyUnit = GetComponent<EnemyBasic>(); 
-        
-        if (MoveModule == null)
-            MoveModule = GetComponent<EnemyMoveModuleBasic>();
-        
+            EnemyUnit = GetComponent<EnemyBasic>();
+                
         if (Weapon == null)
             Weapon = GetComponent<WeaponBasic>();
 
         getToRandomSurroundingPoint();
+
+        InvokeRepeating("getToRandomSurroundingPoint", destinationChangeInterval, destinationChangeInterval);
     }
 
     // Update is called once per frame
@@ -34,19 +33,24 @@ public class EnemyFlankAIWithShoot : EnemyFlankAI
         //isAttacking;
         if (isAttacking)
         {
+            Vector3 pointToAttack;
+
             if (isLeadingTarget)
-            {
-                MoveModule.LookToPoint(LeadCalculator.FirstOrderInterceptPosition(this.gameObject, Weapon.projectileSpeed, Target));  //Attempt to lead the target
-            }
+                pointToAttack = LeadCalculator.FirstOrderInterceptPosition(this.gameObject, Weapon.projectileSpeed, Target);  //Attempt to lead the target
             else
-            {
-                MoveModule.LookToPoint(Target.transform.position);  //Attempt to lead the target
-            }
-            
-            if (Weapon != null && isWithinRangeOfTarget)
+                pointToAttack = Target.transform.position;
+
+            MoveModule.LookToPoint(pointToAttack);
+
+            if (Weapon != null && 
+                (isSpamWeaponWhenOutOfRange ||
+                isWithinRangeOfTarget)
+                &&
+                (isSpamWeaponWhenOutOfFacing || 
+                MoveModule.isFacingPoint(pointToAttack))
+                )
             {
                 Weapon.FireWeapon(Target);
-                
             }
         }
     }
