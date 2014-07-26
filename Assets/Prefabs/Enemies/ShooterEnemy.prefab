@@ -305,6 +305,7 @@ MonoBehaviour:
   MoveModule: {fileID: 11400004}
   Weapon: {fileID: 11400002}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 1
   flankDistance: 30
   collisionlayermask:
     serializedVersion: 2
@@ -325,14 +326,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: bab4673a7d7fc0845a59ec88d55f91f5, type: 2}
   isOverrideProjectileSpeed: 1
-  projectileSpeed: 30
+  projectileSpeed: 40
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
-  projectileRange: 50
+  weaponFiringRange: 30
+  projectileRange: 60
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
-  coolDownBetweenShots: 3
+  coolDownBetweenShots: 2
   LaunchLocation:
   - {fileID: 400006}
   - {fileID: 400004}
@@ -355,10 +357,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 70
-  BaseSpeed: 20
-  minDistFromDestination: 15
-  minAngleForFacing: 5
+  MaxSpeed: 25
+  BaseSpeed: 15
+  minDistFromDestination: 5
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 0
@@ -400,9 +402,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  maxHealth: 10
+  health: 12
+  maxHealth: 12
   moveModule: {fileID: 0}
+  DestructionPSPrefab: {fileID: 19800002, guid: 0a59606d4600c44428a680be30a02457,
+    type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

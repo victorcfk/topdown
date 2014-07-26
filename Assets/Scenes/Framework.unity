@@ -158,7 +158,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 9190734}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -421,11 +421,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 26024844}
-  - 114: {fileID: 26024852}
+  - 114: {fileID: 26024848}
   - 114: {fileID: 26024851}
+  - 114: {fileID: 26024852}
   - 114: {fileID: 26024850}
   - 114: {fileID: 26024849}
-  - 114: {fileID: 26024848}
   - 114: {fileID: 26024847}
   - 54: {fileID: 26024846}
   - 135: {fileID: 26024845}
@@ -450,7 +450,7 @@ Transform:
   - {fileID: 1353311092}
   - {fileID: 618319861}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 3
+  m_RootOrder: 13
 --- !u!135 &26024845
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -458,7 +458,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1695737109}
   m_GameObject: {fileID: 26024843}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -492,10 +492,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 26024848}
+  MoveModule: {fileID: 26024852}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &26024848
@@ -511,7 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 26024852}
 --- !u!114 &26024849
 MonoBehaviour:
@@ -579,14 +580,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &27472447
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,16 +613,16 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1734794021}
+  - {fileID: 1621346396}
+  - {fileID: 1250050455}
+  - {fileID: 1488587834}
   - {fileID: 1849181796}
   - {fileID: 1965715498}
   - {fileID: 1144045122}
   - {fileID: 671840455}
   - {fileID: 396505536}
   - {fileID: 1800503006}
-  - {fileID: 1734794021}
-  - {fileID: 1621346396}
-  - {fileID: 1250050455}
-  - {fileID: 1488587834}
   m_Father: {fileID: 0}
   m_RootOrder: 6
 --- !u!1 &47931116
@@ -632,11 +633,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 47931117}
-  - 114: {fileID: 47931125}
+  - 114: {fileID: 47931121}
   - 114: {fileID: 47931124}
+  - 114: {fileID: 47931125}
   - 114: {fileID: 47931123}
   - 114: {fileID: 47931122}
-  - 114: {fileID: 47931121}
   - 114: {fileID: 47931120}
   - 54: {fileID: 47931119}
   - 135: {fileID: 47931118}
@@ -661,7 +662,7 @@ Transform:
   - {fileID: 1985043804}
   - {fileID: 1421224185}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 10
+  m_RootOrder: 5
 --- !u!135 &47931118
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -669,7 +670,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 510005450}
   m_GameObject: {fileID: 47931116}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -703,10 +704,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 47931121}
+  MoveModule: {fileID: 47931125}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &47931121
@@ -722,7 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 47931125}
 --- !u!114 &47931122
 MonoBehaviour:
@@ -790,14 +792,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &72225346
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +867,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 84995099}
   - 33: {fileID: 84995102}
-  - 136: {fileID: 84995101}
   - 23: {fileID: 84995100}
   m_Layer: 0
   m_Name: Capsule
@@ -907,20 +908,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &84995101
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1806695789}
-  m_GameObject: {fileID: 84995098}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &84995102
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1014,7 +1001,7 @@ Transform:
   - {fileID: 1121894849}
   - {fileID: 189198245}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 3
+  m_RootOrder: 17
 --- !u!65 &100448868
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1022,7 +1009,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 2006672372}
   m_GameObject: {fileID: 100448866}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1072,11 +1059,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &100448872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,6 +1080,7 @@ MonoBehaviour:
   MoveModule: {fileID: 100448871}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &100448873
@@ -1108,13 +1096,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -1360,7 +1347,7 @@ Transform:
   - {fileID: 1796775357}
   - {fileID: 2122842697}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 4
+  m_RootOrder: 18
 --- !u!65 &166006065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1368,7 +1355,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1160717525}
   m_GameObject: {fileID: 166006063}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1418,11 +1405,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &166006069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,6 +1426,7 @@ MonoBehaviour:
   MoveModule: {fileID: 166006068}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &166006070
@@ -1454,13 +1442,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -1572,7 +1559,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 170926358}
   - 33: {fileID: 170926361}
-  - 136: {fileID: 170926360}
   - 23: {fileID: 170926359}
   m_Layer: 0
   m_Name: Capsule
@@ -1614,20 +1600,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &170926360
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 449345428}
-  m_GameObject: {fileID: 170926357}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &170926361
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1645,7 +1617,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 183797955}
   - 33: {fileID: 183797958}
-  - 136: {fileID: 183797957}
   - 23: {fileID: 183797956}
   m_Layer: 0
   m_Name: Capsule
@@ -1687,20 +1658,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &183797957
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 94296460}
-  m_GameObject: {fileID: 183797954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &183797958
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1892,7 +1849,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 194602659}
   - 33: {fileID: 194602662}
-  - 136: {fileID: 194602661}
   - 23: {fileID: 194602660}
   m_Layer: 0
   m_Name: Capsule
@@ -1934,20 +1890,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &194602661
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1042315274}
-  m_GameObject: {fileID: 194602658}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &194602662
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2267,9 +2209,9 @@ MonoBehaviour:
   - {fileID: 726681630}
   - {fileID: 1424187641}
   spawnTimingsSeconds:
-  - 5
-  - 10
-  - 15
+  - 8
+  - 18
+  - 35
   style:
     m_Name: 
     m_Normal:
@@ -2410,7 +2352,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 270484867}
   - 33: {fileID: 270484870}
-  - 136: {fileID: 270484869}
   - 23: {fileID: 270484868}
   m_Layer: 0
   m_Name: Capsule
@@ -2452,20 +2393,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &270484869
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1095759370}
-  m_GameObject: {fileID: 270484866}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &270484870
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2531,7 +2458,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 282627182}
   - 33: {fileID: 282627185}
-  - 136: {fileID: 282627184}
   - 23: {fileID: 282627183}
   m_Layer: 0
   m_Name: Capsule
@@ -2573,20 +2499,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &282627184
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 510005450}
-  m_GameObject: {fileID: 282627181}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &282627185
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2604,7 +2516,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 315637734}
   - 33: {fileID: 315637737}
-  - 136: {fileID: 315637736}
   - 23: {fileID: 315637735}
   m_Layer: 0
   m_Name: Capsule
@@ -2646,20 +2557,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &315637736
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 202120917}
-  m_GameObject: {fileID: 315637733}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &315637737
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2869,7 +2766,7 @@ Transform:
   - {fileID: 2063662199}
   - {fileID: 11295592}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 10
+  m_RootOrder: 4
 --- !u!65 &365547713
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2877,7 +2774,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 817662967}
   m_GameObject: {fileID: 365547711}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2927,11 +2824,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &365547717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2948,6 +2845,7 @@ MonoBehaviour:
   MoveModule: {fileID: 365547716}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &365547718
@@ -2963,13 +2861,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -3023,7 +2920,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 388102724}
   - 33: {fileID: 388102727}
-  - 136: {fileID: 388102726}
   - 23: {fileID: 388102725}
   m_Layer: 0
   m_Name: Capsule
@@ -3065,20 +2961,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &388102726
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1184657620}
-  m_GameObject: {fileID: 388102723}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &388102727
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3153,11 +3035,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 396505536}
-  - 114: {fileID: 396505544}
+  - 114: {fileID: 396505540}
   - 114: {fileID: 396505543}
+  - 114: {fileID: 396505544}
   - 114: {fileID: 396505542}
   - 114: {fileID: 396505541}
-  - 114: {fileID: 396505540}
   - 114: {fileID: 396505539}
   - 54: {fileID: 396505538}
   - 135: {fileID: 396505537}
@@ -3182,7 +3064,7 @@ Transform:
   - {fileID: 614053353}
   - {fileID: 170781962}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 4
+  m_RootOrder: 8
 --- !u!135 &396505537
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3190,7 +3072,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 2125808987}
   m_GameObject: {fileID: 396505535}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3224,10 +3106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 396505540}
+  MoveModule: {fileID: 396505544}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &396505540
@@ -3243,7 +3126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 396505544}
 --- !u!114 &396505541
 MonoBehaviour:
@@ -3311,14 +3194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &408710530
 GameObject:
   m_ObjectHideFlags: 0
@@ -3596,7 +3479,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 462382652}
   - 33: {fileID: 462382655}
-  - 136: {fileID: 462382654}
   - 23: {fileID: 462382653}
   m_Layer: 0
   m_Name: Capsule
@@ -3638,20 +3520,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &462382654
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1393307997}
-  m_GameObject: {fileID: 462382651}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &462382655
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3724,7 +3592,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 498738403}
   - 33: {fileID: 498738406}
-  - 136: {fileID: 498738405}
   - 23: {fileID: 498738404}
   m_Layer: 0
   m_Name: Capsule
@@ -3766,20 +3633,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &498738405
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 2093405889}
-  m_GameObject: {fileID: 498738402}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &498738406
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3868,7 +3721,7 @@ Transform:
   - {fileID: 1707637891}
   - {fileID: 2139599166}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 0
+  m_RootOrder: 10
 --- !u!114 &511917510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3896,8 +3749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  maxHealth: 20
+  health: 15
+  maxHealth: 15
   moveModule: {fileID: 0}
 --- !u!114 &511917512
 MonoBehaviour:
@@ -3918,7 +3771,7 @@ MonoBehaviour:
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
   isRealisticTurning: 0
-  maxRadiansDelta: 60
+  maxRadiansDelta: 65
 --- !u!114 &511917513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3931,10 +3784,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffffa75da4014e046a8611448c369e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
+  EnemyUnit: {fileID: 511917511}
   MoveModule: {fileID: 511917512}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 511917515}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   flankDistance: 10
   collisionlayermask:
     serializedVersion: 2
@@ -3971,25 +3825,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: bab4673a7d7fc0845a59ec88d55f91f5, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 40
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
+  weaponFiringRange: 65
   projectileRange: 65
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
-  coolDownBetweenShots: 5
+  coolDownBetweenShots: 6
   LaunchLocation: []
   ExistingProjectiles: []
   target: {fileID: 0}
-  angleDeviation: 2
+  angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 1
   delayWithinBurst: .150000006
-  numOfProjectilesInBurst: 15
+  numOfProjectilesInBurst: 10
 --- !u!23 &511917516
 Renderer:
   m_ObjectHideFlags: 0
@@ -4125,7 +3978,7 @@ Transform:
   - {fileID: 362669954}
   - {fileID: 1791093332}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 11
+  m_RootOrder: 5
 --- !u!65 &528661716
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4133,7 +3986,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 573789575}
   m_GameObject: {fileID: 528661714}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4183,11 +4036,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &528661720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4204,6 +4057,7 @@ MonoBehaviour:
   MoveModule: {fileID: 528661719}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &528661721
@@ -4219,13 +4073,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -4279,7 +4132,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 532018863}
   - 33: {fileID: 532018866}
-  - 136: {fileID: 532018865}
   - 23: {fileID: 532018864}
   m_Layer: 0
   m_Name: Capsule
@@ -4321,20 +4173,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &532018865
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 3920555}
-  m_GameObject: {fileID: 532018862}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &532018866
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4352,7 +4190,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 536247151}
   - 33: {fileID: 536247154}
-  - 136: {fileID: 536247153}
   - 23: {fileID: 536247152}
   m_Layer: 0
   m_Name: Capsule
@@ -4394,20 +4231,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &536247153
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 202120917}
-  m_GameObject: {fileID: 536247150}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &536247154
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4688,11 +4511,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 581691449}
-  - 114: {fileID: 581691457}
+  - 114: {fileID: 581691453}
   - 114: {fileID: 581691456}
+  - 114: {fileID: 581691457}
   - 114: {fileID: 581691455}
   - 114: {fileID: 581691454}
-  - 114: {fileID: 581691453}
   - 114: {fileID: 581691452}
   - 54: {fileID: 581691451}
   - 135: {fileID: 581691450}
@@ -4717,7 +4540,7 @@ Transform:
   - {fileID: 742875455}
   - {fileID: 1796792899}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 13
+  m_RootOrder: 8
 --- !u!135 &581691450
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4725,7 +4548,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 669454612}
   m_GameObject: {fileID: 581691448}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4759,10 +4582,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 581691453}
+  MoveModule: {fileID: 581691457}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &581691453
@@ -4778,7 +4602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 581691457}
 --- !u!114 &581691454
 MonoBehaviour:
@@ -4846,14 +4670,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &609310642
 GameObject:
   m_ObjectHideFlags: 0
@@ -4979,7 +4803,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 614053353}
   - 33: {fileID: 614053356}
-  - 136: {fileID: 614053355}
   - 23: {fileID: 614053354}
   m_Layer: 0
   m_Name: Capsule
@@ -5021,20 +4844,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &614053355
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 2125808987}
-  m_GameObject: {fileID: 614053352}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &614053356
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5109,11 +4918,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 630567623}
-  - 114: {fileID: 630567631}
+  - 114: {fileID: 630567627}
   - 114: {fileID: 630567630}
+  - 114: {fileID: 630567631}
   - 114: {fileID: 630567629}
   - 114: {fileID: 630567628}
-  - 114: {fileID: 630567627}
   - 114: {fileID: 630567626}
   - 54: {fileID: 630567625}
   - 135: {fileID: 630567624}
@@ -5138,7 +4947,7 @@ Transform:
   - {fileID: 1147162627}
   - {fileID: 851246435}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 14
+  m_RootOrder: 8
 --- !u!135 &630567624
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5146,7 +4955,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1933918284}
   m_GameObject: {fileID: 630567622}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5180,10 +4989,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 630567627}
+  MoveModule: {fileID: 630567631}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &630567627
@@ -5199,7 +5009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 630567631}
 --- !u!114 &630567628
 MonoBehaviour:
@@ -5267,14 +5077,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1001 &669454612
 Prefab:
   m_ObjectHideFlags: 0
@@ -5331,11 +5141,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 671840455}
-  - 114: {fileID: 671840463}
+  - 114: {fileID: 671840459}
   - 114: {fileID: 671840462}
+  - 114: {fileID: 671840463}
   - 114: {fileID: 671840461}
   - 114: {fileID: 671840460}
-  - 114: {fileID: 671840459}
   - 114: {fileID: 671840458}
   - 54: {fileID: 671840457}
   - 135: {fileID: 671840456}
@@ -5360,7 +5170,7 @@ Transform:
   - {fileID: 388102724}
   - {fileID: 824999800}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 3
+  m_RootOrder: 7
 --- !u!135 &671840456
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5368,7 +5178,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1184657620}
   m_GameObject: {fileID: 671840454}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5402,10 +5212,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 671840459}
+  MoveModule: {fileID: 671840463}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &671840459
@@ -5421,7 +5232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 671840463}
 --- !u!114 &671840460
 MonoBehaviour:
@@ -5489,14 +5300,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &693976996
 GameObject:
   m_ObjectHideFlags: 0
@@ -5654,7 +5465,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701307833}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5857,11 +5668,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 725580655}
-  - 114: {fileID: 725580663}
+  - 114: {fileID: 725580659}
   - 114: {fileID: 725580662}
+  - 114: {fileID: 725580663}
   - 114: {fileID: 725580661}
   - 114: {fileID: 725580660}
-  - 114: {fileID: 725580659}
   - 114: {fileID: 725580658}
   - 54: {fileID: 725580657}
   - 135: {fileID: 725580656}
@@ -5886,7 +5697,7 @@ Transform:
   - {fileID: 84995099}
   - {fileID: 1822404777}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 16
+  m_RootOrder: 11
 --- !u!135 &725580656
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5894,7 +5705,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1806695789}
   m_GameObject: {fileID: 725580654}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5928,10 +5739,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 725580659}
+  MoveModule: {fileID: 725580663}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &725580659
@@ -5947,7 +5759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 725580663}
 --- !u!114 &725580660
 MonoBehaviour:
@@ -6015,14 +5827,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &726681630
 GameObject:
   m_ObjectHideFlags: 0
@@ -6048,11 +5860,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2142891353}
-  - {fileID: 1718633493}
-  - {fileID: 2116553611}
-  - {fileID: 100448867}
-  - {fileID: 166006064}
   - {fileID: 1267935533}
   - {fileID: 1579885782}
   - {fileID: 2069005745}
@@ -6067,6 +5874,11 @@ Transform:
   - {fileID: 725580655}
   - {fileID: 1815938343}
   - {fileID: 825509438}
+  - {fileID: 2142891353}
+  - {fileID: 1718633493}
+  - {fileID: 2116553611}
+  - {fileID: 100448867}
+  - {fileID: 166006064}
   m_Father: {fileID: 0}
   m_RootOrder: 7
 --- !u!1 &741687176
@@ -6136,7 +5948,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 742875455}
   - 33: {fileID: 742875458}
-  - 136: {fileID: 742875457}
   - 23: {fileID: 742875456}
   m_Layer: 0
   m_Name: Capsule
@@ -6178,20 +5989,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &742875457
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 669454612}
-  m_GameObject: {fileID: 742875454}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &742875458
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6267,7 +6064,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 750059830}
   - 33: {fileID: 750059833}
-  - 136: {fileID: 750059832}
   - 23: {fileID: 750059831}
   m_Layer: 0
   m_Name: Capsule
@@ -6309,20 +6105,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &750059832
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1735020007}
-  m_GameObject: {fileID: 750059829}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &750059833
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6398,7 +6180,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 762822475}
   - 33: {fileID: 762822478}
-  - 136: {fileID: 762822477}
   - 23: {fileID: 762822476}
   m_Layer: 0
   m_Name: Capsule
@@ -6440,20 +6221,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &762822477
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1806695789}
-  m_GameObject: {fileID: 762822474}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &762822478
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6471,7 +6238,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 773651243}
   - 33: {fileID: 773651246}
-  - 136: {fileID: 773651245}
   - 23: {fileID: 773651244}
   m_Layer: 0
   m_Name: Capsule
@@ -6513,20 +6279,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &773651245
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 281433016}
-  m_GameObject: {fileID: 773651242}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &773651246
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6661,7 +6413,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 780839070}
   - 33: {fileID: 780839073}
-  - 136: {fileID: 780839072}
   - 23: {fileID: 780839071}
   m_Layer: 0
   m_Name: Capsule
@@ -6703,20 +6454,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &780839072
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 213979136}
-  m_GameObject: {fileID: 780839069}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &780839073
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6762,7 +6499,7 @@ Transform:
   - {fileID: 693976997}
   - {fileID: 25853630}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 9
+  m_RootOrder: 3
 --- !u!65 &789695808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6770,7 +6507,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 577737011}
   m_GameObject: {fileID: 789695806}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -6820,11 +6557,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &789695812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6841,6 +6578,7 @@ MonoBehaviour:
   MoveModule: {fileID: 789695811}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &789695813
@@ -6856,13 +6594,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -6918,7 +6655,7 @@ GameObject:
   - 114: {fileID: 791401073}
   - 114: {fileID: 791401074}
   - 114: {fileID: 791401076}
-  - 136: {fileID: 791401075}
+  - 135: {fileID: 791401072}
   m_Layer: 10
   m_Name: Core
   m_TagString: Player
@@ -6939,6 +6676,19 @@ Transform:
   - {fileID: 1540749980}
   m_Father: {fileID: 2031006480}
   m_RootOrder: 0
+--- !u!135 &791401072
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13500000, guid: 98dbc38a9a3ce66419832420df7ff7b3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1368427423}
+  m_GameObject: {fileID: 791401070}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &791401073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6967,20 +6717,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentReceiver: {fileID: 0}
---- !u!136 &791401075
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 98dbc38a9a3ce66419832420df7ff7b3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1368427423}
-  m_GameObject: {fileID: 791401070}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &791401076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7016,7 +6752,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 798335983}
   - 33: {fileID: 798335986}
-  - 136: {fileID: 798335985}
   - 23: {fileID: 798335984}
   m_Layer: 0
   m_Name: Capsule
@@ -7058,20 +6793,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &798335985
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1841817159}
-  m_GameObject: {fileID: 798335982}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &798335986
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7147,7 +6868,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 809840620}
   - 33: {fileID: 809840623}
-  - 136: {fileID: 809840622}
   - 23: {fileID: 809840621}
   m_Layer: 0
   m_Name: Capsule
@@ -7189,20 +6909,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &809840622
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1181805922}
-  m_GameObject: {fileID: 809840619}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &809840623
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7423,7 +7129,7 @@ Transform:
   - {fileID: 1372086793}
   - {fileID: 114680359}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 18
+  m_RootOrder: 13
 --- !u!65 &825509439
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7431,7 +7137,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1648161675}
   m_GameObject: {fileID: 825509437}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -7481,11 +7187,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &825509443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7502,6 +7208,7 @@ MonoBehaviour:
   MoveModule: {fileID: 825509442}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &825509444
@@ -7517,13 +7224,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -7577,7 +7283,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 825904394}
   - 33: {fileID: 825904397}
-  - 136: {fileID: 825904396}
   - 23: {fileID: 825904395}
   m_Layer: 0
   m_Name: Capsule
@@ -7619,20 +7324,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &825904396
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 2093405889}
-  m_GameObject: {fileID: 825904393}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &825904397
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7649,11 +7340,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 828532123}
-  - 114: {fileID: 828532131}
+  - 114: {fileID: 828532127}
   - 114: {fileID: 828532130}
+  - 114: {fileID: 828532131}
   - 114: {fileID: 828532129}
   - 114: {fileID: 828532128}
-  - 114: {fileID: 828532127}
   - 114: {fileID: 828532126}
   - 54: {fileID: 828532125}
   - 135: {fileID: 828532124}
@@ -7678,7 +7369,7 @@ Transform:
   - {fileID: 1528830991}
   - {fileID: 2092168265}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 5
+  m_RootOrder: 15
 --- !u!135 &828532124
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7686,7 +7377,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1392111266}
   m_GameObject: {fileID: 828532122}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -7720,10 +7411,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 828532127}
+  MoveModule: {fileID: 828532131}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &828532127
@@ -7739,7 +7431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 828532131}
 --- !u!114 &828532128
 MonoBehaviour:
@@ -7807,14 +7499,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &837797390
 GameObject:
   m_ObjectHideFlags: 0
@@ -7824,7 +7516,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 837797391}
   - 33: {fileID: 837797394}
-  - 136: {fileID: 837797393}
   - 23: {fileID: 837797392}
   m_Layer: 0
   m_Name: Capsule
@@ -7866,20 +7557,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &837797393
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1628368504}
-  m_GameObject: {fileID: 837797390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &837797394
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7897,7 +7574,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 840821072}
   - 33: {fileID: 840821075}
-  - 136: {fileID: 840821074}
   - 23: {fileID: 840821073}
   m_Layer: 0
   m_Name: Capsule
@@ -7939,20 +7615,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &840821074
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1184657620}
-  m_GameObject: {fileID: 840821071}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &840821075
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8266,7 +7928,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 721404760}
   m_GameObject: {fileID: 928346137}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -8352,11 +8014,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 939225131}
-  - 114: {fileID: 939225139}
+  - 114: {fileID: 939225135}
   - 114: {fileID: 939225138}
+  - 114: {fileID: 939225139}
   - 114: {fileID: 939225137}
   - 114: {fileID: 939225136}
-  - 114: {fileID: 939225135}
   - 114: {fileID: 939225134}
   - 54: {fileID: 939225133}
   - 135: {fileID: 939225132}
@@ -8381,7 +8043,7 @@ Transform:
   - {fileID: 1659964089}
   - {fileID: 2036700315}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 6
+  m_RootOrder: 0
 --- !u!135 &939225132
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8389,7 +8051,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 213979136}
   m_GameObject: {fileID: 939225130}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -8423,10 +8085,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 939225135}
+  MoveModule: {fileID: 939225139}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &939225135
@@ -8442,7 +8105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 939225139}
 --- !u!114 &939225136
 MonoBehaviour:
@@ -8510,14 +8173,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &960871981
 GameObject:
   m_ObjectHideFlags: 0
@@ -8527,7 +8190,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 960871982}
   - 33: {fileID: 960871985}
-  - 136: {fileID: 960871984}
   - 23: {fileID: 960871983}
   m_Layer: 0
   m_Name: Capsule
@@ -8569,20 +8231,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &960871984
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 351356783}
-  m_GameObject: {fileID: 960871981}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &960871985
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8600,7 +8248,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 969868388}
   - 33: {fileID: 969868391}
-  - 136: {fileID: 969868390}
   - 23: {fileID: 969868389}
   m_Layer: 0
   m_Name: Capsule
@@ -8642,20 +8289,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &969868390
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 669454612}
-  m_GameObject: {fileID: 969868387}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &969868391
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9045,11 +8678,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1110524348}
-  - 114: {fileID: 1110524356}
+  - 114: {fileID: 1110524352}
   - 114: {fileID: 1110524355}
+  - 114: {fileID: 1110524356}
   - 114: {fileID: 1110524354}
   - 114: {fileID: 1110524353}
-  - 114: {fileID: 1110524352}
   - 114: {fileID: 1110524351}
   - 54: {fileID: 1110524350}
   - 135: {fileID: 1110524349}
@@ -9074,7 +8707,7 @@ Transform:
   - {fileID: 1932597657}
   - {fileID: 1029649116}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 14
+  m_RootOrder: 9
 --- !u!135 &1110524349
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9082,7 +8715,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 94296460}
   m_GameObject: {fileID: 1110524347}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -9116,10 +8749,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1110524352}
+  MoveModule: {fileID: 1110524356}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1110524352
@@ -9135,7 +8769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1110524356}
 --- !u!114 &1110524353
 MonoBehaviour:
@@ -9203,14 +8837,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1112090395
 GameObject:
   m_ObjectHideFlags: 0
@@ -9336,7 +8970,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1120596144}
   - 33: {fileID: 1120596147}
-  - 136: {fileID: 1120596146}
   - 23: {fileID: 1120596145}
   m_Layer: 0
   m_Name: Capsule
@@ -9378,20 +9011,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1120596146
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1735020007}
-  m_GameObject: {fileID: 1120596143}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1120596147
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9466,11 +9085,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1124616998}
-  - 114: {fileID: 1124617006}
+  - 114: {fileID: 1124617002}
   - 114: {fileID: 1124617005}
+  - 114: {fileID: 1124617006}
   - 114: {fileID: 1124617004}
   - 114: {fileID: 1124617003}
-  - 114: {fileID: 1124617002}
   - 114: {fileID: 1124617001}
   - 54: {fileID: 1124617000}
   - 135: {fileID: 1124616999}
@@ -9495,7 +9114,7 @@ Transform:
   - {fileID: 170926358}
   - {fileID: 743524908}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 8
+  m_RootOrder: 2
 --- !u!135 &1124616999
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9503,7 +9122,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 449345428}
   m_GameObject: {fileID: 1124616997}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -9537,10 +9156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1124617002}
+  MoveModule: {fileID: 1124617006}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1124617002
@@ -9556,7 +9176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1124617006}
 --- !u!114 &1124617003
 MonoBehaviour:
@@ -9624,14 +9244,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1130092351
 GameObject:
   m_ObjectHideFlags: 0
@@ -9891,7 +9511,7 @@ Transform:
   - {fileID: 704865556}
   - {fileID: 1138533199}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 2
+  m_RootOrder: 6
 --- !u!65 &1144045123
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9899,7 +9519,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 236098513}
   m_GameObject: {fileID: 1144045121}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -9949,11 +9569,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &1144045127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9970,6 +9590,7 @@ MonoBehaviour:
   MoveModule: {fileID: 1144045126}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &1144045128
@@ -9985,13 +9606,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -10045,7 +9665,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1147162627}
   - 33: {fileID: 1147162630}
-  - 136: {fileID: 1147162629}
   - 23: {fileID: 1147162628}
   m_Layer: 0
   m_Name: Capsule
@@ -10087,20 +9706,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1147162629
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1933918284}
-  m_GameObject: {fileID: 1147162626}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1147162630
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11504,7 +11109,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1193881577}
   - 33: {fileID: 1193881580}
-  - 136: {fileID: 1193881579}
   - 23: {fileID: 1193881578}
   m_Layer: 0
   m_Name: Capsule
@@ -11546,20 +11150,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1193881579
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1093745977}
-  m_GameObject: {fileID: 1193881576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1193881580
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12919,13 +12509,13 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 50
+  field of view: 60
   orthographic: 0
   orthographic size: 40
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4294962687
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -12941,11 +12531,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1250050455}
-  - 114: {fileID: 1250050463}
+  - 114: {fileID: 1250050459}
   - 114: {fileID: 1250050462}
+  - 114: {fileID: 1250050463}
   - 114: {fileID: 1250050461}
   - 114: {fileID: 1250050460}
-  - 114: {fileID: 1250050459}
   - 114: {fileID: 1250050458}
   - 54: {fileID: 1250050457}
   - 135: {fileID: 1250050456}
@@ -12970,7 +12560,7 @@ Transform:
   - {fileID: 750059830}
   - {fileID: 612787991}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 8
+  m_RootOrder: 2
 --- !u!135 &1250050456
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12978,7 +12568,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1735020007}
   m_GameObject: {fileID: 1250050454}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -13012,10 +12602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1250050459}
+  MoveModule: {fileID: 1250050463}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1250050459
@@ -13031,7 +12622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1250050463}
 --- !u!114 &1250050460
 MonoBehaviour:
@@ -13099,14 +12690,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1251492137
 GameObject:
   m_ObjectHideFlags: 0
@@ -13243,7 +12834,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1255583851}
   - 33: {fileID: 1255583854}
-  - 136: {fileID: 1255583853}
   - 23: {fileID: 1255583852}
   m_Layer: 0
   m_Name: Capsule
@@ -13285,20 +12875,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1255583853
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1393307997}
-  m_GameObject: {fileID: 1255583850}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1255583854
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13343,7 +12919,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1262324038}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -13384,11 +12960,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1267935533}
-  - 114: {fileID: 1267935541}
+  - 114: {fileID: 1267935537}
   - 114: {fileID: 1267935540}
+  - 114: {fileID: 1267935541}
   - 114: {fileID: 1267935539}
   - 114: {fileID: 1267935538}
-  - 114: {fileID: 1267935537}
   - 114: {fileID: 1267935536}
   - 54: {fileID: 1267935535}
   - 135: {fileID: 1267935534}
@@ -13413,7 +12989,7 @@ Transform:
   - {fileID: 1800403581}
   - {fileID: 72225347}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 5
+  m_RootOrder: 0
 --- !u!135 &1267935534
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13421,7 +12997,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 222234814}
   m_GameObject: {fileID: 1267935532}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -13455,10 +13031,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1267935537}
+  MoveModule: {fileID: 1267935541}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1267935537
@@ -13474,7 +13051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1267935541}
 --- !u!114 &1267935538
 MonoBehaviour:
@@ -13542,14 +13119,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1294647192
 GameObject:
   m_ObjectHideFlags: 0
@@ -13617,7 +13194,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1299119840}
   - 33: {fileID: 1299119843}
-  - 136: {fileID: 1299119842}
   - 23: {fileID: 1299119841}
   m_Layer: 0
   m_Name: Capsule
@@ -13659,20 +13235,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1299119842
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1323816011}
-  m_GameObject: {fileID: 1299119839}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1299119843
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13844,7 +13406,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1319196639}
   - 33: {fileID: 1319196642}
-  - 136: {fileID: 1319196641}
   - 23: {fileID: 1319196640}
   m_Layer: 0
   m_Name: Capsule
@@ -13886,20 +13447,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1319196641
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 867681296}
-  m_GameObject: {fileID: 1319196638}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1319196642
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14021,11 +13568,15 @@ Prefab:
       objectReference: {fileID: 1196219120}
     - target: {fileID: 11400002, guid: 3c86447eb97e45a49bd809f5d4609691, type: 2}
       propertyPath: spawnTimingsSeconds.Array.data[1]
-      value: 10
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 3c86447eb97e45a49bd809f5d4609691, type: 2}
       propertyPath: spawnTimingsSeconds.Array.data[2]
-      value: 15
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 3c86447eb97e45a49bd809f5d4609691, type: 2}
+      propertyPath: spawnTimingsSeconds.Array.data[0]
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c86447eb97e45a49bd809f5d4609691, type: 2}
@@ -14089,7 +13640,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1353311092}
   - 33: {fileID: 1353311095}
-  - 136: {fileID: 1353311094}
   - 23: {fileID: 1353311093}
   m_Layer: 0
   m_Name: Capsule
@@ -14131,20 +13681,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1353311094
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1695737109}
-  m_GameObject: {fileID: 1353311091}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1353311095
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14162,7 +13698,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1356062163}
   - 33: {fileID: 1356062166}
-  - 136: {fileID: 1356062165}
   - 23: {fileID: 1356062164}
   m_Layer: 0
   m_Name: Capsule
@@ -14204,20 +13739,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1356062165
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 18271651}
-  m_GameObject: {fileID: 1356062162}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1356062166
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14235,7 +13756,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1362084207}
   - 33: {fileID: 1362084210}
-  - 136: {fileID: 1362084209}
   - 23: {fileID: 1362084208}
   m_Layer: 0
   m_Name: Capsule
@@ -14277,20 +13797,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1362084209
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 351356783}
-  m_GameObject: {fileID: 1362084206}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1362084210
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14307,11 +13813,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1365515514}
-  - 114: {fileID: 1365515522}
+  - 114: {fileID: 1365515518}
   - 114: {fileID: 1365515521}
+  - 114: {fileID: 1365515522}
   - 114: {fileID: 1365515520}
   - 114: {fileID: 1365515519}
-  - 114: {fileID: 1365515518}
   - 114: {fileID: 1365515517}
   - 54: {fileID: 1365515516}
   - 135: {fileID: 1365515515}
@@ -14336,7 +13842,7 @@ Transform:
   - {fileID: 532018863}
   - {fileID: 1294647193}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 15
+  m_RootOrder: 10
 --- !u!135 &1365515515
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14344,7 +13850,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 3920555}
   m_GameObject: {fileID: 1365515513}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -14378,10 +13884,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1365515518}
+  MoveModule: {fileID: 1365515522}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1365515518
@@ -14397,7 +13904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1365515522}
 --- !u!114 &1365515519
 MonoBehaviour:
@@ -14465,14 +13972,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1001 &1368427423
 Prefab:
   m_ObjectHideFlags: 0
@@ -14694,7 +14201,7 @@ Camera:
   m_GameObject: {fileID: 1389345621}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 3
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -14704,13 +14211,13 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 50
+  field of view: 60
   orthographic: 0
   orthographic size: 40
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 7680
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -14893,7 +14400,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1407909412}
   - 33: {fileID: 1407909415}
-  - 136: {fileID: 1407909414}
   - 23: {fileID: 1407909413}
   m_Layer: 0
   m_Name: Capsule
@@ -14935,20 +14441,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1407909414
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1093745977}
-  m_GameObject: {fileID: 1407909411}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1407909415
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15051,7 +14543,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1423416412}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -15109,12 +14601,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 511917509}
-  - {fileID: 2031741792}
-  - {fileID: 2080609161}
-  - {fileID: 26024844}
-  - {fileID: 1623614001}
-  - {fileID: 828532123}
   - {fileID: 939225131}
   - {fileID: 2145176322}
   - {fileID: 1124616998}
@@ -15125,6 +14611,12 @@ Transform:
   - {fileID: 2018298571}
   - {fileID: 630567623}
   - {fileID: 1688410372}
+  - {fileID: 511917509}
+  - {fileID: 2031741792}
+  - {fileID: 2080609161}
+  - {fileID: 26024844}
+  - {fileID: 1623614001}
+  - {fileID: 828532123}
   m_Father: {fileID: 0}
   m_RootOrder: 8
 --- !u!1 &1435026074
@@ -15259,6 +14751,7 @@ MonoBehaviour:
   MoveModule: {fileID: 0}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   flankDistance: 10
   collisionlayermask:
     serializedVersion: 2
@@ -15295,13 +14788,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: 423dacd1281b85341848af611736e3ff, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 100
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
+  weaponFiringRange: 10
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
@@ -15408,7 +14900,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1464727354}
   - 33: {fileID: 1464727357}
-  - 136: {fileID: 1464727356}
   - 23: {fileID: 1464727355}
   m_Layer: 0
   m_Name: Capsule
@@ -15450,20 +14941,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1464727356
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1095759370}
-  m_GameObject: {fileID: 1464727353}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1464727357
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15596,11 +15073,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1488587834}
-  - 114: {fileID: 1488587842}
+  - 114: {fileID: 1488587838}
   - 114: {fileID: 1488587841}
+  - 114: {fileID: 1488587842}
   - 114: {fileID: 1488587840}
   - 114: {fileID: 1488587839}
-  - 114: {fileID: 1488587838}
   - 114: {fileID: 1488587837}
   - 54: {fileID: 1488587836}
   - 135: {fileID: 1488587835}
@@ -15625,7 +15102,7 @@ Transform:
   - {fileID: 1489671107}
   - {fileID: 1692352570}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 9
+  m_RootOrder: 3
 --- !u!135 &1488587835
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15633,7 +15110,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1311073409}
   m_GameObject: {fileID: 1488587833}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -15667,10 +15144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1488587838}
+  MoveModule: {fileID: 1488587842}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1488587838
@@ -15686,7 +15164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1488587842}
 --- !u!114 &1488587839
 MonoBehaviour:
@@ -15754,14 +15232,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1489671106
 GameObject:
   m_ObjectHideFlags: 0
@@ -15771,7 +15249,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1489671107}
   - 33: {fileID: 1489671110}
-  - 136: {fileID: 1489671109}
   - 23: {fileID: 1489671108}
   m_Layer: 0
   m_Name: Capsule
@@ -15813,20 +15290,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1489671109
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1311073409}
-  m_GameObject: {fileID: 1489671106}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1489671110
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15892,7 +15355,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1506561253}
   - 33: {fileID: 1506561256}
-  - 136: {fileID: 1506561255}
   - 23: {fileID: 1506561254}
   m_Layer: 0
   m_Name: Capsule
@@ -15934,20 +15396,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1506561255
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1641527463}
-  m_GameObject: {fileID: 1506561252}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1506561256
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15965,7 +15413,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1520457976}
   - 33: {fileID: 1520457979}
-  - 136: {fileID: 1520457978}
   - 23: {fileID: 1520457977}
   m_Layer: 0
   m_Name: Capsule
@@ -16007,20 +15454,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1520457978
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1628368504}
-  m_GameObject: {fileID: 1520457975}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1520457979
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16038,7 +15471,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1521609156}
   - 33: {fileID: 1521609159}
-  - 136: {fileID: 1521609158}
   - 23: {fileID: 1521609157}
   m_Layer: 0
   m_Name: Capsule
@@ -16080,20 +15512,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1521609158
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 18271651}
-  m_GameObject: {fileID: 1521609155}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1521609159
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16147,7 +15565,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1528830991}
   - 33: {fileID: 1528830994}
-  - 136: {fileID: 1528830993}
   - 23: {fileID: 1528830992}
   m_Layer: 0
   m_Name: Capsule
@@ -16189,20 +15606,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1528830993
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1392111266}
-  m_GameObject: {fileID: 1528830990}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1528830994
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16336,7 +15739,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1553076890}
   - 33: {fileID: 1553076893}
-  - 136: {fileID: 1553076892}
   - 23: {fileID: 1553076891}
   m_Layer: 0
   m_Name: Capsule
@@ -16378,20 +15780,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1553076892
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1641527463}
-  m_GameObject: {fileID: 1553076889}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1553076893
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16408,11 +15796,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1579885782}
-  - 114: {fileID: 1579885781}
+  - 114: {fileID: 1579885777}
   - 114: {fileID: 1579885780}
+  - 114: {fileID: 1579885781}
   - 114: {fileID: 1579885779}
   - 114: {fileID: 1579885778}
-  - 114: {fileID: 1579885777}
   - 114: {fileID: 1579885776}
   - 54: {fileID: 1579885775}
   - 135: {fileID: 1579885774}
@@ -16430,7 +15818,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 18271651}
   m_GameObject: {fileID: 1579885773}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -16464,10 +15852,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1579885777}
+  MoveModule: {fileID: 1579885781}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1579885777
@@ -16483,7 +15872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1579885781}
 --- !u!114 &1579885778
 MonoBehaviour:
@@ -16551,14 +15940,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!4 &1579885782
 Transform:
   m_ObjectHideFlags: 0
@@ -16573,7 +15962,7 @@ Transform:
   - {fileID: 1521609156}
   - {fileID: 1131409211}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 6
+  m_RootOrder: 1
 --- !u!1 &1608506608
 GameObject:
   m_ObjectHideFlags: 0
@@ -16583,7 +15972,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1608506609}
   - 33: {fileID: 1608506612}
-  - 136: {fileID: 1608506611}
   - 23: {fileID: 1608506610}
   m_Layer: 0
   m_Name: Capsule
@@ -16625,20 +16013,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1608506611
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1181805922}
-  m_GameObject: {fileID: 1608506608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1608506612
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16655,11 +16029,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1621346396}
-  - 114: {fileID: 1621346404}
+  - 114: {fileID: 1621346400}
   - 114: {fileID: 1621346403}
+  - 114: {fileID: 1621346404}
   - 114: {fileID: 1621346402}
   - 114: {fileID: 1621346401}
-  - 114: {fileID: 1621346400}
   - 114: {fileID: 1621346399}
   - 54: {fileID: 1621346398}
   - 135: {fileID: 1621346397}
@@ -16684,7 +16058,7 @@ Transform:
   - {fileID: 960871982}
   - {fileID: 12249931}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 7
+  m_RootOrder: 1
 --- !u!135 &1621346397
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16692,7 +16066,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 351356783}
   m_GameObject: {fileID: 1621346395}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -16726,10 +16100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1621346400}
+  MoveModule: {fileID: 1621346404}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1621346400
@@ -16745,7 +16120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1621346404}
 --- !u!114 &1621346401
 MonoBehaviour:
@@ -16813,14 +16188,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1623380197
 GameObject:
   m_ObjectHideFlags: 0
@@ -16830,7 +16205,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1623380198}
   - 33: {fileID: 1623380201}
-  - 136: {fileID: 1623380200}
   - 23: {fileID: 1623380199}
   m_Layer: 0
   m_Name: Capsule
@@ -16872,20 +16246,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1623380200
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1392111266}
-  m_GameObject: {fileID: 1623380197}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1623380201
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16930,7 +16290,7 @@ Transform:
   - {fileID: 1746402062}
   - {fileID: 928346138}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 4
+  m_RootOrder: 14
 --- !u!114 &1623614002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16958,8 +16318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  maxHealth: 20
+  health: 15
+  maxHealth: 15
   moveModule: {fileID: 0}
 --- !u!114 &1623614004
 MonoBehaviour:
@@ -16980,7 +16340,7 @@ MonoBehaviour:
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
   isRealisticTurning: 0
-  maxRadiansDelta: 60
+  maxRadiansDelta: 65
 --- !u!114 &1623614005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16993,10 +16353,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffffa75da4014e046a8611448c369e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
+  EnemyUnit: {fileID: 1623614003}
   MoveModule: {fileID: 1623614004}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 1623614007}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   flankDistance: 10
   collisionlayermask:
     serializedVersion: 2
@@ -17033,25 +16394,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: bab4673a7d7fc0845a59ec88d55f91f5, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 40
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
+  weaponFiringRange: 65
   projectileRange: 65
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
-  coolDownBetweenShots: 5
+  coolDownBetweenShots: 6
   LaunchLocation: []
   ExistingProjectiles: []
   target: {fileID: 0}
-  angleDeviation: 2
+  angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 1
   delayWithinBurst: .150000006
-  numOfProjectilesInBurst: 15
+  numOfProjectilesInBurst: 10
 --- !u!23 &1623614008
 Renderer:
   m_ObjectHideFlags: 0
@@ -17292,7 +16652,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1659964089}
   - 33: {fileID: 1659964092}
-  - 136: {fileID: 1659964091}
   - 23: {fileID: 1659964090}
   m_Layer: 0
   m_Name: Capsule
@@ -17334,20 +16693,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1659964091
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 213979136}
-  m_GameObject: {fileID: 1659964088}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1659964092
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17492,11 +16837,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1681345913}
-  - 114: {fileID: 1681345921}
+  - 114: {fileID: 1681345917}
   - 114: {fileID: 1681345920}
+  - 114: {fileID: 1681345921}
   - 114: {fileID: 1681345919}
   - 114: {fileID: 1681345918}
-  - 114: {fileID: 1681345917}
   - 114: {fileID: 1681345916}
   - 54: {fileID: 1681345915}
   - 135: {fileID: 1681345914}
@@ -17521,7 +16866,7 @@ Transform:
   - {fileID: 1193881577}
   - {fileID: 143054325}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 9
+  m_RootOrder: 4
 --- !u!135 &1681345914
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17529,7 +16874,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1093745977}
   m_GameObject: {fileID: 1681345912}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -17563,10 +16908,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1681345917}
+  MoveModule: {fileID: 1681345921}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1681345917
@@ -17582,7 +16928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1681345921}
 --- !u!114 &1681345918
 MonoBehaviour:
@@ -17650,14 +16996,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1685835076
 GameObject:
   m_ObjectHideFlags: 0
@@ -17724,11 +17070,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1688410372}
-  - 114: {fileID: 1688410380}
+  - 114: {fileID: 1688410376}
   - 114: {fileID: 1688410379}
+  - 114: {fileID: 1688410380}
   - 114: {fileID: 1688410378}
   - 114: {fileID: 1688410377}
-  - 114: {fileID: 1688410376}
   - 114: {fileID: 1688410375}
   - 54: {fileID: 1688410374}
   - 135: {fileID: 1688410373}
@@ -17753,7 +17099,7 @@ Transform:
   - {fileID: 2036307981}
   - {fileID: 802856737}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 15
+  m_RootOrder: 9
 --- !u!135 &1688410373
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17761,7 +17107,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1042315274}
   m_GameObject: {fileID: 1688410371}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -17795,10 +17141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1688410376}
+  MoveModule: {fileID: 1688410380}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1688410376
@@ -17814,7 +17161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1688410380}
 --- !u!114 &1688410377
 MonoBehaviour:
@@ -17882,14 +17229,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1692352569
 GameObject:
   m_ObjectHideFlags: 0
@@ -18126,7 +17473,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 433359356}
   m_GameObject: {fileID: 1707637890}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -18177,7 +17524,7 @@ Transform:
   - {fileID: 1209008456}
   - {fileID: 2110344789}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 1
+  m_RootOrder: 15
 --- !u!65 &1718633494
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18185,7 +17532,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1914775155}
   m_GameObject: {fileID: 1718633492}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -18235,11 +17582,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &1718633498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18256,6 +17603,7 @@ MonoBehaviour:
   MoveModule: {fileID: 1718633497}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &1718633499
@@ -18271,13 +17619,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -18330,11 +17677,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1723332031}
-  - 114: {fileID: 1723332039}
+  - 114: {fileID: 1723332035}
   - 114: {fileID: 1723332038}
+  - 114: {fileID: 1723332039}
   - 114: {fileID: 1723332037}
   - 114: {fileID: 1723332036}
-  - 114: {fileID: 1723332035}
   - 114: {fileID: 1723332034}
   - 54: {fileID: 1723332033}
   - 135: {fileID: 1723332032}
@@ -18359,7 +17706,7 @@ Transform:
   - {fileID: 2032734363}
   - {fileID: 1486038695}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 12
+  m_RootOrder: 7
 --- !u!135 &1723332032
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18367,7 +17714,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 867681296}
   m_GameObject: {fileID: 1723332030}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -18401,10 +17748,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1723332035}
+  MoveModule: {fileID: 1723332039}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1723332035
@@ -18420,7 +17768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1723332039}
 --- !u!114 &1723332036
 MonoBehaviour:
@@ -18488,14 +17836,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1734794020
 GameObject:
   m_ObjectHideFlags: 0
@@ -18504,11 +17852,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1734794021}
-  - 114: {fileID: 1734794029}
+  - 114: {fileID: 1734794025}
   - 114: {fileID: 1734794028}
+  - 114: {fileID: 1734794029}
   - 114: {fileID: 1734794027}
   - 114: {fileID: 1734794026}
-  - 114: {fileID: 1734794025}
   - 114: {fileID: 1734794024}
   - 54: {fileID: 1734794023}
   - 135: {fileID: 1734794022}
@@ -18533,7 +17881,7 @@ Transform:
   - {fileID: 1464727354}
   - {fileID: 1548185407}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 6
+  m_RootOrder: 0
 --- !u!135 &1734794022
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18541,7 +17889,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1095759370}
   m_GameObject: {fileID: 1734794020}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -18575,10 +17923,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1734794025}
+  MoveModule: {fileID: 1734794029}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1734794025
@@ -18594,7 +17943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1734794029}
 --- !u!114 &1734794026
 MonoBehaviour:
@@ -18662,14 +18011,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1001 &1735020007
 Prefab:
   m_ObjectHideFlags: 0
@@ -18790,7 +18139,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 721404760}
   m_GameObject: {fileID: 1746402061}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -18812,11 +18161,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1747121640}
-  - 114: {fileID: 1747121648}
+  - 114: {fileID: 1747121644}
   - 114: {fileID: 1747121647}
+  - 114: {fileID: 1747121648}
   - 114: {fileID: 1747121646}
   - 114: {fileID: 1747121645}
-  - 114: {fileID: 1747121644}
   - 114: {fileID: 1747121643}
   - 54: {fileID: 1747121642}
   - 135: {fileID: 1747121641}
@@ -18841,7 +18190,7 @@ Transform:
   - {fileID: 1255583851}
   - {fileID: 759585468}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 8
+  m_RootOrder: 3
 --- !u!135 &1747121641
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18849,7 +18198,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1393307997}
   m_GameObject: {fileID: 1747121639}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -18883,10 +18232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1747121644}
+  MoveModule: {fileID: 1747121648}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1747121644
@@ -18902,7 +18252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1747121648}
 --- !u!114 &1747121645
 MonoBehaviour:
@@ -18970,14 +18320,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1756431476
 GameObject:
   m_ObjectHideFlags: 0
@@ -18987,7 +18337,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1756431477}
   - 33: {fileID: 1756431480}
-  - 136: {fileID: 1756431479}
   - 23: {fileID: 1756431478}
   m_Layer: 0
   m_Name: Capsule
@@ -19029,20 +18378,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1756431479
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1933918284}
-  m_GameObject: {fileID: 1756431476}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1756431480
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19060,7 +18395,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1762650787}
   - 33: {fileID: 1762650790}
-  - 136: {fileID: 1762650789}
   - 23: {fileID: 1762650788}
   m_Layer: 0
   m_Name: Capsule
@@ -19102,20 +18436,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1762650789
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1695737109}
-  m_GameObject: {fileID: 1762650786}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1762650790
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19133,7 +18453,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1776490325}
   - 33: {fileID: 1776490328}
-  - 136: {fileID: 1776490327}
   - 23: {fileID: 1776490326}
   m_Layer: 0
   m_Name: Capsule
@@ -19175,20 +18494,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1776490327
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1311073409}
-  m_GameObject: {fileID: 1776490324}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1776490328
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19206,7 +18511,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1786813440}
   - 33: {fileID: 1786813443}
-  - 136: {fileID: 1786813442}
   - 23: {fileID: 1786813441}
   m_Layer: 0
   m_Name: Capsule
@@ -19248,20 +18552,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1786813442
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 3920555}
-  m_GameObject: {fileID: 1786813439}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1786813443
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20582,7 +19872,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1800403581}
   - 33: {fileID: 1800403584}
-  - 136: {fileID: 1800403583}
   - 23: {fileID: 1800403582}
   m_Layer: 0
   m_Name: Capsule
@@ -20624,20 +19913,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1800403583
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 222234814}
-  m_GameObject: {fileID: 1800403580}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1800403584
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20654,11 +19929,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1800503006}
-  - 114: {fileID: 1800503014}
+  - 114: {fileID: 1800503010}
   - 114: {fileID: 1800503013}
+  - 114: {fileID: 1800503014}
   - 114: {fileID: 1800503012}
   - 114: {fileID: 1800503011}
-  - 114: {fileID: 1800503010}
   - 114: {fileID: 1800503009}
   - 54: {fileID: 1800503008}
   - 135: {fileID: 1800503007}
@@ -20683,7 +19958,7 @@ Transform:
   - {fileID: 837797391}
   - {fileID: 1302713550}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 5
+  m_RootOrder: 9
 --- !u!135 &1800503007
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20691,7 +19966,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1628368504}
   m_GameObject: {fileID: 1800503005}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -20725,10 +20000,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1800503010}
+  MoveModule: {fileID: 1800503014}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1800503010
@@ -20744,7 +20020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1800503014}
 --- !u!114 &1800503011
 MonoBehaviour:
@@ -20812,14 +20088,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1001 &1806695789
 Prefab:
   m_ObjectHideFlags: 0
@@ -20877,7 +20153,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1809595198}
   - 33: {fileID: 1809595201}
-  - 136: {fileID: 1809595200}
   - 23: {fileID: 1809595199}
   m_Layer: 0
   m_Name: Capsule
@@ -20919,20 +20194,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1809595200
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 449345428}
-  m_GameObject: {fileID: 1809595197}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1809595201
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20949,11 +20210,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1815938343}
-  - 114: {fileID: 1815938351}
+  - 114: {fileID: 1815938347}
   - 114: {fileID: 1815938350}
+  - 114: {fileID: 1815938351}
   - 114: {fileID: 1815938349}
   - 114: {fileID: 1815938348}
-  - 114: {fileID: 1815938347}
   - 114: {fileID: 1815938346}
   - 54: {fileID: 1815938345}
   - 135: {fileID: 1815938344}
@@ -20978,7 +20239,7 @@ Transform:
   - {fileID: 2111731533}
   - {fileID: 214053053}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 17
+  m_RootOrder: 12
 --- !u!135 &1815938344
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20986,7 +20247,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 281433016}
   m_GameObject: {fileID: 1815938342}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -21020,10 +20281,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1815938347}
+  MoveModule: {fileID: 1815938351}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1815938347
@@ -21039,7 +20301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1815938351}
 --- !u!114 &1815938348
 MonoBehaviour:
@@ -21107,14 +20369,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1822404776
 GameObject:
   m_ObjectHideFlags: 0
@@ -21229,11 +20491,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1849181796}
-  - 114: {fileID: 1849181804}
+  - 114: {fileID: 1849181800}
   - 114: {fileID: 1849181803}
+  - 114: {fileID: 1849181804}
   - 114: {fileID: 1849181802}
   - 114: {fileID: 1849181801}
-  - 114: {fileID: 1849181800}
   - 114: {fileID: 1849181799}
   - 54: {fileID: 1849181798}
   - 135: {fileID: 1849181797}
@@ -21258,7 +20520,7 @@ Transform:
   - {fileID: 315637734}
   - {fileID: 388787308}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 0
+  m_RootOrder: 4
 --- !u!135 &1849181797
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21266,7 +20528,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 202120917}
   m_GameObject: {fileID: 1849181795}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -21300,10 +20562,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 1849181800}
+  MoveModule: {fileID: 1849181804}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &1849181800
@@ -21319,7 +20582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 1849181804}
 --- !u!114 &1849181801
 MonoBehaviour:
@@ -21387,14 +20650,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &1878144025
 GameObject:
   m_ObjectHideFlags: 0
@@ -21404,7 +20667,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1878144026}
   - 33: {fileID: 1878144029}
-  - 136: {fileID: 1878144028}
   - 23: {fileID: 1878144027}
   m_Layer: 0
   m_Name: Capsule
@@ -21446,20 +20708,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1878144028
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1841817159}
-  m_GameObject: {fileID: 1878144025}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1878144029
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21477,7 +20725,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1881797432}
   - 33: {fileID: 1881797435}
-  - 136: {fileID: 1881797434}
   - 23: {fileID: 1881797433}
   m_Layer: 0
   m_Name: Capsule
@@ -21519,20 +20766,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1881797434
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1492569050}
-  m_GameObject: {fileID: 1881797431}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1881797435
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21550,7 +20783,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1890522518}
   - 33: {fileID: 1890522521}
-  - 136: {fileID: 1890522520}
   - 23: {fileID: 1890522519}
   m_Layer: 0
   m_Name: Capsule
@@ -21592,20 +20824,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1890522520
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 2125808987}
-  m_GameObject: {fileID: 1890522517}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1890522521
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21623,7 +20841,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1894092675}
   - 33: {fileID: 1894092678}
-  - 136: {fileID: 1894092677}
   - 23: {fileID: 1894092676}
   m_Layer: 0
   m_Name: Capsule
@@ -21665,20 +20882,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1894092677
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600002, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 222234814}
-  m_GameObject: {fileID: 1894092674}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1894092678
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21696,7 +20899,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1894792212}
   - 33: {fileID: 1894792215}
-  - 136: {fileID: 1894792214}
   - 23: {fileID: 1894792213}
   m_Layer: 0
   m_Name: Capsule
@@ -21738,20 +20940,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1894792214
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1323816011}
-  m_GameObject: {fileID: 1894792211}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1894792215
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21769,7 +20957,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1897709604}
   - 33: {fileID: 1897709607}
-  - 136: {fileID: 1897709606}
   - 23: {fileID: 1897709605}
   m_Layer: 0
   m_Name: Capsule
@@ -21811,20 +20998,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1897709606
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1492569050}
-  m_GameObject: {fileID: 1897709603}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1897709607
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21946,7 +21119,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1932597657}
   - 33: {fileID: 1932597660}
-  - 136: {fileID: 1932597659}
   - 23: {fileID: 1932597658}
   m_Layer: 0
   m_Name: Capsule
@@ -21988,20 +21160,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1932597659
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 94296460}
-  m_GameObject: {fileID: 1932597656}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1932597660
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22275,7 +21433,7 @@ Transform:
   - {fileID: 573589465}
   - {fileID: 554715856}
   m_Father: {fileID: 27472448}
-  m_RootOrder: 1
+  m_RootOrder: 5
 --- !u!65 &1965715499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22283,7 +21441,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1139358468}
   m_GameObject: {fileID: 1965715497}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -22333,11 +21491,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &1965715503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22354,6 +21512,7 @@ MonoBehaviour:
   MoveModule: {fileID: 1965715502}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &1965715504
@@ -22369,13 +21528,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -22429,7 +21587,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1985043804}
   - 33: {fileID: 1985043807}
-  - 136: {fileID: 1985043806}
   - 23: {fileID: 1985043805}
   m_Layer: 0
   m_Name: Capsule
@@ -22471,20 +21628,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &1985043806
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 510005450}
-  m_GameObject: {fileID: 1985043803}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1985043807
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22549,11 +21692,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2018298571}
-  - 114: {fileID: 2018298579}
+  - 114: {fileID: 2018298575}
   - 114: {fileID: 2018298578}
+  - 114: {fileID: 2018298579}
   - 114: {fileID: 2018298577}
   - 114: {fileID: 2018298576}
-  - 114: {fileID: 2018298575}
   - 114: {fileID: 2018298574}
   - 54: {fileID: 2018298573}
   - 135: {fileID: 2018298572}
@@ -22578,7 +21721,7 @@ Transform:
   - {fileID: 809840620}
   - {fileID: 1130092352}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 13
+  m_RootOrder: 7
 --- !u!135 &2018298572
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22586,7 +21729,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1181805922}
   m_GameObject: {fileID: 2018298570}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -22620,10 +21763,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 2018298575}
+  MoveModule: {fileID: 2018298579}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &2018298575
@@ -22639,7 +21783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 2018298579}
 --- !u!114 &2018298576
 MonoBehaviour:
@@ -22707,14 +21851,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &2031006479
 GameObject:
   m_ObjectHideFlags: 0
@@ -22870,7 +22014,7 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 1368427423}
   m_GameObject: {fileID: 2031006479}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2031318949
 GameObject:
   m_ObjectHideFlags: 0
@@ -22937,11 +22081,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2031741792}
-  - 114: {fileID: 2031741800}
+  - 114: {fileID: 2031741796}
   - 114: {fileID: 2031741799}
+  - 114: {fileID: 2031741800}
   - 114: {fileID: 2031741798}
   - 114: {fileID: 2031741797}
-  - 114: {fileID: 2031741796}
   - 114: {fileID: 2031741795}
   - 54: {fileID: 2031741794}
   - 135: {fileID: 2031741793}
@@ -22966,7 +22110,7 @@ Transform:
   - {fileID: 825904394}
   - {fileID: 846071245}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 1
+  m_RootOrder: 11
 --- !u!135 &2031741793
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22974,7 +22118,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 2093405889}
   m_GameObject: {fileID: 2031741791}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -23008,10 +22152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 2031741796}
+  MoveModule: {fileID: 2031741800}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &2031741796
@@ -23027,7 +22172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 2031741800}
 --- !u!114 &2031741797
 MonoBehaviour:
@@ -23095,14 +22240,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &2032734362
 GameObject:
   m_ObjectHideFlags: 0
@@ -23112,7 +22257,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2032734363}
   - 33: {fileID: 2032734366}
-  - 136: {fileID: 2032734365}
   - 23: {fileID: 2032734364}
   m_Layer: 0
   m_Name: Capsule
@@ -23154,20 +22298,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &2032734365
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 867681296}
-  m_GameObject: {fileID: 2032734362}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2032734366
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23243,7 +22373,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2036307981}
   - 33: {fileID: 2036307984}
-  - 136: {fileID: 2036307983}
   - 23: {fileID: 2036307982}
   m_Layer: 0
   m_Name: Capsule
@@ -23285,20 +22414,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &2036307983
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 1042315274}
-  m_GameObject: {fileID: 2036307980}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2036307984
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23548,11 +22663,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2069005745}
-  - 114: {fileID: 2069005753}
+  - 114: {fileID: 2069005749}
   - 114: {fileID: 2069005752}
+  - 114: {fileID: 2069005753}
   - 114: {fileID: 2069005751}
   - 114: {fileID: 2069005750}
-  - 114: {fileID: 2069005749}
   - 114: {fileID: 2069005748}
   - 54: {fileID: 2069005747}
   - 135: {fileID: 2069005746}
@@ -23577,7 +22692,7 @@ Transform:
   - {fileID: 1894792212}
   - {fileID: 2035197757}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 7
+  m_RootOrder: 2
 --- !u!135 &2069005746
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23585,7 +22700,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1323816011}
   m_GameObject: {fileID: 2069005744}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -23619,10 +22734,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 2069005749}
+  MoveModule: {fileID: 2069005753}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &2069005749
@@ -23638,7 +22754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 2069005753}
 --- !u!114 &2069005750
 MonoBehaviour:
@@ -23706,14 +22822,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &2080609160
 GameObject:
   m_ObjectHideFlags: 0
@@ -23722,11 +22838,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2080609161}
-  - 114: {fileID: 2080609169}
+  - 114: {fileID: 2080609165}
   - 114: {fileID: 2080609168}
+  - 114: {fileID: 2080609169}
   - 114: {fileID: 2080609167}
   - 114: {fileID: 2080609166}
-  - 114: {fileID: 2080609165}
   - 114: {fileID: 2080609164}
   - 54: {fileID: 2080609163}
   - 135: {fileID: 2080609162}
@@ -23751,7 +22867,7 @@ Transform:
   - {fileID: 1506561253}
   - {fileID: 1150144099}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 2
+  m_RootOrder: 12
 --- !u!135 &2080609162
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23759,7 +22875,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1641527463}
   m_GameObject: {fileID: 2080609160}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -23793,10 +22909,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 2080609165}
+  MoveModule: {fileID: 2080609169}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &2080609165
@@ -23812,7 +22929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 2080609169}
 --- !u!114 &2080609166
 MonoBehaviour:
@@ -23880,14 +22997,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1 &2092168264
 GameObject:
   m_ObjectHideFlags: 0
@@ -24031,7 +23148,7 @@ Transform:
   - {fileID: 1388962392}
   - {fileID: 1674143140}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 12
+  m_RootOrder: 6
 --- !u!65 &2104977831
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24039,7 +23156,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 2066558350}
   m_GameObject: {fileID: 2104977829}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -24089,11 +23206,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &2104977835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24110,6 +23227,7 @@ MonoBehaviour:
   MoveModule: {fileID: 2104977834}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &2104977836
@@ -24125,13 +23243,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -24243,7 +23360,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2111731533}
   - 33: {fileID: 2111731536}
-  - 136: {fileID: 2111731535}
   - 23: {fileID: 2111731534}
   m_Layer: 0
   m_Name: Capsule
@@ -24285,20 +23401,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!136 &2111731535
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86403442a60c79d44b046bb2bf760358,
-    type: 2}
-  m_PrefabInternal: {fileID: 281433016}
-  m_GameObject: {fileID: 2111731532}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2111731536
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24344,7 +23446,7 @@ Transform:
   - {fileID: 741687177}
   - {fileID: 186046855}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 2
+  m_RootOrder: 16
 --- !u!65 &2116553612
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24352,7 +23454,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 128890048}
   m_GameObject: {fileID: 2116553610}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -24402,11 +23504,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &2116553616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24423,6 +23525,7 @@ MonoBehaviour:
   MoveModule: {fileID: 2116553615}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &2116553617
@@ -24438,13 +23541,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -24555,11 +23657,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2124116217}
-  - 114: {fileID: 2124116225}
+  - 114: {fileID: 2124116221}
   - 114: {fileID: 2124116224}
+  - 114: {fileID: 2124116225}
   - 114: {fileID: 2124116223}
   - 114: {fileID: 2124116222}
-  - 114: {fileID: 2124116221}
   - 114: {fileID: 2124116220}
   - 54: {fileID: 2124116219}
   - 135: {fileID: 2124116218}
@@ -24584,7 +23686,7 @@ Transform:
   - {fileID: 1878144026}
   - {fileID: 189174146}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 11
+  m_RootOrder: 6
 --- !u!135 &2124116218
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24592,7 +23694,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1841817159}
   m_GameObject: {fileID: 2124116216}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -24626,10 +23728,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 2124116221}
+  MoveModule: {fileID: 2124116225}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &2124116221
@@ -24645,7 +23748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 2124116225}
 --- !u!114 &2124116222
 MonoBehaviour:
@@ -24713,14 +23816,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180
 --- !u!1001 &2125808987
 Prefab:
   m_ObjectHideFlags: 0
@@ -24910,7 +24013,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 433359356}
   m_GameObject: {fileID: 2139599165}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -24961,7 +24064,7 @@ Transform:
   - {fileID: 1698878785}
   - {fileID: 1251492138}
   m_Father: {fileID: 726681631}
-  m_RootOrder: 0
+  m_RootOrder: 14
 --- !u!65 &2142891354
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24969,7 +24072,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1318366574}
   m_GameObject: {fileID: 2142891352}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -25019,11 +24122,11 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 25
+  maxRadiansDelta: 35
 --- !u!114 &2142891358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25040,6 +24143,7 @@ MonoBehaviour:
   MoveModule: {fileID: 2142891357}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &2142891359
@@ -25055,13 +24159,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
@@ -25114,11 +24217,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2145176322}
-  - 114: {fileID: 2145176330}
+  - 114: {fileID: 2145176326}
   - 114: {fileID: 2145176329}
+  - 114: {fileID: 2145176330}
   - 114: {fileID: 2145176328}
   - 114: {fileID: 2145176327}
-  - 114: {fileID: 2145176326}
   - 114: {fileID: 2145176325}
   - 54: {fileID: 2145176324}
   - 135: {fileID: 2145176323}
@@ -25143,7 +24246,7 @@ Transform:
   - {fileID: 1897709604}
   - {fileID: 335241863}
   m_Father: {fileID: 1424187642}
-  m_RootOrder: 7
+  m_RootOrder: 1
 --- !u!135 &2145176323
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25151,7 +24254,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1492569050}
   m_GameObject: {fileID: 2145176321}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -25185,10 +24288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93761d6e1548d943b5045d3c5bcc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyUnit: {fileID: 0}
-  MoveModule: {fileID: 0}
+  EnemyUnit: {fileID: 2145176326}
+  MoveModule: {fileID: 2145176330}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   isAttacking: 1
   isLeadingTarget: 1
 --- !u!114 &2145176326
@@ -25204,7 +24308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 1
+  maxHealth: 2
   moveModule: {fileID: 2145176330}
 --- !u!114 &2145176327
 MonoBehaviour:
@@ -25272,11 +24376,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  BaseSpeed: 5
+  MaxSpeed: 18
+  BaseSpeed: 15
   minDistFromDestination: 0
-  minAngleForFacing: 15
+  minAngleForFacing: 2
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
-  maxRadiansDelta: 35
+  maxRadiansDelta: 180

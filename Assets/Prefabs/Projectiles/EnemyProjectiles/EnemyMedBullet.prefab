@@ -88,12 +88,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  center: {x: 0, y: 0, z: 0}
   damage: 1
   range: 50
   minSpeed: 10
   lifeTime: 1
   target: {fileID: 0}
+  deathPS: {fileID: 19800000, guid: c8e245dbae39e4e45a995f2e3293efc6, type: 2}
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 1536
@@ -134,7 +134,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: .25
+      scalar: .150000006
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -291,10 +291,10 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4278190335
+        rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -379,7 +379,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 1
     rate:
-      scalar: 3
+      scalar: 4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -429,14 +429,19 @@ ParticleSystem:
         m_Curve:
         - time: 0
           value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          inSlope: -2.31502914
+          outSlope: -2.31502914
+          tangentMode: 10
+        - time: .261715621
+          value: .394120693
+          inSlope: -1.4244312
+          outSlope: -1.4244312
+          tangentMode: 10
         - time: 1
           value: 0
-          inSlope: -2
-          outSlope: -2
-          tangentMode: 0
+          inSlope: -.533833206
+          outSlope: -.533833206
+          tangentMode: 10
         m_PreInfinity: 2
         m_PostInfinity: 2
       minCurve:

@@ -10,11 +10,6 @@ public class DamageReceiver : MonoBehaviour {
         if (ParentReceiver == null)
             ParentReceiver = this.GetComponent<BasicShipPart>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     public virtual void ApplyDamage(float Damage = 1)
     {

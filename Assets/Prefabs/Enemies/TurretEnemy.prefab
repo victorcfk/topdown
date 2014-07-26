@@ -201,7 +201,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -225,7 +225,7 @@ MonoBehaviour:
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 0
   isRealisticTurning: 0
-  maxRadiansDelta: 60
+  maxRadiansDelta: 65
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,18 +266,19 @@ MonoBehaviour:
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
+  weaponFiringRange: 65
   projectileRange: 65
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
-  coolDownBetweenShots: 5
+  coolDownBetweenShots: 6
   LaunchLocation: []
   ExistingProjectiles: []
   target: {fileID: 0}
-  angleDeviation: 2
+  angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 1
   delayWithinBurst: .150000006
-  numOfProjectilesInBurst: 15
+  numOfProjectilesInBurst: 10
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,16 +328,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348cb88488713ff48a70814c039a8e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  maxHealth: 20
+  health: 15
+  maxHealth: 15
   moveModule: {fileID: 0}
+  DestructionPSPrefab: {fileID: 19800002, guid: 0a59606d4600c44428a680be30a02457,
+    type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

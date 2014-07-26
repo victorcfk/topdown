@@ -170,6 +170,7 @@ MonoBehaviour:
   MoveModule: {fileID: 0}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 1
+  isSpamWeaponWhenOutOfRange: 1
   flankDistance: 10
   collisionlayermask:
     serializedVersion: 2
@@ -189,13 +190,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: 423dacd1281b85341848af611736e3ff, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 100
   isOverrideProjectileDamage: 1
   projectileDamage: 1
   isOverrideProjectileRange: 1
+  weaponFiringRange: 10
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 10
@@ -248,6 +248,8 @@ MonoBehaviour:
   health: 10
   maxHealth: 10
   moveModule: {fileID: 0}
+  DestructionPSPrefab: {fileID: 19800002, guid: 0a59606d4600c44428a680be30a02457,
+    type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

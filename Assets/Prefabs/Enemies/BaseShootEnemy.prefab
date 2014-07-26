@@ -227,7 +227,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a0597f627fca86a4ea60bb1bf0c4f85d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -247,6 +247,8 @@ MonoBehaviour:
   health: 1
   maxHealth: 1
   moveModule: {fileID: 11400006}
+  DestructionPSPrefab: {fileID: 19800002, guid: 0a59606d4600c44428a680be30a02457,
+    type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -287,7 +289,7 @@ MonoBehaviour:
   MaxSpeed: 15
   BaseSpeed: 5
   minDistFromDestination: 5
-  minAngleForFacing: 10
+  minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 1
@@ -307,6 +309,7 @@ MonoBehaviour:
   MoveModule: {fileID: 11400006}
   Weapon: {fileID: 0}
   isSpamWeaponWhenOutOfFacing: 0
+  isSpamWeaponWhenOutOfRange: 0
   isAttacking: 1
   isLeadingTarget: 0
 --- !u!114 &11400010
@@ -321,13 +324,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: c8fac8c5a65ee5b4387334ef694a3158, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 0}
   isOverrideProjectileSpeed: 1
   projectileSpeed: 30
   isOverrideProjectileDamage: 1
-  projectileDamage: 1
+  projectileDamage: .5
   isOverrideProjectileRange: 1
+  weaponFiringRange: 50
   projectileRange: 50
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
