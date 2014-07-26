@@ -22,6 +22,8 @@ public class EnemyFlankAIWithShoot : EnemyFlankAI
         InvokeRepeating("getToRandomSurroundingPoint", destinationChangeInterval, destinationChangeInterval);
     }
 
+    Vector3 pointToAttack;
+
     // Update is called once per frame
     public override void Update()
     {
@@ -33,8 +35,6 @@ public class EnemyFlankAIWithShoot : EnemyFlankAI
         //isAttacking;
         if (isAttacking)
         {
-            Vector3 pointToAttack;
-
             if (isLeadingTarget)
                 pointToAttack = LeadCalculator.FirstOrderInterceptPosition(this.gameObject, Weapon.projectileSpeed, Target);  //Attempt to lead the target
             else

@@ -9,7 +9,7 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     [Range(0,100)]
     public float minDistFromDestination;
 
-    [Range(0,60)]
+    [Range(0,360)]
     public float minAngleForFacing;
 
     public bool hasReachedDestination { get { return Vector3.Distance(lastKnownDest, transform.position) <= minDistFromDestination; } }
@@ -64,7 +64,6 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     /// <param name="direction">the direction of movement</param>
     public void MoveInDirection(Vector3 direction)
     {
-
         if (isRealisticMotion)
         {
             if(isRealisticTurning )
@@ -73,16 +72,20 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
                 if(!isFacingDirection(direction))	
 					ApplyBrakes();  
                 else
+                {
                     rigidbody.drag = 0;
+                    rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
+                }
+
+                LookToDirection(direction);
             }
             else
 			{
                 //You can always move in that direction
                 rigidbody.drag = 0;
+                rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
             }
 
-            LookToDirection(direction);
-			rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
         }
         else
         {
@@ -94,8 +97,6 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
 
     public void ApplyBrakes()
     {
-        //print("stopmove");
-
         if (isRealisticMotion)
             rigidbody.drag = BaseSpeed/2;
         else
