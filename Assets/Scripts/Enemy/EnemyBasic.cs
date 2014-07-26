@@ -6,6 +6,7 @@ using System.Collections;
 public class EnemyBasic : UnitBasic{
 
     public EnemyMoveModuleBasic moveModule;
+    public ParticleSystem DestructionPSPrefab;
     //public WeaponBasic WeaponScript;
 
     protected virtual void Start()
@@ -61,7 +62,7 @@ public class EnemyBasic : UnitBasic{
 
     public override void ApplyDamage(float Damage)
     {
-        print(name+" applied "+Damage+" to itself");
+        //print(name+" applied "+Damage+" to itself");
         health -= Damage;
 
         if (health <= 0)    DestroySelf();
@@ -81,6 +82,9 @@ public class EnemyBasic : UnitBasic{
         //gameObject.SetActive(false);
 
         Destroy(gameObject);
+
+        if(DestructionPSPrefab != null)
+            Instantiate(DestructionPSPrefab,transform.position,transform.rotation);
     }
 
 }

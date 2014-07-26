@@ -15,6 +15,10 @@ public class ProjectileCollisionStayType : ProjectileBasic{
         InvokeRepeating("EnableTrigger", 0, TriggerInterval);
     }
 
+    protected override void Update()
+    {
+    }
+
     void EnableTrigger()
     {
         isTriggerPossible = true;
@@ -23,33 +27,27 @@ public class ProjectileCollisionStayType : ProjectileBasic{
 
     void OnCollisionEnter(Collision collision)
     {
-        //print(name +" has collided with "+collision.gameObject.name);
-        //tempPart = collision.gameObject.GetComponent<BasicShipPart>();
-        
-        //if (tempPart != null) tempPart.ApplyDamage(Damage);
-        //else
-        
         if ((LayersThatAreDamaged.value & 1 << collision.gameObject.layer) != 0)
         {
             receiver = collision.collider.gameObject.GetComponent<DamageReceiver>();
-            
+
+//            print("collision "+ collision.gameObject);
+//
+//            print("collider "+collision.collider.gameObject.name);
+//            print("receiver "+receiver.name);
+
             if (receiver != null)
                 receiver.ApplyDamage(damage);
         }
-        
-        
+
         //Is it able to penetrate the layer?
         if ((LayersThatBlockSelf.value & 1 << collision.gameObject.layer) != 0)
         {
             //No.
             DestroySelf();
-        }
-        
+        }    
     }
-    
-    //void OnCollisionStay()
-    
-    
+
     void OnTriggerEnter(Collider other)
     {
         //print(name + " has triggered " + other.gameObject.name);
@@ -62,7 +60,7 @@ public class ProjectileCollisionStayType : ProjectileBasic{
         if ((LayersThatAreDamaged.value & 1 << other.gameObject.layer) != 0)
         {
             receiver = other.gameObject.GetComponent<DamageReceiver>();
-            
+
             if (receiver != null)
                 receiver.ApplyDamage(damage);
         }
@@ -77,12 +75,12 @@ public class ProjectileCollisionStayType : ProjectileBasic{
     }
 
 
-
     void OnCollisionStay(Collision collision)
     {
-        if (isTriggerPossible)
+        //print(name+"coli");
+       // if (isTriggerPossible)
         {
-            isTriggerPossible = false;
+            //isTriggerPossible = false;
 
            // print(name + " has collided with " + collision.gameObject.name);
             //tempPart = collision.gameObject.GetComponent<BasicShipPart>();
@@ -94,7 +92,9 @@ public class ProjectileCollisionStayType : ProjectileBasic{
             {
                 //No.
                 receiver = collision.collider.gameObject.GetComponent<DamageReceiver>();
-                
+
+                print(receiver.name);
+
                 if (receiver != null)
                     receiver.ApplyDamage(damage);
             }
@@ -109,14 +109,13 @@ public class ProjectileCollisionStayType : ProjectileBasic{
             
         }
     }
-
     void OnTriggerStay(Collider other)
     {
-        if (isTriggerPossible)
+        //if (isTriggerPossible)
         {
-            isTriggerPossible = false;
+           // isTriggerPossible = false;
 
-            print(name + " has triggered " + other.gameObject.name);
+            //print(name + " has triggered " + other.gameObject.name);
 
             //other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
             //tempPart = other.gameObject.GetComponent<BasicShipPart>();
@@ -126,7 +125,9 @@ public class ProjectileCollisionStayType : ProjectileBasic{
             if ((LayersThatAreDamaged.value & 1 << other.gameObject.layer) != 0)
             {
                 receiver = other.gameObject.GetComponent<DamageReceiver>();
-                
+
+                print(receiver.name);
+
                 if (receiver != null)
                     receiver.ApplyDamage(damage);
             }

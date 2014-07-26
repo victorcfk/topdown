@@ -5,12 +5,10 @@ public abstract class ProjectileBasic : MonoBehaviour {
 
     public WeaponBasic weapon;
 
-    public Vector3 center;
-
-    [HideInInspector]   //Assigned by weapon
+    //[HideInInspector]   //Assigned by weapon
     public float damage = 1;
     
-    [HideInInspector]   //Assigned by weapon
+    //[HideInInspector]   //Assigned by weapon
     public float range = 10;
 
     [HideInInspector]   //Assigned by weapon
@@ -22,9 +20,12 @@ public abstract class ProjectileBasic : MonoBehaviour {
     protected Vector3 prevPos;
     protected float distTravelled = 0;
 
-    public GameObject target;
-
     protected DamageReceiver receiver;
+
+    public GameObject target;
+    public ParticleSystem deathPS;
+
+
 
     // Use this for initialization
     protected virtual void Start()
@@ -52,13 +53,18 @@ public abstract class ProjectileBasic : MonoBehaviour {
 
     protected void DestroySelf()
     {
+        //print("des");
         CancelInvoke();
 
         if (weapon != null)
             weapon.clearUpProjectile(this);
-         
+
+        if (deathPS)
+            Instantiate(deathPS, transform.position, transform.rotation);
+
         if (gameObject != null)
             Destroy(gameObject);
+
     }
 
     public float getCenter()

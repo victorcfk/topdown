@@ -119,11 +119,18 @@ public class ProjectileSingular: ProjectileBasic
         //other.gameObject.BroadcastMessage("ApplyDamage", Damage, SendMessageOptions.DontRequireReceiver);
         //tempPart = other.gameObject.GetComponent<BasicShipPart>();
 
+
+
         //if (tempPart != null) tempPart.ApplyDamage(Damage);
         //else
         if ((LayersThatAreDamaged.value & 1 << other.gameObject.layer) != 0)
         {
             receiver = other.gameObject.GetComponent<DamageReceiver>();
+
+//            prsint("collision "+ other.gameObject);
+//            
+//            print("collider "+other.gameObject.name);
+//            print("receiver "+receiver.name);
 
             if (receiver != null)
                 receiver.ApplyDamage(damage);
