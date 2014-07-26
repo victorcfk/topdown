@@ -14,6 +14,9 @@ public class CameraFollow : MonoBehaviour {
     //private Vector3 currentPos;
     private Vector3 velocity = Vector3.zero;
 
+    public float maxXClamp = 45;
+    public float maxYClamp = 85;
+
 	// Use this for initialization
 	void Start () {
 	   
@@ -25,11 +28,14 @@ public class CameraFollow : MonoBehaviour {
 
         //followTarget.rigidbody.velocity;
 
+        float intendedx = Mathf.Clamp(followTarget.transform.position.x + followTarget.transform.forward.x * 1, -maxXClamp, maxXClamp);
+        float intendedy = Mathf.Clamp(followTarget.transform.position.y + followTarget.transform.forward.y * 1, -maxYClamp, maxYClamp);
+        float intendedz = transform.position.z;
+
         Vector3 wantedPos = new Vector3(
-            followTarget.transform.position.x +  followTarget.transform.forward.x*1,
-            followTarget.transform.position.y +  followTarget.transform.forward.y*1,
-             transform.position.z);
-        //followTarget.rigidbody.velocity.x 
+            intendedx,
+            intendedy,
+            intendedz);
 
         this.transform.position = Vector3.SmoothDamp( transform.position, wantedPos, ref velocity,smoothTime);
     }
