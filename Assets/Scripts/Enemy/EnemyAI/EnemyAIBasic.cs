@@ -11,7 +11,7 @@ public class EnemyAIBasic : MonoBehaviour
     public bool isSpamWeaponWhenOutOfRange = true;
 
     protected bool isWithinRangeOfTarget
-    { get { return Weapon.projectileRange*Weapon.projectileRange >= Vector3.SqrMagnitude(Target.transform.position - transform.position);}}
+    { get { return Weapon.weaponFiringRange*Weapon.weaponFiringRange >= Vector3.SqrMagnitude(Target.transform.position - transform.position);}}
 
     protected bool isFacingTarget
     { get { return MoveModule.isFacingPoint(Target.transform.position);}}

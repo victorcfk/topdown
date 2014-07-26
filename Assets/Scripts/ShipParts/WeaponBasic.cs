@@ -30,6 +30,7 @@ public abstract class WeaponBasic : MonoBehaviour
 
     [HideInInspector]
     public bool isOverrideProjectileRange = true;      //Should we use our own speed to apply to the projectile
+    public float weaponFiringRange = 10;                   //Speed to use when overrriding the projectile's speed    
     public float projectileRange = 10;                   //Speed to use when overrriding the projectile's speed    
 
     [HideInInspector]
