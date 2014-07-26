@@ -1,16 +1,15 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class StageManager : MonoBehaviour {
     //Here is a private reference only this class can access
     private static StageManager _instance;
-    public static int stageToLoad = 1;
-    //public Texture2D skyboxMat;
+
+    public static int combatStageToLoad = 1;
 
     protected float stageTimer = 0;
-	protected float secToNextWave=0;
+	protected float secToNextWave =0 ;
     public int upcomingWave = 0;
-    protected bool currentWaveClear;
 
     public List<GameObject> spawnWaves;
     public float[] spawnTimingsSeconds;
@@ -19,6 +18,37 @@ public class StageManager : MonoBehaviour {
     public ParticleSystem pg;
 
     protected float healthGain = 0;
+
+    public bool isBuildingStage { get { return Application.loadedLevel == 0; } }
+    public bool isCurrentWaveClear 
+    { 
+        get 
+        {
+            //print("waver " + (upcomingWave - 1));
+
+            if((upcomingWave - 1) < 0 )
+                return true;
+
+
+            return (spawnWaves [upcomingWave - 1].transform.childCount <= 0); 
+        } 
+    }
+    public bool isFinalWave { get { return upcomingWave >= spawnWaves.Count; } }
+
+    public bool areAllWavesClear
+    {
+        get
+        {
+            //All waves must have no child game objects
+            for (int i=0; i <spawnWaves.Count; i++)
+            {
+                if( spawnWaves[i].transform.childCount > 0 )
+                    return false;
+            }
+            return true;
+        }
+    }
+
 
     //This is the public reference that other classes will use
     public static StageManager instance
@@ -46,79 +76,94 @@ public class StageManager : MonoBehaviour {
         
         ShipCoreInfoStore.instance.buildShipNow = true;
 
-        if (Application.loadedLevel != 0)
+        if (!isBuildingStage)   ShipCoreInfoStore.instance.startFlightNow =true;
+    }
+
+    void WarnOfNextWave()
+    {
+        if(!isFinalWave && secToNextWave < 7)
         {
-            ShipCoreInfoStore.instance.startFlightNow =true;
+            for (int j=0; j <spawnWaves[upcomingWave].transform.childCount; j++)
+                pg.Emit(spawnWaves [upcomingWave].transform.GetChild(j).position, Vector3.zero, 7 - secToNextWave, 0.1f, Color.red);
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
-
-        if (Application.loadedLevel == 0)
-            return;
-
-        stageTimer += Time.deltaTime;
-		
-        //=====================================================
-		if(upcomingWave < spawnWaves.Count)
+    void checkForCheats()
+    {
+        if (Input.GetKeyDown(KeyCode.End))
         {
-			secToNextWave = spawnTimingsSeconds[upcomingWave] - stageTimer;
-
-            for (int j=0; j <spawnWaves[upcomingWave].transform.childCount; j++)
-            {
-                if (secToNextWave < 7)
-                    pg.Emit(spawnWaves [upcomingWave].transform.GetChild(j).position, Vector3.zero, 7 - secToNextWave, 0.1f, Color.red);
-            }
+            ++combatStageToLoad;
+            Application.LoadLevel(0);
         }
-        //=====================================================
+    }
 
+    void fastForwardToUpcomingWave( float secondsToSpawn )
+    {
+        healthGain = (int)((secToNextWave -secondsToSpawn)/2);
+        PlayerController.instance.playerUnit.health += healthGain;
+            
+        stageTimer = (spawnTimingsSeconds[upcomingWave] - secondsToSpawn);
+
+    }
+
+    void WaveSpawning()
+    {
         for (int i=0; i <spawnTimingsSeconds.Length; i++)
         {
             if(stageTimer >= spawnTimingsSeconds[i])
             {
                 ++upcomingWave;
-
+                
                 //print("Spawnaaaaaaa!!!!!! " +SpawnTimingsSeconds[i]);
                 spawnTimingsSeconds[i] = Mathf.Infinity;
                 spawnWaves[i].SetActive(true);
             }
         }
+    }
+
+    void loadNextStage()
+    {
+        ++combatStageToLoad;
+        Application.LoadLevel(0);
+    }
+
+	// Update is called once per frame
+	void Update () {
+
+        if (isBuildingStage)
+            return;
+
+        stageTimer += Time.deltaTime;
+
+        if( !isFinalWave )
+            secToNextWave = spawnTimingsSeconds[upcomingWave] - stageTimer;
+
+        //=====================================================
+		
+        WarnOfNextWave();
 
         //=====================================================
 
-        if (Input.GetKeyDown(KeyCode.End))
+        WaveSpawning();
+
+        //=====================================================
+       
+        if (isCurrentWaveClear)
         {
-            ++stageToLoad;
-            Application.LoadLevel(0);
-        }
+            //++upcomingWave;
 
-        if (upcomingWave - 1 >= 0)
-        {
-            if (spawnWaves [upcomingWave - 1].transform.childCount <= 0)
-                currentWaveClear = true;
-            else
-                currentWaveClear = false;
-
-            if(currentWaveClear) 
-            {   
-                //print("allded");
-
-                if(upcomingWave >= spawnWaves.Count){
-                    ++stageToLoad;
-                    Application.LoadLevel(0);
-                }
-
-                if(secToNextWave > 7 ){
-                 
-                    healthGain = (int)((secToNextWave - 7)/3);
-                    PlayerController.instance.playerUnit.health+= healthGain;
-
-                    stageTimer = (spawnTimingsSeconds[upcomingWave] - 7);
-
-                }
+            if (secToNextWave > 5)
+            {
+                fastForwardToUpcomingWave(5);
             }
         }
+       
+        if(areAllWavesClear)
+        {
+           loadNextStage();
+        }
+
+        checkForCheats();
         //=====================================================
 	}
 
@@ -133,7 +178,7 @@ public class StageManager : MonoBehaviour {
                  30), "Start"))
             {    
                 ShipCoreInfoStore.instance.savePartsAndNewStage = true;
-                Application.LoadLevel(stageToLoad);
+                Application.LoadLevel(combatStageToLoad);
             }
         } 
         else
@@ -150,8 +195,8 @@ public class StageManager : MonoBehaviour {
             {
                 GUI.Box(new Rect((Screen.width - 
                     PlayerController.instance.playerUnit.health / PlayerController.instance.playerUnit.maxHealth * 200) / 2, 
-                         Screen.height - 15, 
-                         PlayerController.instance.playerUnit.health / PlayerController.instance.playerUnit.maxHealth * 200, 15), 
+                                 Screen.height - Screen.height/20, 
+                         PlayerController.instance.playerUnit.health / PlayerController.instance.playerUnit.maxHealth * 200, Screen.height/20), 
                 PlayerController.instance.playerUnit.health.ToString(), style);
 
 //            GUI.Box(new Rect(Screen.width / 2 - 50, 0, 100, 20),
@@ -160,7 +205,7 @@ public class StageManager : MonoBehaviour {
                 GUI.Box(new Rect(Screen.width / 2 - 60, 0, 120, 40),
                     "Time to next wave \n" + (secToNextWave / 60).ToString("#00.") + " : " + (secToNextWave % 60).ToString("#00."));
 
-                if (currentWaveClear)
+                if (isCurrentWaveClear)
                     GUI.Box(new Rect(Screen.width / 2 - 150, 3 * Screen.height / 4 - 15, 300, 30), "Wave Clear, Health regain: " + healthGain);
 
             }
