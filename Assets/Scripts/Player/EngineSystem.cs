@@ -12,11 +12,11 @@ public class EngineSystem : MonoBehaviour {
 
     public float basicAcceleration = 0.5f;
     public float basicMaxSpeed = 10.0f;
-    public float basicMaxRadiansDelta = 0.05f;
+    public float basicMaxDegDelta = 90f;
     
     protected float resultantAcceleration;
     protected float resultantMaxSpeed;
-    protected float resultantMaxRadiansDelta;
+    protected float resultantMaxDegDelta;
 
     public GameObject controlObj;
 
@@ -43,7 +43,6 @@ public class EngineSystem : MonoBehaviour {
         moveVertically(verticalMoveVal);
         clampMovement();
 
-        turnToVector(LookAtVector);
         /*
         else
         if (Input.GetKey("right"))
@@ -61,6 +60,12 @@ public class EngineSystem : MonoBehaviour {
         }
          */
 	}
+
+    void Update()
+    {
+        turnToVector(LookAtVector);
+    }
+
 
     /// <summary>
     /// Based on fed input, move the gameobject left or right
@@ -83,7 +88,7 @@ public class EngineSystem : MonoBehaviour {
         Vector3 newDir = Vector3.RotateTowards(
             controlObj.transform.forward, 
             LookAtVector,
-            resultantMaxRadiansDelta/180* Mathf.PI,
+            resultantMaxDegDelta * Mathf.Deg2Rad*Time.deltaTime,
             0);
 
         newDir.z = 0;
@@ -110,12 +115,12 @@ public class EngineSystem : MonoBehaviour {
             tempAcc += engine.moveAccAdd;
             tempMaxSpd += engine.moveSpeedMaxAdd;
 
-            tempMaxTurn += engine.turnSpeedAdd;
+            tempMaxTurn += engine.turnSpeedDegAdd;
         }
         resultantAcceleration = basicAcceleration + tempAcc;
         resultantMaxSpeed = basicMaxSpeed + tempMaxSpd;
 
-        resultantMaxRadiansDelta = basicMaxRadiansDelta + tempMaxTurn;
+        resultantMaxDegDelta = basicMaxDegDelta + tempMaxTurn;
 
     }
 

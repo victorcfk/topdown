@@ -113,10 +113,14 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
         if (isRealisticTurning)
             return;
         
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, point - transform.position, Mathf.Deg2Rad*maxRadiansDelta*Time.deltaTime, 0);
+        Vector3 newDir = Vector3.RotateTowards(
+            transform.forward, 
+            point - transform.position, 
+            Mathf.Deg2Rad*maxRadiansDelta*Time.deltaTime, 0);
+
         newDir.z = 0;
         
-        transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);    //Force up to be -z to prevent flipping due to quaternion representation
+        transform.rotation = Quaternion.LookRotation(newDir, -Vector3.forward);    //Force up to be -z to prevent flipping due to quaternion representation
         
     }
 
@@ -138,7 +142,7 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
         //transform.forward.z = 0;
         
 		if(newDir != Vector3.zero)
-        	transform.rotation = Quaternion.LookRotation(newDir, Vector3.up);    //Force up to be -z to prevent flipping due to quaternion representation
+            transform.rotation = Quaternion.LookRotation(newDir, -Vector3.forward);    //Force up to be -z to prevent flipping due to quaternion representation
         
     }
     

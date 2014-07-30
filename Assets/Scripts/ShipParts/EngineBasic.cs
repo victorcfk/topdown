@@ -7,7 +7,7 @@ using System.Collections;
 public class EngineBasic : MonoBehaviour
 {
 
-    public float turnSpeedAdd = 0;
+    public float turnSpeedDegAdd = 0;
     //public float turnSpeedMultiplier = 1;
 
     public float moveAccAdd = 0;

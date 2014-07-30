@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour {
 
     private bool isFiringInputActive;
 
+    public static bool isAimingWithMouse = true;
+
     [HideInInspector]
     //public List<BasicShipPart> engines = new List<BasicShipPart>();
 
@@ -60,7 +62,6 @@ public class PlayerController : MonoBehaviour {
         if (playerUnit == null)
             GameObject.FindObjectOfType<PlayerBasic>();
 
-
 	}
 	
 	// Update is called once per frame
@@ -68,19 +69,32 @@ public class PlayerController : MonoBehaviour {
     {
         //getAllEngineModifiers();
 
-        {
-            this.horizontalMoveInput = Input.GetAxis("Horizontal");
-            this.verticalMoveInput = Input.GetAxis("Vertical");
+        //This works for game pad as well
+        //================================================
 
-            this.isFiringInputActive = Input.GetButton("Fire1");
-                //.GetMouseButton(0);
-        }
+        ProcessPlayerMovement();
+        ProcessPlayerShooting();
+
+        if(isAimingWithMouse)
+            AimWithMouse();
+        else
+            AimWithGamePad();
 
         playerUnit.isFiringInputActive = this.isFiringInputActive;
         playerUnit.horizontalMoveInput = this.horizontalMoveInput;
         playerUnit.verticalMoveInput = this.verticalMoveInput;
+    }
 
-        AimWithMouse();
+
+    void ProcessPlayerMovement()
+    {
+        this.horizontalMoveInput = Input.GetAxis("Horizontal");
+        this.verticalMoveInput = Input.GetAxis("Vertical");
+    }
+
+    void ProcessPlayerShooting()
+    {
+        this.isFiringInputActive = Input.GetButton("Fire1");
     }
 
     void AimWithMouse()
@@ -110,7 +124,55 @@ public class PlayerController : MonoBehaviour {
 
     void AimWithGamePad()
     {
-        //if()
+//        if (Input.GetKey(KeyCode.JoystickButton0))
+//            print(0);
+//        if (Input.GetKey(KeyCode.JoystickButton1))
+//            print(1);
+//        if (Input.GetKey(KeyCode.JoystickButton2))
+//            print(2);
+//        if (Input.GetKey(KeyCode.JoystickButton3))
+//            print(3);
+//        if (Input.GetKey(KeyCode.JoystickButton4))
+//            print(4);
+//        if (Input.GetKey(KeyCode.JoystickButton5))
+//            print(5);
+//        if (Input.GetKey(KeyCode.JoystickButton6))
+//            print(6);
+//        if (Input.GetKey(KeyCode.JoystickButton7))
+//            print(7);
+//        if (Input.GetKey(KeyCode.JoystickButton8))
+//            print(8);
+//        if (Input.GetKey(KeyCode.JoystickButton9))
+//            print(9);
+//        if (Input.GetKey(KeyCode.JoystickButton10))
+//            print(10);
+//        if (Input.GetKey(KeyCode.JoystickButton11))
+//            print(11);
+//        if (Input.GetKey(KeyCode.JoystickButton12))
+//            print(12);
+//        if (Input.GetKey(KeyCode.JoystickButton13))
+//            print(13);
+//        if (Input.GetKey(KeyCode.JoystickButton14))
+//            print(14);
+//        if (Input.GetKey(KeyCode.JoystickButton15))
+//            print(15);
+//        if (Input.GetKey(KeyCode.JoystickButton16))
+//            print(16);
+//        if (Input.GetKey(KeyCode.JoystickButton17))
+//            print(17);
+//        if (Input.GetKey(KeyCode.JoystickButton18))
+//            print(18);
+//        if (Input.GetKey(KeyCode.JoystickButton19))
+//            print(19);
+//
+//        print("X "+Input.GetAxis("AnalogStickX"));
+//        print("Y "+Input.GetAxis("AnalogStickY"));
+        
+        playerUnit.LookAtVector = 
+            new Vector3(
+                Input.GetAxis("AnalogStickX"),
+                -1*Input.GetAxis("AnalogStickY"),
+                0);
 
     }
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -85,7 +85,7 @@ public class LuftEngineSystem : MonoBehaviour {
             tempAcc += engine.moveAccAdd;
             tempMaxSpd += engine.moveSpeedMaxAdd;
             
-            tempMaxTurn += engine.turnSpeedAdd;
+            tempMaxTurn += engine.turnSpeedDegAdd;
         }
         resultantAcceleration       = basicAcceleration + tempAcc;
         resultantMaxSpeed           = basicMaxSpeed + tempMaxSpd;
