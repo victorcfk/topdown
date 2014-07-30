@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class PartBuildController : MonoBehaviour {
@@ -15,6 +15,7 @@ public class PartBuildController : MonoBehaviour {
 
     public float scrollSpeed = 0.1f;
     protected float offset;
+    protected WeaponBasic weaponComponent;
 
 	// Use this for initialization
 	void Start () {
@@ -45,19 +46,59 @@ public class PartBuildController : MonoBehaviour {
                 RotateCurrentPart();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.collider)
+            {
+                WeaponBasic temp = CurrentPart.GetComponent<WeaponBasic>();
+
+                if(temp)
+                {
+
+                    print(name + " A pressed");
+
+                    if(temp.BelongsToWeaponGroup[0])
+                        temp.BelongsToWeaponGroup[0] = false;
+                    else
+                        temp.BelongsToWeaponGroup[0] = true;
+
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.collider)
+            {
+                WeaponBasic temp = CurrentPart.GetComponent<WeaponBasic>();
+
+                if(temp)
+                {
+                    print(name + " B pressed");
+
+                    if(temp.BelongsToWeaponGroup[1])
+                        temp.BelongsToWeaponGroup[1] = false;
+                    else
+                        temp.BelongsToWeaponGroup[1] = true;
+
+                }
+            }
+        }
 	}
     
     public void GetNextPart()
     {
         //No part present, create one
         if (CurrentPart == null)
-        {
-            CurrentPart = (BasicShipPart)Instantiate
-                (PossibleParts[currPartPtr], 
-                 this.transform.position, 
-                 this.transform.rotation);
-            
-            CurrentPart.transform.parent = this.transform.parent;
+        {            
+            AssignPart(
+                Instantiate
+                       (PossibleParts[currPartPtr], 
+                        this.transform.position, 
+                        this.transform.rotation) as BasicShipPart);
         }
         else
         {
@@ -67,31 +108,34 @@ public class PartBuildController : MonoBehaviour {
                 currPartPtr++;
             else
                 currPartPtr = 0;
-            
-            CurrentPart = (BasicShipPart)Instantiate
-                (PossibleParts[currPartPtr],
-                 this.transform.position,
-                 CurrentPartRotation);
-            
-            CurrentPart.transform.parent = this.transform.parent;
+
+            AssignPart(
+                    Instantiate
+                    (PossibleParts[currPartPtr],
+                     this.transform.position,
+                     CurrentPartRotation) as BasicShipPart);
         }
         
     }
 
+    public void AssignPart(BasicShipPart part)
+    {
+        CurrentPart = part;
+
+        weaponComponent = part.GetComponent<WeaponBasic>();
+
+        if(!weaponComponent)
+            part.transform.rotation = this.transform.localRotation;
+        
+        part.transform.parent = this.transform.parent;
+    }
+
     public void RotateCurrentPart()
     {
-        if (CurrentPart != null)
+        if (CurrentPart != null && weaponComponent)
         {
             CurrentPart.transform.Rotate(0, 30, 0);
             CurrentPartRotation = CurrentPart.transform.rotation;
         }
     }
-
-//    public void saveAttachedPartIntoInfo(){
-//        this.partInfo.savePart(this.CurrentPart);
-//    }
-//
-//    public void loadAttachedPartFromInfo(){
-//        this.partInfo.loadPart();
-//    }
 }

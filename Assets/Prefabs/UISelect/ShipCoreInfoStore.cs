@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -37,25 +37,27 @@ public class ShipCoreInfoStore : MonoBehaviour {
     public PlayerBasic ShipCorePrefab;
 
     public PartBuildController PieceControlPrefab;
+
     public List<BasicShipPart> listOfPartPrefabs;      //Reference to all the part things, needs to be initialized
+    public List<BasicShipPart> AvailablePartsStage1;      //Reference to all the part things, needs to be initialized
+    public List<BasicShipPart> AvailablePartsStage2;      //Reference to all the part things, needs to be initialized
+    public List<BasicShipPart> AvailablePartsStage3;      //Reference to all the part things, needs to be initialized
+    public List<BasicShipPart> AvailablePartsStage4;      //Reference to all the part things, needs to be initialized
 
-    public List<PartInfo> listOfPartInfo;
-
-    public List<PartInfo> StagePieces1;
-    public List<PartInfo> StagePieces2;
-    public List<PartInfo> StagePieces3;
-    public List<PartInfo> StagePieces4;
+    public List<PartInfo> listOfPartsChosen;
+    public List<PartInfo> PartsChosenStage1;
+    public List<PartInfo> PartsChosenStage2;
+    public List<PartInfo> PartsChosenStage3;
+    public List<PartInfo> PartsChosenStage4;
 
     public bool startFlightNow = false;
     public bool buildShipNow = false;
     public bool savePartsAndNewStage = false;
 
-
-
 	// Use this for initialization. In dont destroy on load, this is only called once.
 	void Start () {
 
-        print("DONTA!!!!!");
+        print("START!!!!!");
 
         //Destroy all other instances of shipcoreinfostore.
         if (ShipCoreInfoStore._instance != null)
@@ -80,28 +82,33 @@ public class ShipCoreInfoStore : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        int listPtr = StageManager.stageToLoad;
-            //Application.loadedLevel;
+        int listPtr = StageManager.combatStageToLoad;
+
         switch(listPtr)
         {
             case 1:
-                listOfPartInfo = StagePieces1;
+                listOfPartsChosen = PartsChosenStage1;
+                listOfPartPrefabs = AvailablePartsStage1;
                 break;
 
             case 2:
-                listOfPartInfo = StagePieces2;
+                listOfPartsChosen = PartsChosenStage2;
+                listOfPartPrefabs = AvailablePartsStage2;
                 break;
 
             case 3:
-                listOfPartInfo = StagePieces3;
+                listOfPartsChosen = PartsChosenStage3;
+                listOfPartPrefabs = AvailablePartsStage3;
                 break;
 
             case 4:
-                listOfPartInfo = StagePieces4;
+                listOfPartsChosen = PartsChosenStage4;
+                listOfPartPrefabs = AvailablePartsStage4;
                 break;
 
             default:
-                listOfPartInfo = StagePieces1;
+                listOfPartsChosen = PartsChosenStage1;
+                listOfPartPrefabs = AvailablePartsStage1;
                 break;
         }
 
@@ -110,7 +117,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
         {
             savePartsAndNewStage = !savePartsAndNewStage;
 
-            if (listOfPartInfo != null) saveAllPartInfo(listOfPartInfo);
+            if (listOfPartsChosen != null) saveAllPartInfo(listOfPartsChosen);
         }
 
         if (buildShipNow)
@@ -120,7 +127,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
             if (ShipCore == null) ShipCore = GameObject.FindObjectOfType<PlayerBasic>();
             if (ShipCore == null) ShipCore = Instantiate(ShipCorePrefab) as PlayerBasic;
 
-            if (listOfPartInfo != null) loadAllPartInfo(listOfPartInfo,ShipCore.gameObject,Application.loadedLevel == 0);
+            if (listOfPartsChosen != null) loadAllPartInfo(listOfPartsChosen,ShipCore.gameObject,Application.loadedLevel == 0);
         }
 
         if (startFlightNow)
@@ -164,7 +171,7 @@ public class ShipCoreInfoStore : MonoBehaviour {
 //                listOfPartInfo.Add(new PartInfo(tempPart));
 //        }
 //    }
-//
+
 //    void loadPartInfoOnShipCore(PlayerBasic ShipCore, bool isBuilderScene = false)
 //    {
 //        //print(listOfPartsToAssignToShipCore.Count + " , " + listOfPartsRotations.Count + " , " + listOfPartPrefabs.Count);

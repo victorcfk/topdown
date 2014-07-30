@@ -38,38 +38,10 @@ public class WeaponsSystem : MonoBehaviour {
 
     public void fireWeaponsSet(int set)
     {
-        switch(set){
-
-            case 1:
-                foreach (WeaponBasic weap in weaponsSet1)
-                {
-                    weap.FireWeapon();
-                }
-                break;
-
-            case 2:
-                foreach (WeaponBasic weap in weaponsSet2)
-                {
-                    weap.FireWeapon();
-                }
-                break;
-
-            case 3:
-                foreach (WeaponBasic weap in weaponsSet3)
-                {
-                    weap.FireWeapon();
-                }
-                break;
-
-            default:
-                foreach (WeaponBasic weap in weaponsSet1)
-                {
-                    weap.FireWeapon();
-                }
-                break;
-
-        }
-
-
+//        foreach (WeaponBasic weap in weapons)
+//        {
+//            if(weap.PlayerWeaponGroup.Contains(set))
+//                weap.FireWeapon();
+//        }
     }
 }

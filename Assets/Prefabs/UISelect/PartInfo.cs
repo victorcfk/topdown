@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public enum ShipPartType
@@ -62,9 +62,10 @@ public class PartInfo {
 
                 //=========================================================
 
+                //Create a corresponding controller as well?
                 if(createController)
                 {
-                    if(parentShip ==null)
+                    if(parentShip == null)
                     {
                         partBuildControllerInst = 
                             MonoBehaviour.Instantiate(
@@ -79,11 +80,12 @@ public class PartInfo {
                         
                         partBuildControllerInst.transform.parent = parentShip.transform;
                         partBuildControllerInst.transform.localPosition = partLocalPosition;
-                        partBuildControllerInst.transform.localRotation = partLocalRotation;
+                        partBuildControllerInst.transform.localRotation = Quaternion.identity;
+
                     }
                     
                     partBuildControllerInst.partInfo = this;
-                    partBuildControllerInst.CurrentPart = tempPart;
+                    partBuildControllerInst.AssignPart(tempPart);
                     
                 }
 
