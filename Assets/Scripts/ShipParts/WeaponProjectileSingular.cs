@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,8 +11,6 @@ public class WeaponProjectileSingular : WeaponBasic
     /// <param name="Degrees">The amount, in degrees, to rotate the vehicle.</param>
     /// <returns>A Boolean value indicating a successful check.</returns>
     */
-
-    public override Vector3 fireLocation { get { return transform.position;  } }
     public float angleDeviation = 0;
 
     public bool isTeleportProjectile =false;
@@ -76,11 +74,11 @@ public class WeaponProjectileSingular : WeaponBasic
         if (projectilePrefab != null)
         {
 
-            for(int i=0; i < LaunchLocation.Length; i++){
+            for(int i=0; i < LaunchLocations.Length; i++){
 
-                ProjectileBasic instance = CreateProjectile(LaunchLocation[i].position,LaunchLocation[i].rotation);
+                ProjectileBasic instance = CreateProjectile(LaunchLocations[i].position,LaunchLocations[i].rotation);
 
-                fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation,angleDeviation),Vector3.forward) * LaunchLocation[i].forward;
+                fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation,angleDeviation),Vector3.forward) * LaunchLocations[i].forward;
 
                 instance.rigidbody.velocity = fireDirection * projectileSpeed;
 

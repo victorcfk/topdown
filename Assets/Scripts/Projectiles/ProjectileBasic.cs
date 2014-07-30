@@ -57,7 +57,7 @@ public abstract class ProjectileBasic : MonoBehaviour {
         CancelInvoke();
 
         if (weapon != null)
-            weapon.clearUpProjectile(this);
+            weapon.ClearUpProjectile(this);
 
         if (deathPS)
             Instantiate(deathPS, transform.position, transform.rotation);
