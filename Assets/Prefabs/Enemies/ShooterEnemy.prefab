@@ -97,7 +97,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalRotation: {x: -.5, y: .5, z: -.5, w: .5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
@@ -113,9 +113,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: .173648298, y: 0, z: 0, w: -.98480773}
-  m_LocalPosition: {x: 0, y: .638103664, z: .463732541}
-  m_LocalScale: {x: 1, y: .25, z: 1}
+  m_LocalRotation: {x: .173648193, y: 3.38105508e-08, z: .984807789, w: 1.91749152e-07}
+  m_LocalPosition: {x: .75, y: -1.10028324e-08, z: .389338017}
+  m_LocalScale: {x: .349999994, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
   m_RootOrder: 3
@@ -125,9 +125,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: .173648193, y: 0, z: 0, w: .984807789}
-  m_LocalPosition: {x: 0, y: -.643852115, z: .464393079}
-  m_LocalScale: {x: 1, y: .25, z: 1}
+  m_LocalRotation: {x: -.173648193, y: -3.38105508e-08, z: .984807789, w: 1.91749152e-07}
+  m_LocalPosition: {x: -.75, y: 0, z: .437065363}
+  m_LocalScale: {x: .349999994, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
   m_RootOrder: 2
@@ -137,9 +137,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .622938693}
-  m_LocalScale: {x: 1, y: .25, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: -4.37113883e-08}
+  m_LocalPosition: {x: 0, y: 0, z: .655146599}
+  m_LocalScale: {x: .349999994, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
   m_RootOrder: 1
@@ -149,7 +149,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: .200000003}
   m_Children: []
@@ -167,7 +167,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: b6942a06057fd8340b7e0ec3c4cd8d05, type: 2}
+  - {fileID: 2100000, guid: b0ebd643dfa850c4ba52975708686867, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -187,7 +187,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: b6942a06057fd8340b7e0ec3c4cd8d05, type: 2}
+  - {fileID: 2100000, guid: b0ebd643dfa850c4ba52975708686867, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -207,7 +207,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: b6942a06057fd8340b7e0ec3c4cd8d05, type: 2}
+  - {fileID: 2100000, guid: b0ebd643dfa850c4ba52975708686867, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -288,7 +288,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.00000024, y: 2, z: 2}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -334,13 +334,14 @@ MonoBehaviour:
   projectileRange: 60
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 15
-  coolDownBetweenShots: 2
-  LaunchLocation:
+  coolDownBetweenShots: 3
+  LaunchLocations:
   - {fileID: 400006}
   - {fileID: 400004}
   - {fileID: 400002}
   ExistingProjectiles: []
   target: {fileID: 0}
+  BelongsToWeaponGroup: 0100
   angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 0
@@ -358,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxSpeed: 25
-  BaseSpeed: 15
+  BaseSpeed: 10
   minDistFromDestination: 5
   minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
@@ -405,7 +406,7 @@ MonoBehaviour:
   health: 12
   maxHealth: 12
   moveModule: {fileID: 0}
-  DestructionPSPrefab: {fileID: 19800002, guid: 0a59606d4600c44428a680be30a02457,
+  DestructionPSPrefab: {fileID: 19800002, guid: 12bcef1f2cb58a94ea8a7a47204b5da0,
     type: 2}
 --- !u!1001 &100100000
 Prefab:

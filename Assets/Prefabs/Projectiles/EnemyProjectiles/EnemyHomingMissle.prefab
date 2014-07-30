@@ -13,7 +13,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   - 65: {fileID: 6500000}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: EnemyHomingMissle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 4: {fileID: 400002}
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 4: {fileID: 400004}
   - 198: {fileID: 19800002}
   - 199: {fileID: 19900002}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,12 +158,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  center: {x: 0, y: 0, z: 0}
   damage: 1
   range: 80
   minSpeed: 2
   lifeTime: 1.5
   target: {fileID: 0}
+  deathPS: {fileID: 0}
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 1024
@@ -173,8 +173,8 @@ MonoBehaviour:
   IsHoming: 1
   maxRadiansDelta: 50
   IsAccelerating: 1
-  Acceleration: 8
-  MaxSpeed: 60
+  Acceleration: 10
+  MaxSpeed: 75
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

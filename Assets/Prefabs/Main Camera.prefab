@@ -79,7 +79,7 @@ Camera:
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 40
   m_Depth: 1
   m_CullingMask:
@@ -111,7 +111,7 @@ Camera:
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 40
   m_Depth: -1
   m_CullingMask:
@@ -153,6 +153,8 @@ MonoBehaviour:
   smoothTime: .400000006
   maxSpeed: Infinity
   currentVeloc: {x: 0, y: 0, z: 0}
+  maxXClamp: 45
+  maxYClamp: 85
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -107,9 +107,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -.5, y: -.5, z: .5, w: .5}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: -4.37113883e-08}
   m_LocalPosition: {x: -4.02176568e-08, y: .0185072422, z: 2.34764767}
-  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 400008}
   m_RootOrder: 3
@@ -120,8 +120,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: -.5, y: -.5, z: .5, w: .5}
-  m_LocalPosition: {x: -1.75926445e-07, y: 2.01025963, z: 3}
-  m_LocalScale: {x: 2.5, y: 1.5, z: 2}
+  m_LocalPosition: {x: 2.07663059, y: 0, z: 3.12216091}
+  m_LocalScale: {x: 2, y: 1.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 400008}
   m_RootOrder: 2
@@ -144,8 +144,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: -.5, y: -.5, z: .5, w: .5}
-  m_LocalPosition: {x: -1.7204863e-07, y: -1.95124853, z: 3}
-  m_LocalScale: {x: 2.5, y: 1.5, z: 2}
+  m_LocalPosition: {x: -1.99497414, y: 0, z: 3.12216997}
+  m_LocalScale: {x: 2, y: 1.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 400008}
   m_RootOrder: 1
@@ -155,7 +155,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalRotation: {x: -.5, y: .5, z: -.5, w: .5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -393,10 +393,12 @@ MonoBehaviour:
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 20
   coolDownBetweenShots: 4
-  LaunchLocation: []
+  LaunchLocations:
+  - {fileID: 400000}
   ExistingProjectiles: []
   target: {fileID: 0}
-  angleDeviation: 5
+  BelongsToWeaponGroup: 0100
+  angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 0
   delayWithinBurst: .150000006
@@ -434,7 +436,7 @@ MonoBehaviour:
   health: 15
   maxHealth: 15
   moveModule: {fileID: 0}
-  DestructionPSPrefab: {fileID: 19800002, guid: 0a59606d4600c44428a680be30a02457,
+  DestructionPSPrefab: {fileID: 19800002, guid: 12bcef1f2cb58a94ea8a7a47204b5da0,
     type: 2}
 --- !u!114 &11400012
 MonoBehaviour:
@@ -462,8 +464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentReceiver: {fileID: 11400012}
-  dmgHardReduction: 0
-  dmgModifier: .200000003
+  dmgHardReduction: .899999976
+  dmgModifier: .5
   healthBoost: 5
 --- !u!114 &11400016
 MonoBehaviour:
@@ -477,8 +479,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentReceiver: {fileID: 11400012}
-  dmgHardReduction: 0
-  dmgModifier: .200000003
+  dmgHardReduction: .899999976
+  dmgModifier: .5
   healthBoost: 5
 --- !u!135 &13500000
 SphereCollider:
@@ -498,7 +500,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  lengthInSec: .5
+  lengthInSec: .300000012
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -509,7 +511,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 3
+      scalar: .300000012
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -669,7 +671,7 @@ ParticleSystem:
         rgba: 4294967042
       minMaxState: 0
     startSize:
-      scalar: 5
+      scalar: 8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -736,7 +738,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10000
   ShapeModule:
     serializedVersion: 2
     enabled: 0
@@ -754,7 +756,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 1.5
+      scalar: .5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1550,7 +1552,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  lengthInSec: .5
+  lengthInSec: .300000012
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -1561,7 +1563,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 3
+      scalar: .300000012
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1721,7 +1723,7 @@ ParticleSystem:
         rgba: 4294967042
       minMaxState: 0
     startSize:
-      scalar: 5
+      scalar: 8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1788,7 +1790,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10000
   ShapeModule:
     serializedVersion: 2
     enabled: 0
@@ -1806,7 +1808,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 1.5
+      scalar: .5
       maxCurve:
         serializedVersion: 2
         m_Curve:

@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   - 135: {fileID: 13500000}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: EnemyMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,12 +116,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  center: {x: 0, y: 0, z: 0}
   damage: 1
   range: 50
   minSpeed: 2
   lifeTime: 1.5
   target: {fileID: 0}
+  deathPS: {fileID: 0}
   LayersThatAreDamaged:
     serializedVersion: 2
     m_Bits: 1024

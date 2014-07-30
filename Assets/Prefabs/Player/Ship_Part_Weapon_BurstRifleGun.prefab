@@ -261,20 +261,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 11400000, guid: 3205994479c163548b2dc41c90b3e2e3, type: 2}
-  fireAngle: {x: 0, y: 0, z: 0, w: 1}
-  fireDirection: {x: 0, y: 0, z: 1}
   isOverrideProjectileSpeed: 1
-  projectileSpeed: 70
+  projectileSpeed: 60
   isOverrideProjectileDamage: 1
   projectileDamage: 2
   isOverrideProjectileRange: 1
-  projectileRange: 80
+  weaponFiringRange: 10
+  projectileRange: 70
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 8
   coolDownBetweenShots: 1.5
-  LaunchLocation: []
+  LaunchLocations: []
   ExistingProjectiles: []
   target: {fileID: 0}
+  BelongsToWeaponGroup: 0100
   angleDeviation: 0
   isTeleportProjectile: 0
   isBurstFire: 1
