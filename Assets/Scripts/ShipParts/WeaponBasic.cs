@@ -88,7 +88,15 @@ public abstract class WeaponBasic : MonoBehaviour
         if(coolDownTimer > 0)
             coolDownTimer -= Time.deltaTime;
                 
+        UpdateCoolDownVisuals();
     }
+
+    void UpdateCoolDownVisuals()
+    {
+        for (int i=0; i<LaunchLocations.Length; i++)
+            LaunchLocations[i].gameObject.renderer.material.mainTextureOffset =  new Vector2(0,Mathf.Lerp(-0.55f, 0.55f, coolDownTimer / coolDownBetweenShots));
+    }
+
 
     /// <summary>
     /// Creates a projectile with properties to be initialised later
