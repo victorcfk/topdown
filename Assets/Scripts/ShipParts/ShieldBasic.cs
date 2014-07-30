@@ -13,6 +13,9 @@ public class ShieldBasic : DamageReceiver
 
         if(temp > 0)
             ParentReceiver.ApplyDamage( temp * dmgModifier);
+
+        print("emit");
+        particleSystem.Emit(5);
     }
 
 }
