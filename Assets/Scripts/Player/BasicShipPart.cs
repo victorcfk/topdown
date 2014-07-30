@@ -20,7 +20,7 @@ public class BasicShipPart : MonoBehaviour {
             shipCore = this.GetComponent<UnitBasic>();
         }
 
-        if (shipCore == null)
+        if (shipCore == null && transform.parent)
         {
             shipCore = transform.parent.GetComponent<UnitBasic>();
         }

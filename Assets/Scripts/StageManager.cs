@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class StageManager : MonoBehaviour {
+public class StageManager : MonoBehaviour 
+{
     //Here is a private reference only this class can access
     private static StageManager _instance;
 
@@ -14,7 +15,8 @@ public class StageManager : MonoBehaviour {
     public List<GameObject> spawnWaves;
     public float[] spawnTimingsSeconds;
 
-    public GUIStyle style;
+    public GUIStyle HealthBarStyle;
+    public GUIStyle InfoStyle;
     public ParticleSystem pg;
 
     protected float healthGain = 0;
@@ -49,7 +51,6 @@ public class StageManager : MonoBehaviour {
         }
     }
 
-
     //This is the public reference that other classes will use
     public static StageManager instance
     {
@@ -76,7 +77,63 @@ public class StageManager : MonoBehaviour {
         
         ShipCoreInfoStore.instance.buildShipNow = true;
 
-        if (!isBuildingStage)   ShipCoreInfoStore.instance.startFlightNow =true;
+        if (!isBuildingStage)
+        {
+            ShipCoreInfoStore.instance.startFlightNow = true;
+            PlayerController.instance.enabled = true;
+        } 
+        else
+        {
+            switch(combatStageToLoad)
+            {
+                case 1:
+                    for( int i=0; i <ShipCoreInfoStore.instance.AvailablePartsStage1.Count; i++ )
+                    {
+
+                        GameObject g = Instantiate(ShipCoreInfoStore.instance.AvailablePartsStage1[i],
+                                    Camera.main.ScreenToWorldPoint( new Vector3(10,Screen.height - 70-i*100,10) ),
+                                    Quaternion.LookRotation(Vector3.right, -Vector3.forward)) as GameObject;
+
+//                        if(g)
+//                        g.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+
+                    }
+                    break;
+
+                case 2:
+                    for( int i=0; i <ShipCoreInfoStore.instance.AvailablePartsStage2.Count; i++ )
+                    {
+                        
+                        GameObject g = Instantiate(ShipCoreInfoStore.instance.AvailablePartsStage2[i],
+                                                   Camera.main.ScreenToWorldPoint( new Vector3(10,Screen.height - 70-i*100,10) ),
+                                                   Quaternion.LookRotation(Vector3.right, -Vector3.forward)) as GameObject;
+                        
+                        //                        if(g)
+                        //                        g.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+                        
+                    }
+                    break;
+
+                case 3:
+                    for( int i=0; i <ShipCoreInfoStore.instance.AvailablePartsStage3.Count; i++ )
+                    {
+                        
+                        GameObject g = Instantiate(ShipCoreInfoStore.instance.AvailablePartsStage3[i],
+                                                   Camera.main.ScreenToWorldPoint( new Vector3(10,Screen.height - 70-i*100,10) ),
+                                                   Quaternion.LookRotation(Vector3.right, -Vector3.forward)) as GameObject;
+                        
+                        //                        if(g)
+                        //                        g.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+                        
+                    }
+                    break;
+
+                default:
+                        break;
+
+            }
+
+        }
     }
 
     void WarnOfNextWave()
@@ -88,18 +145,22 @@ public class StageManager : MonoBehaviour {
         }
     }
 	
-    void checkForCheats()
+    void CheckForCheats()
     {
         if (Input.GetKeyDown(KeyCode.End))
         {
-            ++combatStageToLoad;
+            if (combatStageToLoad < 3)
+                ++combatStageToLoad;
+            else
+                combatStageToLoad = 1;
+
             Application.LoadLevel(0);
         }
     }
 
-    void fastForwardToUpcomingWave( float secondsToSpawn )
+    void FastForwardToUpcomingWave( float secondsToSpawn )
     {
-        healthGain = (int)((secToNextWave -secondsToSpawn)/2);
+        healthGain = Mathf.Clamp((int)((secToNextWave -secondsToSpawn)/2),0,3);
         PlayerController.instance.playerUnit.health += healthGain;
             
         stageTimer = (spawnTimingsSeconds[upcomingWave] - secondsToSpawn);
@@ -121,9 +182,13 @@ public class StageManager : MonoBehaviour {
         }
     }
 
-    void loadNextStage()
+    void LoadNextStage()
     {
-        ++combatStageToLoad;
+        if (combatStageToLoad < 3)
+            ++combatStageToLoad;
+        else
+            combatStageToLoad = 1;
+
         Application.LoadLevel(0);
     }
 
@@ -154,32 +219,139 @@ public class StageManager : MonoBehaviour {
 
             if (secToNextWave > 5)
             {
-                fastForwardToUpcomingWave(5);
+                FastForwardToUpcomingWave(5);
             }
         }
        
         if(areAllWavesClear)
         {
-           loadNextStage();
+           LoadNextStage();
         }
 
-        checkForCheats();
+        CheckForCheats();
         //=====================================================
 	}
 
     public void OnGUI()
     {
-        if (Application.loadedLevel == 0)
+        if (isBuildingStage)
         {
             if (GUI.Button(
-            new Rect(Screen.width - 80,
+            new Rect(Screen.width - 170,
                  20,
-                 60,
+                 150,
                  30), "Start"))
             {    
                 ShipCoreInfoStore.instance.savePartsAndNewStage = true;
                 Application.LoadLevel(combatStageToLoad);
+
+                PlayerController.isAimingWithMouse = true;
             }
+
+            
+            //GUI.TextArea
+
+            //Uncommment for gamepad play choice
+            //=================================================================
+//            if (GUI.Button(
+//                new Rect(Screen.width - 170,
+//                     100,
+//                     150,
+//                     30), "Start With GamePad"))
+//            {    
+//                ShipCoreInfoStore.instance.savePartsAndNewStage = true;
+//                Application.LoadLevel(combatStageToLoad);
+//
+//                PlayerController.isAimingWithMouse = false;
+//            }
+            //=================================================================
+
+            int i=0;
+
+            //++++++++++++++++++++++++++++++++++++++++++++++++++
+
+            GUI.Label(new Rect(110,
+                               40+i*100,
+                               350,
+                               75
+                               ),"Engine| +50% Turn and Move speed",InfoStyle);
+            ++i;
+
+            //++++++++++++++++++++++++++++++++++++++++++++++++++
+            GUI.Label(new Rect(110,
+                               40+i*100,
+                               350,
+                               75
+                               ),"Machine Gun | Rapid-Fire, Inaccurate, MED range, Low DMG",InfoStyle);
+            ++i;
+            
+            //++++++++++++++++++++++++++++++++++++++++++++++++++
+            GUI.Label(new Rect(110,
+                               40+i*100,
+                               350,
+                               75
+                               ),"Burst Gun | Burst-fire, Accurate, LONG range, MED DMG",InfoStyle);
+            ++i;
+
+            if(combatStageToLoad == 2)
+            {
+                //++++++++++++++++++++++++++++++++++++++++++++++++++
+                GUI.Label(new Rect(110,
+                                   40+i*100,
+                                   350,
+                                   75
+                                   ),"Shot Gun | 40 DegArc, LOW range, MANY LOW DMG bullets",InfoStyle);
+                ++i;
+                
+                //++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                GUI.Label(new Rect(110,
+                                   40+i*100,
+                                   350,
+                                   75
+                                   ),"Shield | -0.8 BULLET DMG on hit, +2 health",InfoStyle);
+                ++i;
+                
+            }
+
+            if(combatStageToLoad == 3)
+            {
+
+                //++++++++++++++++++++++++++++++++++++++++++++++++++
+                GUI.Label(new Rect(110,
+                                   40+i*100,
+                                   350,
+                                   75
+                                   ),"Shot Gun | 40 DegArc, LOW range, MANY LOW DMG bullets",InfoStyle);
+                ++i;
+
+                //++++++++++++++++++++++++++++++++++++++++++++++++++
+                GUI.Label(new Rect(110,
+                                   40+i*100,
+                                   350,
+                                   75
+                                   ),"Laser | Penetrating, VHIGH DMG, LOW Rate of fire ",InfoStyle);
+                ++i;
+
+                //++++++++++++++++++++++++++++++++++++++++++++++++++
+                
+                GUI.Label(new Rect(110,
+                                   40+i*100,
+                                   350,
+                                   75
+                                   ),"Shield | -0.8 BULLET DMG on hit, +2 health",InfoStyle);
+                ++i;
+            }
+
+
+            //=================================================================
+            GUI.Label(new Rect(Screen.width - 350,
+                               Screen.height /2,
+                               300,
+                               150),"Left click to cycle through parts \n" +
+                      "\n"+
+                      "Right click to rotate weapon parts",InfoStyle);
+
         } 
         else
         {
@@ -197,7 +369,7 @@ public class StageManager : MonoBehaviour {
                     PlayerController.instance.playerUnit.health / PlayerController.instance.playerUnit.maxHealth * 200) / 2, 
                                  Screen.height - Screen.height/20, 
                          PlayerController.instance.playerUnit.health / PlayerController.instance.playerUnit.maxHealth * 200, Screen.height/20), 
-                PlayerController.instance.playerUnit.health.ToString(), style);
+                        PlayerController.instance.playerUnit.health.ToString("#.0"), HealthBarStyle);
 
 //            GUI.Box(new Rect(Screen.width / 2 - 50, 0, 100, 20),
 //                             "Time to next wave");
