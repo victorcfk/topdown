@@ -128,6 +128,19 @@ public class StageManager : MonoBehaviour
                     }
                     break;
 
+                case 4:
+                    for( int i=0; i <ShipCoreInfoStore.instance.AvailablePartsStage4.Count; i++ )
+                    {
+                        
+                        GameObject g = Instantiate(ShipCoreInfoStore.instance.AvailablePartsStage4[i],
+                                                   Camera.main.ScreenToWorldPoint( new Vector3(10,Screen.height - 70-i*100,10) ),
+                                                   Quaternion.LookRotation(Vector3.right, -Vector3.forward)) as GameObject;
+                        
+                        //                        if(g)
+                        //                        g.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+                        
+                    }
+                    break;
                 default:
                         break;
 
@@ -149,7 +162,7 @@ public class StageManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.End))
         {
-            if (combatStageToLoad < 3)
+            if (combatStageToLoad < 4)
                 ++combatStageToLoad;
             else
                 combatStageToLoad = 1;
@@ -184,7 +197,7 @@ public class StageManager : MonoBehaviour
 
     void LoadNextStage()
     {
-        if (combatStageToLoad < 3)
+        if (combatStageToLoad < 4)
             ++combatStageToLoad;
         else
             combatStageToLoad = 1;
@@ -253,17 +266,17 @@ public class StageManager : MonoBehaviour
 
             //Uncommment for gamepad play choice
             //=================================================================
-//            if (GUI.Button(
-//                new Rect(Screen.width - 170,
-//                     100,
-//                     150,
-//                     30), "Start With GamePad"))
-//            {    
-//                ShipCoreInfoStore.instance.savePartsAndNewStage = true;
-//                Application.LoadLevel(combatStageToLoad);
-//
-//                PlayerController.isAimingWithMouse = false;
-//            }
+            if (GUI.Button(
+                new Rect(Screen.width - 170,
+                     100,
+                     150,
+                     30), "Start With GamePad"))
+            {    
+                ShipCoreInfoStore.instance.savePartsAndNewStage = true;
+                Application.LoadLevel(combatStageToLoad);
+
+                PlayerController.isAimingWithMouse = false;
+            }
             //=================================================================
 
             int i=0;
@@ -300,7 +313,7 @@ public class StageManager : MonoBehaviour
                                    40+i*100,
                                    350,
                                    75
-                                   ),"Shot Gun | 40 DegArc, LOW range, MANY LOW DMG bullets",InfoStyle);
+                                   ),"Shot Gun | 35 DegArc, LOW range, MANY LOW DMG bullets",InfoStyle);
                 ++i;
                 
                 //++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -314,7 +327,7 @@ public class StageManager : MonoBehaviour
                 
             }
 
-            if(combatStageToLoad == 3)
+            if(combatStageToLoad >= 3)
             {
 
                 //++++++++++++++++++++++++++++++++++++++++++++++++++

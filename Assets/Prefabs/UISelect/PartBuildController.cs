@@ -16,6 +16,7 @@ public class PartBuildController : MonoBehaviour {
     public float scrollSpeed = 0.1f;
     protected float offset;
     protected WeaponBasic weaponComponent;
+    protected ShieldBasic shieldComponent;
 
 	// Use this for initialization
 	void Start () {
@@ -123,8 +124,9 @@ public class PartBuildController : MonoBehaviour {
         CurrentPart = part;
 
         weaponComponent = part.GetComponent<WeaponBasic>();
+        shieldComponent = part.GetComponent<ShieldBasic>();
 
-        if(!weaponComponent)
+        if(!weaponComponent && !shieldComponent)
             part.transform.rotation = this.transform.localRotation;
         
         part.transform.parent = this.transform.parent;
@@ -132,7 +134,7 @@ public class PartBuildController : MonoBehaviour {
 
     public void RotateCurrentPart()
     {
-        if (CurrentPart != null && weaponComponent)
+        if (CurrentPart != null && (weaponComponent|| shieldComponent))
         {
             CurrentPart.transform.Rotate(0, 30, 0);
             CurrentPartRotation = CurrentPart.transform.rotation;
