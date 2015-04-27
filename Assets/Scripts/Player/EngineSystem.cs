@@ -73,6 +73,7 @@ public class EngineSystem : MonoBehaviour {
     void moveHorizontally(float input)
     {
 		controlObj.rigidbody.velocity += rightDir * input * resultantAcceleration;
+        //controlObj.rigidbody.AddForce( rightDir * input * resultantAcceleration,ForceMode.Acceleration);
     }
 
     /// <summary>
@@ -81,6 +82,7 @@ public class EngineSystem : MonoBehaviour {
     void moveVertically(float input)
     {
 		controlObj.rigidbody.velocity += upDir * input * resultantAcceleration;
+        //controlObj.rigidbody.AddForce( upDir * input * resultantAcceleration,ForceMode.Acceleration);
     }
 
     void turnToVector(Vector3 LookAtVector)

@@ -65,13 +65,15 @@ public class PlayerBasic : UnitBasic {
 
         if (isFiringInputActive)
         {
-            this.particleSystem.Clear(false);
-            this.particleSystem.Stop(false);
+//            this.particleSystem.Clear(false);
+//            this.particleSystem.Stop(false);
 
             weaponsSystem.fireAllWeapons();
 
         } else
-            this.particleSystem.Play(false);
+        {
+//            this.particleSystem.Play(false);
+        }
 	}
 
     public void initAllParts()

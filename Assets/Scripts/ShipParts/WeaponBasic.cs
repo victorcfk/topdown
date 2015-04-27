@@ -47,6 +47,9 @@ public abstract class WeaponBasic : MonoBehaviour
     //[HideInInspector]
     public bool[] BelongsToWeaponGroup = new bool[]{true,false};
 
+    protected float origSpeed;
+    protected float origAlpha;
+
    // Use this for initialization
     protected void Start()
     {
@@ -72,21 +75,48 @@ public abstract class WeaponBasic : MonoBehaviour
             projectileLifeTime = projectilePrefab.lifeTime;
         }
 
-
         if (LaunchLocations == null || LaunchLocations.Length <= 0)
         {
             LaunchLocations = new Transform[1];
 
             LaunchLocations[0] = transform;
         }
+
+        if (particleSystem)
+        {
+            origSpeed = particleSystem.startSpeed;
+            origAlpha = particleSystem.startColor.a;
+
+
+            print("origalpha: "+origAlpha);
+        }
+            
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //LaunchProjectile();
-        if(coolDownTimer > 0)
+        if (coolDownTimer > 0)
+        {
             coolDownTimer -= Time.deltaTime;
+
+            if(particleSystem)
+            {
+                //this.particleSystem.Clear(false);
+                //this.particleSystem.Stop(false);
+                this.particleSystem.Pause(false);
+            }
+        } else
+        {
+            if(particleSystem)
+            {
+                this.particleSystem.Play(false);
+                //this.particleSystem.startSpeed = origSpeed;
+            }
+
+        }
                 
         UpdateCoolDownVisuals();
     }
@@ -94,7 +124,24 @@ public abstract class WeaponBasic : MonoBehaviour
     void UpdateCoolDownVisuals()
     {
         for (int i=0; i<LaunchLocations.Length; i++)
-            LaunchLocations[i].gameObject.renderer.material.mainTextureOffset =  new Vector2(0,Mathf.Lerp(-0.55f, 0.55f, coolDownTimer / coolDownBetweenShots));
+        {
+            if(LaunchLocations [i].gameObject.renderer)
+                LaunchLocations [i].gameObject.renderer.material.mainTextureOffset = new Vector2(0, Mathf.Lerp(-0.55f, 0.55f, coolDownTimer / coolDownBetweenShots));
+
+        }
+
+        if (particleSystem)
+        {
+            print(Mathf.Lerp(0, origAlpha, coolDownTimer / coolDownBetweenShots));
+
+            particleSystem.startColor = new Color(particleSystem.startColor.r,
+                                                  particleSystem.startColor.g,
+                                                  particleSystem.startColor.b,
+                                                  Mathf.Lerp(origAlpha, 0,coolDownTimer / coolDownBetweenShots)
+            );
+
+        }
+
     }
 
 
