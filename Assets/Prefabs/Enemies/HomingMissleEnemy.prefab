@@ -454,7 +454,7 @@ MonoBehaviour:
   projectileRange: 120
   isOverrideProjectileLifeTime: 1
   projectileLifeTime: 20
-  coolDownBetweenShots: 5
+  coolDownBetweenShots: 6
   LaunchLocations:
   - {fileID: 400012}
   - {fileID: 400010}
@@ -500,7 +500,7 @@ MonoBehaviour:
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 0
-  maxRadiansDelta: 90
+  maxRadiansDelta: 75
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

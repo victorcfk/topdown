@@ -173,8 +173,8 @@ MonoBehaviour:
   IsHoming: 1
   maxRadiansDelta: 50
   IsAccelerating: 1
-  Acceleration: 10
-  MaxSpeed: 75
+  Acceleration: 5
+  MaxSpeed: 65
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

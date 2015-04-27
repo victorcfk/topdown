@@ -306,7 +306,7 @@ MonoBehaviour:
   Weapon: {fileID: 11400002}
   isSpamWeaponWhenOutOfFacing: 0
   isSpamWeaponWhenOutOfRange: 1
-  flankDistance: 30
+  flankDistance: 20
   collisionlayermask:
     serializedVersion: 2
     m_Bits: 256
@@ -358,14 +358,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dafe1371342284389bf5f7bcc215ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 25
+  MaxSpeed: 20
   BaseSpeed: 10
   minDistFromDestination: 5
   minAngleForFacing: 1
   lastKnownDest: {x: 0, y: 0, z: 0}
   isRealisticMotion: 1
   isRealisticTurning: 0
-  maxRadiansDelta: 90
+  maxRadiansDelta: 75
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
