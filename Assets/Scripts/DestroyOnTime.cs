@@ -8,7 +8,7 @@ public class DestroyOnTime : MonoBehaviour {
     // Use this for initialization
 	void Start () 
     {
-        timeOutDuration = particleSystem.duration;
+        timeOutDuration = GetComponent<ParticleSystem>().duration;
 
         Invoke("DestroySelf", timeOutDuration);
 	}

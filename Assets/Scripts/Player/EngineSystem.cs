@@ -72,7 +72,7 @@ public class EngineSystem : MonoBehaviour {
     /// </summary>
     void moveHorizontally(float input)
     {
-		controlObj.rigidbody.velocity += rightDir * input * resultantAcceleration;
+		controlObj.GetComponent<Rigidbody>().velocity += rightDir * input * resultantAcceleration;
         //controlObj.rigidbody.AddForce( rightDir * input * resultantAcceleration,ForceMode.Acceleration);
     }
 
@@ -81,7 +81,7 @@ public class EngineSystem : MonoBehaviour {
     /// </summary>
     void moveVertically(float input)
     {
-		controlObj.rigidbody.velocity += upDir * input * resultantAcceleration;
+		controlObj.GetComponent<Rigidbody>().velocity += upDir * input * resultantAcceleration;
         //controlObj.rigidbody.AddForce( upDir * input * resultantAcceleration,ForceMode.Acceleration);
     }
 
@@ -103,7 +103,7 @@ public class EngineSystem : MonoBehaviour {
     /// </summary>
     void clampMovement()
     {
-        controlObj.rigidbody.velocity = Vector3.ClampMagnitude(controlObj.rigidbody.velocity, resultantMaxSpeed);
+        controlObj.GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(controlObj.GetComponent<Rigidbody>().velocity, resultantMaxSpeed);
     }
 
     void getAllEngineModifiers()

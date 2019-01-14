@@ -245,7 +245,7 @@ public class Meshinator : MonoBehaviour
 						// Figure out the approximate volume of our Hull and SubHull meshes. This
 						// will be used to calculate the rigidbody masses (if a rigidbodies are present)
 						// for the old and new GameObjects.
-						if (gameObject.rigidbody != null && newGO.rigidbody != null)
+						if (gameObject.GetComponent<Rigidbody>() != null && newGO.GetComponent<Rigidbody>() != null)
 						{
 							Vector3 hullSize = newMesh.bounds.size;
 							float hullVolume = hullSize.x * hullSize.y * hullSize.z;
@@ -254,17 +254,17 @@ public class Meshinator : MonoBehaviour
 							float subHullVolume = subHullSize.x * subHullSize.y * subHullSize.z;
 							
 							float totalVolume = hullVolume + subHullVolume;
-							float totalMass = gameObject.rigidbody.mass;
+							float totalMass = gameObject.GetComponent<Rigidbody>().mass;
 							
-							gameObject.rigidbody.mass = totalMass * (hullVolume / totalVolume);
-							newGO.rigidbody.mass = totalMass * (subHullVolume / totalVolume);
+                            gameObject.GetComponent<Rigidbody>().mass = totalMass * (hullVolume / totalVolume);
+                            newGO.GetComponent<Rigidbody>().mass = totalMass * (subHullVolume / totalVolume);
 							
 							// Set the old velocity onto the new GameObject's rigidbody
-							newGO.rigidbody.velocity = gameObject.rigidbody.velocity;
+                            newGO.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
 							
 							// Set the centers of mass to be within the new meshes
-							gameObject.rigidbody.centerOfMass = newMesh.bounds.center;
-							newGO.rigidbody.centerOfMass = subHullMesh.bounds.center;
+                            gameObject.GetComponent<Rigidbody>().centerOfMass = newMesh.bounds.center;
+                            newGO.GetComponent<Rigidbody>().centerOfMass = subHullMesh.bounds.center;
 						}
 					}
 				}

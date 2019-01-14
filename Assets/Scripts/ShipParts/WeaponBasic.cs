@@ -82,10 +82,10 @@ public abstract class WeaponBasic : MonoBehaviour
             LaunchLocations[0] = transform;
         }
 
-        if (particleSystem)
+        if (GetComponent<ParticleSystem>())
         {
-            origSpeed = particleSystem.startSpeed;
-            origAlpha = particleSystem.startColor.a;
+            origSpeed = GetComponent<ParticleSystem>().startSpeed;
+            origAlpha = GetComponent<ParticleSystem>().startColor.a;
 
 
             print("origalpha: "+origAlpha);
@@ -102,17 +102,17 @@ public abstract class WeaponBasic : MonoBehaviour
         {
             coolDownTimer -= Time.deltaTime;
 
-            if(particleSystem)
+            if(GetComponent<ParticleSystem>())
             {
                 //this.particleSystem.Clear(false);
                 //this.particleSystem.Stop(false);
-                this.particleSystem.Pause(false);
+                this.GetComponent<ParticleSystem>().Pause(false);
             }
         } else
         {
-            if(particleSystem)
+            if(GetComponent<ParticleSystem>())
             {
-                this.particleSystem.Play(false);
+                this.GetComponent<ParticleSystem>().Play(false);
                 //this.particleSystem.startSpeed = origSpeed;
             }
 
@@ -125,18 +125,18 @@ public abstract class WeaponBasic : MonoBehaviour
     {
         for (int i=0; i<LaunchLocations.Length; i++)
         {
-            if(LaunchLocations [i].gameObject.renderer)
-                LaunchLocations [i].gameObject.renderer.material.mainTextureOffset = new Vector2(0, Mathf.Lerp(-0.55f, 0.55f, coolDownTimer / coolDownBetweenShots));
+            if(LaunchLocations [i].gameObject.GetComponent<Renderer>())
+                LaunchLocations [i].gameObject.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0, Mathf.Lerp(-0.55f, 0.55f, coolDownTimer / coolDownBetweenShots));
 
         }
 
-        if (particleSystem)
+        if (GetComponent<ParticleSystem>())
         {
-            print(Mathf.Lerp(0, origAlpha, coolDownTimer / coolDownBetweenShots));
+//            print(Mathf.Lerp(0, origAlpha, coolDownTimer / coolDownBetweenShots));
 
-            particleSystem.startColor = new Color(particleSystem.startColor.r,
-                                                  particleSystem.startColor.g,
-                                                  particleSystem.startColor.b,
+            GetComponent<ParticleSystem>().startColor = new Color(GetComponent<ParticleSystem>().startColor.r,
+                                                  GetComponent<ParticleSystem>().startColor.g,
+                                                  GetComponent<ParticleSystem>().startColor.b,
                                                   Mathf.Lerp(origAlpha, 0,coolDownTimer / coolDownBetweenShots)
             );
 
@@ -191,7 +191,7 @@ public abstract class WeaponBasic : MonoBehaviour
 
         ProjectileBasic instance = CreateProjectile(gameObject.transform.position, fireAngle);
         
-        instance.rigidbody.velocity = (fireDirection).normalized * projectileSpeed;
+        instance.GetComponent<Rigidbody>().velocity = (fireDirection).normalized * projectileSpeed;
     }
 
     public void ClearUpProjectile(ProjectileBasic projectile)

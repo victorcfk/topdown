@@ -45,8 +45,8 @@ public class ProjectileSingular: ProjectileBasic
         if (IsAccelerating) AccelerateProjectile();
         if (IsHoming) HomeTowardsTarget(target);
 
-        if(rigidbody != null)
-            rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, minSpeed > MaxSpeed? minSpeed : MaxSpeed);
+        if(GetComponent<Rigidbody>() != null)
+            GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, minSpeed > MaxSpeed? minSpeed : MaxSpeed);
 
         /*
         if(MaxSpeed > MinSpeed)
@@ -158,7 +158,7 @@ public class ProjectileSingular: ProjectileBasic
 
     protected void AccelerateProjectile()
     {
-        rigidbody.AddForce(transform.forward * Acceleration,ForceMode.Acceleration);// *rigidbody.velocity;
+        GetComponent<Rigidbody>().AddForce(transform.forward * Acceleration,ForceMode.Acceleration);// *rigidbody.velocity;
     }
 
     protected void HomeTowardsTarget(GameObject target)
@@ -181,7 +181,7 @@ public class ProjectileSingular: ProjectileBasic
 
         transform.rotation = Quaternion.LookRotation(newDir, new Vector3(0,1, 0));    //Force up to be -z to prevent flipping due to quaternion representation
 
-        rigidbody.velocity = transform.forward*rigidbody.velocity.magnitude;
+        GetComponent<Rigidbody>().velocity = transform.forward*GetComponent<Rigidbody>().velocity.magnitude;
         //controlledObj.transform.localEulerAngles.Set(0, 0, controlledObj.transform.localEulerAngles.z);
     }
     

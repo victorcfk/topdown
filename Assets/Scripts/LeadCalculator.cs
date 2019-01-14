@@ -46,10 +46,10 @@ public class LeadCalculator : MonoBehaviour {
         return Quaternion.LookRotation(
             FirstOrderInterceptDirection(
             shooter.transform.position,
-            shooter.rigidbody.velocity,
+            shooter.GetComponent<Rigidbody>().velocity,
             shotSpeed,
             target.transform.position,
-            target.rigidbody.velocity), shooterUpVector);
+            target.GetComponent<Rigidbody>().velocity), shooterUpVector);
     }
 
     public static float FirstOrderInterceptAngle
@@ -81,10 +81,10 @@ public class LeadCalculator : MonoBehaviour {
         return Vector3.Angle(Vector3.up,
             FirstOrderInterceptDirection(
             shooter.transform.position,
-            shooter.rigidbody.velocity,
+            shooter.GetComponent<Rigidbody>().velocity,
             shotSpeed,
             target.transform.position,
-            target.rigidbody.velocity));
+            target.GetComponent<Rigidbody>().velocity));
     }
 
     public static Vector3 FirstOrderInterceptDirection
@@ -114,10 +114,10 @@ public class LeadCalculator : MonoBehaviour {
     {
         return FirstOrderInterceptPosition(
             shooter.transform.position,
-            shooter.rigidbody.velocity,
+            shooter.GetComponent<Rigidbody>().velocity,
             shotSpeed,
             target.transform.position,
-            target.rigidbody.velocity) - shooter.transform.position;
+            target.GetComponent<Rigidbody>().velocity) - shooter.transform.position;
     }
 
 
@@ -151,7 +151,7 @@ public class LeadCalculator : MonoBehaviour {
     )
     {
         Vector3 targetRelativePosition = target.transform.position - shooter.transform.position;
-        Vector3 targetRelativeVelocity = target.rigidbody.velocity - shooter.rigidbody.velocity;
+        Vector3 targetRelativeVelocity = target.GetComponent<Rigidbody>().velocity - shooter.GetComponent<Rigidbody>().velocity;
         float t = FirstOrderInterceptTime
         (
             shotSpeed,

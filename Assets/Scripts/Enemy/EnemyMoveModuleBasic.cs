@@ -32,7 +32,7 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
         if (!hasReachedDestination)
         {
             MoveToPoint(lastKnownDest);
-            rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, MaxSpeed);
+            GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, MaxSpeed);
         } else
         {
             ApplyBrakes();
@@ -73,8 +73,8 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
 					ApplyBrakes();  
                 else
                 {
-                    rigidbody.drag = 0;
-                    rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
+                    GetComponent<Rigidbody>().drag = 0;
+                    GetComponent<Rigidbody>().AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
                 }
 
                 LookToDirection(direction);
@@ -82,15 +82,15 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
             else
 			{
                 //You can always move in that direction
-                rigidbody.drag = 0;
-                rigidbody.AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
+                GetComponent<Rigidbody>().drag = 0;
+                GetComponent<Rigidbody>().AddForce(direction.normalized * BaseSpeed, ForceMode.Force);
             }
 
         }
         else
         {
-            rigidbody.drag = 0;
-            rigidbody.velocity = direction.normalized * BaseSpeed;
+            GetComponent<Rigidbody>().drag = 0;
+            GetComponent<Rigidbody>().velocity = direction.normalized * BaseSpeed;
         }
     }
 
@@ -98,9 +98,9 @@ public class EnemyMoveModuleBasic : MonoBehaviour {
     public void ApplyBrakes()
     {
         if (isRealisticMotion)
-            rigidbody.drag = BaseSpeed/2;
+            GetComponent<Rigidbody>().drag = BaseSpeed/2;
         else
-            rigidbody.velocity = Vector3.zero;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     /// <summary>

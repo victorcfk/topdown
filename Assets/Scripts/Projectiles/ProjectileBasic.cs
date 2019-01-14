@@ -69,7 +69,7 @@ public abstract class ProjectileBasic : MonoBehaviour {
 
     public float getCenter()
     {
-        return this.renderer.bounds.extents.z;
+        return this.GetComponent<Renderer>().bounds.extents.z;
     }
 
 }

@@ -27,13 +27,13 @@ public class PartBuildController : MonoBehaviour {
 	void Update () {
 
         offset = Time.time * scrollSpeed;
-		renderer.material.SetTextureOffset ("_MainTex", new Vector2(offset,0));
+		GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", new Vector2(offset,0));
 
         //left clicked
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.collider)
+            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.GetComponent<Collider>())
             {
                 GetNextPart();
             }
@@ -42,7 +42,7 @@ public class PartBuildController : MonoBehaviour {
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.collider)
+            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.GetComponent<Collider>())
             {
                 RotateCurrentPart();
             }
@@ -51,7 +51,7 @@ public class PartBuildController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.A))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.collider)
+            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.GetComponent<Collider>())
             {
                 WeaponBasic temp = CurrentPart.GetComponent<WeaponBasic>();
 
@@ -72,7 +72,7 @@ public class PartBuildController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.B))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.collider)
+            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider == this.GetComponent<Collider>())
             {
                 WeaponBasic temp = CurrentPart.GetComponent<WeaponBasic>();
 

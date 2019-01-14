@@ -67,10 +67,10 @@ public class LuftEngineSystem : MonoBehaviour {
             {
                 Vector3 thing = controlObj.transform.forward * input * resultantAcceleration;
                 //controlObj.rigidbody.velocity += thing;
-                controlObj.rigidbody.AddForce(thing, ForceMode.Acceleration);
+                controlObj.GetComponent<Rigidbody>().AddForce(thing, ForceMode.Acceleration);
 
 
-                controlObj.rigidbody.useGravity = false;
+                controlObj.GetComponent<Rigidbody>().useGravity = false;
             }
             else
             {
@@ -84,7 +84,7 @@ public class LuftEngineSystem : MonoBehaviour {
     /// </summary>
     void clampMovement()
     {
-        controlObj.rigidbody.velocity = Vector3.ClampMagnitude(controlObj.rigidbody.velocity, resultantMaxSpeed);
+        controlObj.GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(controlObj.GetComponent<Rigidbody>().velocity, resultantMaxSpeed);
     }
     
     void getAllEngineModifiers()

@@ -80,7 +80,7 @@ public class WeaponProjectileSingular : WeaponBasic
 
                 fireDirection = Quaternion.AngleAxis(Random.Range(-angleDeviation,angleDeviation),Vector3.forward) * LaunchLocations[i].forward;
 
-                instance.rigidbody.velocity = fireDirection * projectileSpeed;
+                instance.GetComponent<Rigidbody>().velocity = fireDirection * projectileSpeed;
 
                 instance.target = target;
 

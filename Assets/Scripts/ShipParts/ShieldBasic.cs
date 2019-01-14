@@ -15,7 +15,7 @@ public class ShieldBasic : DamageReceiver
             ParentReceiver.ApplyDamage( temp * dmgModifier);
 
         print("emit");
-        particleSystem.Emit(5);
+        GetComponent<ParticleSystem>().Emit(5);
     }
 
 }
